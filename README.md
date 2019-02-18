@@ -47,6 +47,7 @@ ECE Capstone Project
 |        |         |             |      |
 
 ###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsibility | Due Date | Description |
 |:--------------:|:--------:|:-----------:|
 |                |          |             |
