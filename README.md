@@ -35,6 +35,7 @@ ECE Capstone Project
 1. Everyone understands how meeting logs work.
 2. Implement abstract and mission statement feedback.
 3. Assign Tasks.
+4. 
 
 <!-- What to read before this meeting -->
 ###### Please Read: N/A
@@ -47,17 +48,18 @@ ECE Capstone Project
 <!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
 | Agenda | Purpose | Responsible | Mins |
 |:------|:-------|:-----------|:----|
-| Meeting logs       |     Teach how they work.    |  John Young            | 5 |
+| Meeting logs | Teach how they work.    |  John Young            | 5 |
 | Abstract feedback | Implement feedback into our project proposal | Everyone | 5 |
 | Mission Statement | Implement feedback from mission statement into our project proposal | Everyone | 5 |
+| Project Proposal | Understand what is required by the professor | Everyone | 15 |
 
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsible | Responsibility | Due Date | Description |
 |:-----|:--------------|:--------|:-----------|
-| Dezeray | Abstract Implementations | 2/21/19 | Implement abstract feedback from TA |
+| Dezeray | Abstract Implementations | 2/26/19 | Implement abstract feedback from TA |
+| Dezeray | Introduction Outline | 2/26/19 | Come up with an introduction outline |
 | Seth | Mission Statement Implementations | 2/21/19 | Implement mission statement implementations |
-
 
 #### Meeting Log for [Date] [Day of the Week]
 
