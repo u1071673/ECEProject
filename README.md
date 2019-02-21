@@ -52,7 +52,7 @@ ECE Capstone Project
 
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
-| Who's | Responsibility | Due Date | Description |
+| Responsible | Responsibility | Due Date | Description |
 |:----:|:--------------:|:--------:|:-----------:|
 | Dezeray | Abstract Implementations | 2/21/19 | Implement abstract feedback from TA |
 | Seth | Mission Statement Implementations | 2/21/19 | Implement mission statement implementations |
