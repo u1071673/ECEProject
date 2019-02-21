@@ -45,7 +45,7 @@ ECE Capstone Project
 ###### Meeting Agenda
 <!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
 | Agenda | Purpose | Responsible | Mins |
-|:------:|:-------:|:-----------:|:----:|
+|:------|:-------|:-----------|:----|
 | Meeting logs       |     Teach how they work.    |  John Young            | 5 |
 | Abstract feedback | Implement feedback into our project proposal | Everyone | 5 |
 | Mission Statement | Implement feedback from mission statement into our project proposal | Everyone | 5 |
@@ -53,7 +53,7 @@ ECE Capstone Project
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsible | Responsibility | Due Date | Description |
-|:----:|:--------------:|:--------:|:-----------:|
+|:-----|:--------------|:--------|:-----------|
 | Dezeray | Abstract Implementations | 2/21/19 | Implement abstract feedback from TA |
 | Seth | Mission Statement Implementations | 2/21/19 | Implement mission statement implementations |
 
@@ -83,13 +83,13 @@ ECE Capstone Project
 ###### Meeting Agenda
 <!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
 | Agenda | Purpose | Responsible | Mins |
-|:------:|:-------:|:-----------:|:----:|
+|:-------|:--------|:------------|:-----|
 |        |         |             |      |
 
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsibility | Due Date | Description |
-|:--------------:|:--------:|:-----------:|
+|:---------------|:---------|:------------|
 |                |          |             |
 
 ## 3 Bill of Materials 
