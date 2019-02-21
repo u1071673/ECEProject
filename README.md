@@ -1,8 +1,9 @@
 # ECEProject
 ECE Capstone Project
 
-#### Table of Contents
+![alt protoype](https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.GHSA6KYGV2oZg64Pt78JoAHaE8%26pid%3D15.1&f=1 "Prototype")
 
+#### Table of Contents
 |             #             | Section                                   | Short Description                                                               |
 |:-------------------------:|:------------------------------------------|:--------------------------------------------------------------------------------|
 |   [1](#1-team-members)    | [Team Members](#1-team-members)           | Team members for this project.                                                  |
