@@ -6,17 +6,21 @@ ECE Capstone Project
 #### Table of Contents
 |             #             | Section                                   | Short Description                                                               |
 |:-------------------------:|:------------------------------------------|:--------------------------------------------------------------------------------|
-|   [1](#1-team-members)    | [Team Members](#1-team-members)           | Team members for this project.                                                  |
-|   [2](#2-meeting-logs)    | [Meeting Logs](#2-meeting-logs)           | Record of all meeting logs as well as the meeting agenda.                       |
-| [3](#3-bill-of-materials) | [Bill of Materials](#3-bill-of-materials) | Bill of Materials for the project, including all monthly and non-recurring fees |
+| [1](#1-mission-statement) | [Mission Statement](#1-mission-statement) | Our team's Mission statement |
+|   [2](#3-team-members)    | [Team Members](#2-team-members)           | Team members for this project.                                                  |
+|   [3](#3-meeting-logs)    | [Meeting Logs](#3-meeting-logs)           | Record of all meeting logs as well as the meeting agenda.                       |
+| [4](#4-bill-of-materials) | [Bill of Materials](#4-bill-of-materials) | Bill of Materials for the project, including all monthly and non-recurring fees |
 
-## 1 Team Members
+## 1. Mission Statement
+Our mission is to provide arcade gaming interfaces that are unique, immersive and en-joyable to our users.  These interfaces will provide a more realistic and exciting experiencethrough  unique  physical  interaction.   There  are  few  organizations  who  implement  similartechnologies.  Unlike these organizations, we aim to make an affordable arcade product witha unique immersive experience
+
+## 2 Team Members
 * Dezeray Kowalski
 * Jamision Bauer
 * John Young
 * Seth Kingston
 
-## 2 Meeting Logs
+## 3 Meeting Logs
 
 #### Meeting Log for 2/21/19 Thursday
 
@@ -95,7 +99,7 @@ ECE Capstone Project
 |:---------------|:---------|:------------|
 |                |          |             |
 
-## 3 Bill of Materials 
+## 4 Bill of Materials 
 |     Qty      |    Item     | Description        | Monthly unit cost | Non-recurring unit cost |
 |:------------:|:-----------:|:-------------------|:-----------------:|:-----------------------:|
 | [Item count] | [Item name] | [Item description] |        $0         |           $0            |
