@@ -61,9 +61,10 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsible | Responsibility | Due Date | Description |
 |:-----|:--------------|:--------|:-----------|
-| Dezeray | Abstract Implementations | 2/26/19 | Implement abstract feedback from TA |
+| Jamison | Abstract Implementations | 2/26/19 | Implement abstract feedback from TA |
+| Jamison | Linux Build | 3/5/19 | Get a Linux build on his laptop for the open source flight sim |
 | Dezeray | Introduction Outline | 2/26/19 | Come up with an introduction outline |
-| Seth | Mission Statement Implementations | 2/21/19 | Implement mission statement implementations |
+| Seth | Mission Statement Implementations | 2/21/19 | Implement mission statement feedback |
 
 #### Meeting Log for [Date] [Day of the Week]
 
