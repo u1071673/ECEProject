@@ -101,6 +101,9 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 |                |          |             |
 
 ## 4 Bill of Materials 
+
+https://docs.google.com/spreadsheets/d/1E5jHg0KErL1eJAIMd6SxGYYcoagG-iWO-heWENuRLdU/edit?usp=sharing
+
 |     Qty      |    Item     | Description        | Monthly unit cost | Non-recurring unit cost |
 |:------------:|:-----------:|:-------------------|:-----------------:|:-----------------------:|
 | [Item count] | [Item name] | [Item description] |        $0         |           $0            |
