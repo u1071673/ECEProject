@@ -30,7 +30,7 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 * [ ] Not Present
 -->
 * [X] Dezeray Kowalski
-* [X] Jamision Bauer
+* [X] Jamison Bauer
 * [X] John Young
 * [X] Seth Kingston
 
