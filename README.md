@@ -6,7 +6,7 @@ ECE Capstone Project
 #### Table of Contents
 |             #             | Section                                   | Short Description                                                               |
 |:-------------------------:|:------------------------------------------|:--------------------------------------------------------------------------------|
-| [1](#1-mission-statement) | [Mission Statement](#1-mission-statement) | Our team's Mission statement |
+| [1](#1-mission-statement) | [Mission Statement](#1-mission-statement) | Our team's Mission statement                                                    |
 |   [2](#3-team-members)    | [Team Members](#2-team-members)           | Team members for this project.                                                  |
 |   [3](#3-meeting-logs)    | [Meeting Logs](#3-meeting-logs)           | Record of all meeting logs as well as the meeting agenda.                       |
 | [4](#4-bill-of-materials) | [Bill of Materials](#4-bill-of-materials) | Bill of Materials for the project, including all monthly and non-recurring fees |
@@ -49,21 +49,21 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 
 ###### Meeting Agenda
 <!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
-| Agenda | Purpose | Responsible | Mins |
-|:------|:-------|:-----------|:----|
-| Meeting logs | Teach how they work.    |  John Young            | 5 |
-| Abstract feedback | Implement feedback into our project proposal | Everyone | 5 |
-| Mission Statement | Implement feedback from mission statement into our project proposal | Everyone | 5 |
-| Project Proposal | Understand what is required by the professor | Everyone | 15 |
+| Agenda            | Purpose                                                             | Responsible | Mins |
+|:------------------|:--------------------------------------------------------------------|:------------|:-----|
+| Meeting logs      | Teach how they work.                                                | John Young  | 5    |
+| Abstract feedback | Implement feedback into our project proposal                        | Everyone    | 5    |
+| Mission Statement | Implement feedback from mission statement into our project proposal | Everyone    | 5    |
+| Project Proposal  | Understand what is required by the professor                        | Everyone    | 15   |
 
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
-| Responsible | Responsibility | Due Date | Description |
-|:-----|:--------------|:--------|:-----------|
-| Jamison | Abstract Implementations | 2/26/19 | Implement abstract feedback from TA |
-| Jamison | Linux Build | 3/5/19 | Get a Linux build on his laptop for the open source flight sim |
-| Dezeray | Introduction Outline | 2/26/19 | Come up with an introduction outline |
-| Seth | Mission Statement Implementations | 2/21/19 | Implement mission statement feedback |
+| Responsible | Responsibility                    | Due Date | Description                                                    |
+|:------------|:----------------------------------|:---------|:---------------------------------------------------------------|
+| Jamison     | Abstract Implementations          | 2/26/19  | Implement abstract feedback from TA                            |
+| Jamison     | Linux Build                       | 3/5/19   | Get a Linux build on his laptop for the open source flight sim |
+| Dezeray     | Introduction Outline              | 2/26/19  | Come up with an introduction outline                           |
+| Seth        | Mission Statement Implementations | 2/21/19  | Implement mission statement feedback                           |
 
 #### Meeting Log for 2/27/19 Wednesday
 
@@ -91,19 +91,60 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 
 ###### Meeting Agenda
 <!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
-| Agenda | Purpose | Responsible | Mins |
-|:-------|:--------|:------------|:-----|
-| Discuss Slide Topics | Outline the slides and assign topics out | Team | 30 |
+| Agenda               | Purpose                                  | Responsible | Mins |
+|:---------------------|:-----------------------------------------|:------------|:-----|
+| Discuss Slide Topics | Outline the slides and assign topics out | Everyone    | 30   |
 
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
-| Responsible | Responsibility | Due Date | Description |
-|:-----|:--------------|:--------|:-----------|
-|      |               |         |            |
-| Jamison |Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
-| John |Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
-| Dezeray |Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
-| Seth |Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
+| Responsible | Responsibility                 | Due Date       | Description                                                    |
+|:------------|:-------------------------------|:---------------|:---------------------------------------------------------------|
+|             |                                |                |                                                                |
+| Jamison     | Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
+| John        | Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
+| Dezeray     | Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
+| Seth        | Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
+
+#### Meeting Log for 2/28/19 Thursday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [x] Dezeray Kowalski
+* [x] Jamision Bauer
+* [x] John Young
+* [x] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+1. Finalize initial milestones.
+2. Get everyone on the same page for all slides.
+3. Finalize initial individual slides.
+
+
+<!-- What to read before this meeting -->
+###### Please Read: N/A
+<!-- What to bring before this meeting -->
+###### Please Bring: N/A
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required: N/A
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda            | Purpose                                                 | Responsible | Mins |
+|:------------------|:--------------------------------------------------------|:------------|:-----|
+| Milestones        | Layout Timeline                                         | Jamison     | 10   |
+| Individual Slides | Get everyone on the same page for all slides            | John        | 5    |
+| Initial Slides    | To get a rough outline we can populate over the weekend | Everyone    | 10   |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description                                                            |
+|:------------|:---------------|:---------|:-----------------------------------------------------------------------|
+| Everyone    | Do your slides | 3/3/10   | Get your slides done by sunday night so we can have rehearse on monday |
+
 
 #### Meeting Log for [Date] [Day of the Week]
 
@@ -136,8 +177,8 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsible | Responsibility | Due Date | Description |
-|:-----|:--------------|:--------|:-----------|
-|      |               |         |            |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
 
 ## 4 Bill of Materials 
 
