@@ -39,7 +39,6 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 1. Everyone understands how meeting logs work.
 2. Implement abstract and mission statement feedback.
 3. Assign Tasks.
-4. 
 
 <!-- What to read before this meeting -->
 ###### Please Read: N/A
@@ -65,6 +64,46 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 | Jamison | Linux Build | 3/5/19 | Get a Linux build on his laptop for the open source flight sim |
 | Dezeray | Introduction Outline | 2/26/19 | Come up with an introduction outline |
 | Seth | Mission Statement Implementations | 2/21/19 | Implement mission statement feedback |
+
+#### Meeting Log for 2/27/19 Wednesday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [x] Dezeray Kowalski
+* [x] Jamision Bauer
+* [x] John Young
+* [x] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+1. Outline our presentation slides
+2. Talk about presentation logistics
+
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+| Discuss Slide Topics | Outline the slides and assign topics out | Team | 30 |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:-----|:--------------|:--------|:-----------|
+|      |               |         |            |
+| Jamison |Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
+| John |Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
+| Dezeray |Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
+| Seth |Complete assigned slides draft | 3/3/19 evening | Finish your draft of your slides so we can finish up on Monday |
 
 #### Meeting Log for [Date] [Day of the Week]
 
@@ -96,9 +135,9 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
-| Responsibility | Due Date | Description |
-|:---------------|:---------|:------------|
-|                |          |             |
+| Responsible | Responsibility | Due Date | Description |
+|:-----|:--------------|:--------|:-----------|
+|      |               |         |            |
 
 ## 4 Bill of Materials 
 
