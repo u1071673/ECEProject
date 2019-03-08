@@ -146,6 +146,46 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 | Everyone    | Do your slides | 3/3/10   | Get your slides done by sunday night so we can have rehearse on monday |
 
 
+#### Meeting Log for 3/4/19 Monday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [x] Dezeray Kowalski
+* [x] Jamision Bauer
+* [x] John Young
+* [ ] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+1. Finalize the presentation slides.
+2. Practice presenting.
+3. Discuss design ideas.
+
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+1. Your completed slides.
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|  Design Ideas | Clarify the design for the physical structure of our project. | John | 20  |
+|  Review Slides | Go through entire slide show and make necessary edits. | Jamison | 20  |
+|  Practice Presentation | Practice individual sections then practice it all together. | John | 20  |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+| Entire Team | Make necessary changes to presentation. | 3/5  | Some presentation dialog needs to be worked on and practiced. |
+
 #### Meeting Log for [Date] [Day of the Week]
 
 ###### Attendees:
