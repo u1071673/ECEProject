@@ -18,14 +18,15 @@
 #define PITCH_CLOCKWISE 'd'
 #define PITCH_COUNTER_CLOCKWISE 'a'
 #define RESET 'r'
+#define ENABLE_MOTORS 'e'
 #define ROLL_INCREASE '+'
 #define ROLL_DECREASE '-'
 #define PITCH_INCREASE '>'
 #define PITCH_DECREASE '<'
 #define SPACE ' '
 #define DEL 0x7F
-#define DELAY_UNIT 0.5f
-#define ROLL_PITCH_GPIO_BASE GPIOB
+#define DELAY_UNIT 10
+#define MOTORS_GPIO_BASE GPIOB
 #define ROLL_DIR_PIN GPIO_PIN_5
 #define ROLL_STEP_PIN GPIO_PIN_6
 #define PITCH_DIR_PIN GPIO_PIN_7
@@ -39,6 +40,7 @@
 void SystemClock_Config(void);
 void GPIOx_init(GPIO_TypeDef *gpiox_base, uint16_t gpio_pins, uint32_t mode, uint32_t pull, uint32_t speed);
 void USART3_init(void);
+void TIM6_init(void);
 void transmit_string(char *string);
 void transmit_char(char c);
 char receive_char(void);
@@ -47,7 +49,7 @@ void debug_menu(void);
 void main_prompt(void);
 void main_menu(void);
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL dir_to_set);
-void set_step_pins(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll);
+void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll);
 
 /* STATIC GLOBAL VARIABLES */
 volatile static char received_char = 0;
@@ -55,13 +57,13 @@ volatile static BOOL USART_new_data = FALSE;
 
 volatile BOOL roll_enabled = FALSE;
 volatile BOOL pitch_enabled = FALSE;
-volatile BOOL roll_toggle = TRUE;
-volatile BOOL pitch_toggle = TRUE;
+volatile BOOL roll_toggle = FALSE;
+volatile BOOL pitch_toggle = FALSE;
 volatile BOOL seat_needs_centering = TRUE;
 volatile int16_t target_roll = 0;	// Desired roll target
 volatile int16_t target_pitch = 0;	// Desired pitch target
-volatile float roll_delay = 10.0f;
-volatile float pitch_delay = 10.0f;
+volatile int16_t roll_delay = 10;
+volatile int16_t pitch_delay = 10;
 
 int main(void)
 {
@@ -74,12 +76,14 @@ int main(void)
 	
 	// Initialize PB5 and PB6 for the ROLL motor's direction and step Pins.
 	// Initialize PB7 and PB8 for the PITCH motor's direction and step Pins.
-	GPIOx_init(ROLL_PITCH_GPIO_BASE, ROLL_DIR_PIN|ROLL_STEP_PIN|PITCH_DIR_PIN|PITCH_STEP_PIN, GPIO_MODE_OUTPUT_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW);
+	GPIOx_init(MOTORS_GPIO_BASE, ROLL_DIR_PIN|ROLL_STEP_PIN|PITCH_DIR_PIN|PITCH_STEP_PIN, GPIO_MODE_OUTPUT_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW);
 	
 	// Initialize PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
 	USART3_init();
 
 	// Initialize TIM6 to call interrupt handler method every 
+	TIM6_init();
+	
   /* Infinite loop */
 	while (TRUE)
 	{
@@ -166,7 +170,7 @@ void debug_prompt(void) {
 	transmit_string("\n\r");
 	transmit_string("[d]Pitch clockwise\t[a]Pitch coutner-clockwise\t[<]Decrease pitch\t[>]Increase pitch");
 	transmit_string("\n\r");
-	transmit_string("[r]Reset\t\t[Space]Stop\t\t[Enter]=Exit");
+	transmit_string("[r]Reset\t\t[e]Enable Motors\t\t[Space]Stop\t\t[Enter]=Exit");
 }
 void debug_menu() {
 	debug_prompt();
@@ -177,40 +181,55 @@ void debug_menu() {
 		switch(received_char) {
 			case ROLL_CLOCKWISE:
 				transmit_string("\tRoll direction is now clockwise!");
-				set_direction_pins(ROLL_PITCH_GPIO_BASE, ROLL_DIR_PIN, TRUE);
+				set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, TRUE);
 				break;
 			case ROLL_COUNTER_CLOCKWISE:
 				transmit_string("\tRoll direction is now counter-clockwise!");
-				set_direction_pins(ROLL_PITCH_GPIO_BASE, ROLL_DIR_PIN, FALSE);
+				set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, FALSE);
 				break;
 			case ROLL_DECREASE:
 				transmit_string("\tRoll speed decreased by 1 unit.");
 				roll_delay += DELAY_UNIT;
 				break;
 			case ROLL_INCREASE:
-				transmit_string("\tRoll speed increased by 1 unit.");
-				roll_delay -= DELAY_UNIT;
+				if (roll_delay - DELAY_UNIT < 0) {
+					transmit_string("\tMaximum roll speed achieved.");
+					roll_delay = 0;
+				} else {
+					transmit_string("\tRoll speed increased by 1 unit.");
+					roll_delay -= DELAY_UNIT;
+				}
 				break;
 			case PITCH_CLOCKWISE:
 				transmit_string("\tPitch direction is now clockwise!");
-				set_direction_pins(ROLL_PITCH_GPIO_BASE, PITCH_DIR_PIN, TRUE);
+				set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, TRUE);
 				break;
 			case PITCH_COUNTER_CLOCKWISE:
 				transmit_string("\tPitch direction is now counter-clockwise!");
-				set_direction_pins(ROLL_PITCH_GPIO_BASE, PITCH_DIR_PIN, FALSE);
+				set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, FALSE);
 				break;
 			case PITCH_DECREASE:
 				transmit_string("\tPitch speed decreased by 1 unit.");
 				pitch_delay += DELAY_UNIT;
 				break;
 			case PITCH_INCREASE:
-				transmit_string("\tPitch speed increased by 1 unit.");
-				pitch_delay -= DELAY_UNIT;
+				if (pitch_delay - DELAY_UNIT < 0) {
+					transmit_string("\tMaximum pitch speed achieved.");
+					pitch_delay = 0;
+				} else {
+					transmit_string("\tPitch speed increased by 1 unit.");
+					pitch_delay -= DELAY_UNIT;
+				}
 				break;
 			case SPACE:
 				transmit_string("\tStopping motors!");
 				roll_enabled = FALSE;
 				pitch_enabled = FALSE;
+				break;
+			case ENABLE_MOTORS:
+				transmit_string("\tEnabling Motors!");
+				roll_enabled = TRUE;
+				pitch_enabled = TRUE;
 				break;
 			case RESET:
 				transmit_string("\tReseting all!");
@@ -229,14 +248,14 @@ void debug_menu() {
 }
 
 // Sets the direction pin according to according to the desired direction. 
-void set_step_pins(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll) {
-		GPIO_PinState pin_state;
+void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll) {
+		GPIO_PinState pin_state = GPIO_PIN_RESET;
 		if(is_roll) {
-			pin_state = roll_toggle ? GPIO_PIN_SET : GPIO_PIN_RESET;
-			roll_toggle = ~roll_toggle;
+			pin_state = roll_enabled ? (roll_toggle ? GPIO_PIN_SET : GPIO_PIN_RESET) : GPIO_PIN_RESET;
+			roll_toggle = roll_toggle ? FALSE : TRUE;
 		} else {
-			pin_state = pitch_toggle ? GPIO_PIN_SET : GPIO_PIN_RESET;
-			pitch_toggle = ~pitch_toggle;
+			pin_state = roll_enabled ? (pitch_toggle ? GPIO_PIN_SET : GPIO_PIN_RESET) : GPIO_PIN_RESET;
+			pitch_toggle = pitch_toggle ? FALSE : TRUE;
 		}
 		HAL_GPIO_WritePin(gpiox_base, step_pin, pin_state);
 }
@@ -298,7 +317,7 @@ void USART3_init(void) {
 // Initializes TIM6 to trigger an interrupt every 37.5 ms
 void TIM6_init(void) {
 		RCC->APB1ENR |= RCC_APB1ENR_TIM6EN;
-		TIM6->PSC = 0x0007;
+		TIM6->PSC = 0x0001;
 		TIM6->ARR = 0x927C;
 		TIM6->DIER |= TIM_DIER_UIE;						 // Enable update event interrupt
 		TIM6->CR1 |= TIM_CR1_CEN;							 // Enable Timer
@@ -339,7 +358,7 @@ void USART3_4_IRQHandler(void) {
 
 // This method is called once every 37.5 ms.
 void TIM6_DAC_IRQHandler(void) {
-	set_step_pins(ROLL_PITCH_GPIO_BASE, ROLL_STEP_PIN, TRUE);
+	set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
 	HAL_Delay(roll_delay);
 	TIM6->SR &= ~TIM_SR_UIF;				// Acknowledge the interrupt
 }
