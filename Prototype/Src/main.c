@@ -8,6 +8,7 @@
   */
 #include "main.h"
 #include "stm32f0xx_hal.h"
+#include <stdio.h>
 
 // Custom Macros
 #define BAUD_RATE 9600
@@ -41,6 +42,8 @@ void SystemClock_Config(void);
 void GPIOx_init(GPIO_TypeDef *gpiox_base, uint16_t gpio_pins, uint32_t mode, uint32_t pull, uint32_t speed);
 void USART3_init(void);
 void TIM6_init(void);
+void I2C2_init(void);
+void poll_accel_rate(void);
 void transmit_string(char *string);
 void transmit_char(char c);
 char receive_char(void);
@@ -48,6 +51,8 @@ void debug_prompt(void);
 void debug_menu(void);
 void main_prompt(void);
 void main_menu(void);
+void itoa(int n, char s[]);
+void reverse(char s[]);
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL dir_to_set);
 void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll);
 
@@ -64,6 +69,9 @@ volatile int16_t target_roll = 0;	// Desired roll target
 volatile int16_t target_pitch = 0;	// Desired pitch target
 volatile int16_t roll_delay = 10;
 volatile int16_t pitch_delay = 10;
+volatile int16_t actual_roll_speed;
+volatile int16_t actual_pitch_speed;
+
 
 int main(void)
 {
@@ -83,6 +91,9 @@ int main(void)
 
 	// Initialize TIM6 to call interrupt handler method every 
 	TIM6_init();
+	
+	// Initialize I2C2
+	//I2C2_init();
 	
   /* Infinite loop */
 	while (TRUE)
@@ -156,7 +167,8 @@ void main_menu(void) {
 	case '\n':
 	case '\r':
 	default:
-		transmit_string("\tCentering...");
+			transmit_string("\tUnrecognized Character: ");
+			transmit_char(received_char);
 		break;
 	}
 }
@@ -295,6 +307,98 @@ void GPIOx_init(GPIO_TypeDef *gpiox_base, uint16_t gpio_pins, uint32_t mode, uin
 
 }
 
+
+void Start_GYRO_TRX(BOOL read, unsigned int dataSize)
+{
+	// clear nbytes and SADD
+	I2C2->CR2 &= ~((0xFF << 16) | (0x3FF << 0));
+	// SET to 2 Byte message and GYRO ADDRESS 
+	I2C2->CR2 |= (dataSize << 16) | (0x6B << 1);
+	
+	if (read) 
+		// RD_WRN to read
+		I2C2->CR2 |= (1 << 10);
+	else 
+		// RD_WRN to write
+		I2C2->CR2 &= ~(1 << 10);
+
+	// START bit
+	I2C2->CR2 |= (1 << 13);
+}
+
+void I2C2_init() {
+		// Initialize clocks
+	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+	RCC->APB1ENR |= RCC_APB1ENR_I2C2EN;
+	//  PB11 and PB13 to alternate function mode
+	GPIOB->MODER |= (1 << 23) | (1 << 27);
+	//PB11 and PB13 to open drain output type
+	GPIOB->OTYPER |= (1 << 11) | (1 << 13);
+	// I2C2_SDA as alternate function for PB11
+	GPIOB->AFR[1] |= (1 << 12);
+	// I2C2_SCL as alternate function for PB13
+	GPIOB->AFR[1] |= (1 << 22) | (1 << 20);
+	
+	// PB14 and PC0 to output mode
+	GPIOB->MODER |= (1 << 28);
+	GPIOC->MODER |= (1 << 0);
+	// PB14 and PC0 to push-pull output 
+	GPIOB->OTYPER &= ~(1 << 14);
+	GPIOC->OTYPER &= ~(1 << 0);
+	//PB14 and PC0 set to high
+	GPIOB->ODR |= (1 << 14);
+	GPIOC->ODR |= (1 << 0);
+	
+	// PRESC
+	I2C2->TIMINGR |= (1 << 28);
+	// SCLL
+	I2C2->TIMINGR |= (1 << 0) | (1 << 1) | (1 << 4);
+	// SCLH
+	I2C2->TIMINGR |= (0xF<<8);
+	// SDADEL
+	I2C2->TIMINGR |= (1 << 17);
+	// SCLDEL
+	I2C2->TIMINGR |= (1 << 22);
+
+	// Enable I2C
+	I2C2->CR1 |= (1 << 0);
+	
+		// start
+	Start_GYRO_TRX(TRUE, 2);
+	
+	// Continue once the TXIS flag is set and the NACKF flag is not set
+	while( !(I2C2->ISR & I2C_ISR_TXIS) || (I2C2->ISR & I2C_ISR_NACKF) ){}
+		
+	// address for gyro ccrtl_reg1
+	I2C2->TXDR = 0x20;
+	
+	while( !(I2C2->ISR & I2C_ISR_TXIS) || (I2C2->ISR & I2C_ISR_NACKF) ){}
+		
+	// enable x and y axis and set PD to 1, everything else set to 0
+	I2C2->TXDR = 0xB;
+
+	// wait until TC register is set	
+	while(!(I2C2->ISR & I2C_ISR_TC)) {}
+	
+	//stop
+	I2C2->CR2 |= (1 << 14);
+
+}
+
+void LEDs_init() {
+		// Initialize all LEDs to general purpose output mode 
+	GPIOC->MODER |= (1 << 12) | (1 << 14) | (1 << 16) | (1 << 18);
+	
+	// all LEDs to push-pull
+	GPIOC->OTYPER &= ~((1 << 6) | (1 << 7) | (1 << 8) | (1 << 9));
+	
+	// all LEDs to low speed
+	GPIOC->OSPEEDR &= ~((1 << 12) | (1 << 14) | (1 << 16) | (1 << 18));
+	
+	// all LEDs to no pull up and no pull down
+	GPIOC->PUPDR &= ~((1 << 12) | (1 << 13) | (1 << 14) | (1 << 15) | (1 << 16) | (1 << 17) | (1 << 18) | (1 << 19));
+}
+
 // Initializes PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
 void USART3_init(void) {
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
@@ -328,7 +432,6 @@ void TIM6_init(void) {
 // Transmits a char over USART3.
 void transmit_char(char c) {
 	// Waiting on the USART status flag to indicate the transmit register is empty.
-	//GPIOC->ODR ^= (1<<9) | (1<<8); // DEBUGGER
 	while(!(USART3->ISR & USART_ISR_TXE));
 	USART3->TDR = c;
 }
@@ -358,10 +461,113 @@ void USART3_4_IRQHandler(void) {
 
 // This method is called once every 37.5 ms.
 void TIM6_DAC_IRQHandler(void) {
-	set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
-	HAL_Delay(roll_delay);
-	TIM6->SR &= ~TIM_SR_UIF;				// Acknowledge the interrupt
+//	set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
+//	HAL_Delay(roll_delay);
+
+		//poll_accel_rate();
+	
+		TIM6->SR &= ~TIM_SR_UIF;				// Acknowledge the interrupt
+
 }
+
+void poll_accel_rate(void) {
+	  uint8_t xlow, xhigh; 
+		uint8_t ylow, yhigh;
+		//***********************************READ THE GYRO DATA******************************************
+	
+		Start_GYRO_TRX(FALSE, 1);
+			
+		while( !(I2C2->ISR & I2C_ISR_TXIS) || (I2C2->ISR & I2C_ISR_NACKF) ){}
+		// send address of x axis data
+		I2C2->TXDR = 0xA8;
+	
+		while(!(I2C2->ISR & I2C_ISR_TC)) {}
+		
+		//restart to read x data
+		Start_GYRO_TRX(TRUE, 2);
+			
+		while( !(I2C2->ISR & I2C_ISR_RXNE) || (I2C2->ISR & I2C_ISR_NACKF) ){}	
+			
+		xlow = (I2C2->RXDR & I2C_RXDR_RXDATA);
+			
+		while( !(I2C2->ISR & I2C_ISR_RXNE) || (I2C2->ISR & I2C_ISR_NACKF) ){}	
+			
+		while(!(I2C2->ISR & I2C_ISR_TC)) {}
+			
+		xhigh = (I2C2->RXDR & I2C_RXDR_RXDATA);
+			
+		actual_roll_speed = (xhigh << 8) | xlow;
+			
+		//restart to ask for y data
+		Start_GYRO_TRX(FALSE, 1);
+			
+		// Continue once the TXIS flag is set and the NACKF flag is not set
+		while( !(I2C2->ISR & I2C_ISR_TXIS) || (I2C2->ISR & I2C_ISR_NACKF) ){}
+
+		// address for y data
+		I2C2->TXDR = 0xAA;
+
+		// wait until TC register is set	
+		while(!(I2C2->ISR & I2C_ISR_TC)) {}
+		
+		//restart to read y data
+		Start_GYRO_TRX(TRUE, 2);
+			
+		while( !(I2C2->ISR & I2C_ISR_RXNE) || (I2C2->ISR & I2C_ISR_NACKF) ){}	
+			
+		ylow = (I2C2->RXDR & I2C_RXDR_RXDATA);
+			
+		while( !(I2C2->ISR & I2C_ISR_RXNE) || (I2C2->ISR & I2C_ISR_NACKF) ){}	
+			
+		while(!(I2C2->ISR & I2C_ISR_TC)) {}
+			
+		yhigh = (I2C2->RXDR & I2C_RXDR_RXDATA);
+			
+		actual_pitch_speed = (yhigh << 8) | ylow;
+			
+		char pbuff[15];
+		char rbuff[15];
+		
+		itoa(actual_roll_speed, pbuff);
+		itoa(actual_pitch_speed, rbuff);
+		transmit_string("\n\r\t");
+		transmit_string(pbuff);
+		transmit_string("\n\r\t");
+		transmit_string(rbuff);
+}
+
+/* itoa:  convert n to characters in s */
+ void itoa(int n, char s[])
+ {
+     int i, sign;
+ 
+     if ((sign = n) < 0)  /* record sign */
+         n = -n;          /* make n positive */
+     i = 0;
+     do {       /* generate digits in reverse order */
+         s[i++] = n % 10 + '0';   /* get next digit */
+     } while ((n /= 10) > 0);     /* delete it */
+     if (sign < 0)
+         s[i++] = '-';
+     s[i] = '\0';
+     reverse(s);
+ }
+ 
+ #include <string.h>
+ 
+ /* reverse:  reverse string s in place */
+ void reverse(char s[])
+ {
+     int i, j;
+     char c;
+ 
+     for (i = 0, j = strlen(s)-1; i<j; i++, j--) {
+         c = s[i];
+         s[i] = s[j];
+         s[j] = c;
+     }
+ }
+  
 
 /* USER CODE END 4 */
 
