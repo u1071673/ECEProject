@@ -19,6 +19,6 @@
 "prototype\stm32f0xx_hal_flash_ex.o"
 "prototype\system_stm32f0xx.o"
 --library_type=microlib --strict --scatter "Prototype\Prototype.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "Prototype.map" -o Prototype\Prototype.axf

@@ -51,10 +51,10 @@ void debug_prompt(void);
 void debug_menu(void);
 void main_prompt(void);
 void main_menu(void);
-void itoa(int n, char s[]);
-void reverse(char s[]);
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL dir_to_set);
 void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll);
+void LEDs_init(void);
+void Start_GYRO_TRX(BOOL write, unsigned int dataSize);
 
 /* STATIC GLOBAL VARIABLES */
 volatile static char received_char = 0;
@@ -71,11 +71,13 @@ volatile int16_t roll_delay = 10;
 volatile int16_t pitch_delay = 10;
 volatile int16_t actual_roll_speed;
 volatile int16_t actual_pitch_speed;
+volatile uint8_t xlow, xhigh; 
+volatile uint8_t ylow, yhigh;
+volatile int16_t actual_roll_speed, actual_pitch_speed; 
 
 
 int main(void)
 {
-
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
   /* Configure the system clock */
@@ -86,15 +88,19 @@ int main(void)
 	// Initialize PB7 and PB8 for the PITCH motor's direction and step Pins.
 	GPIOx_init(MOTORS_GPIO_BASE, ROLL_DIR_PIN|ROLL_STEP_PIN|PITCH_DIR_PIN|PITCH_STEP_PIN, GPIO_MODE_OUTPUT_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW);
 	
+	//initialize LEDs
+	LEDs_init();
+	
+	// Initialize I2C2
+	I2C2_init();
+	
 	// Initialize PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
 	USART3_init();
 
 	// Initialize TIM6 to call interrupt handler method every 
 	TIM6_init();
 	
-	// Initialize I2C2
-	//I2C2_init();
-	
+
   /* Infinite loop */
 	while (TRUE)
 	{
@@ -307,28 +313,9 @@ void GPIOx_init(GPIO_TypeDef *gpiox_base, uint16_t gpio_pins, uint32_t mode, uin
 
 }
 
-
-void Start_GYRO_TRX(BOOL read, unsigned int dataSize)
-{
-	// clear nbytes and SADD
-	I2C2->CR2 &= ~((0xFF << 16) | (0x3FF << 0));
-	// SET to 2 Byte message and GYRO ADDRESS 
-	I2C2->CR2 |= (dataSize << 16) | (0x6B << 1);
-	
-	if (read) 
-		// RD_WRN to read
-		I2C2->CR2 |= (1 << 10);
-	else 
-		// RD_WRN to write
-		I2C2->CR2 &= ~(1 << 10);
-
-	// START bit
-	I2C2->CR2 |= (1 << 13);
-}
-
 void I2C2_init() {
 		// Initialize clocks
-	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+	//RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 	RCC->APB1ENR |= RCC_APB1ENR_I2C2EN;
 	//  PB11 and PB13 to alternate function mode
 	GPIOB->MODER |= (1 << 23) | (1 << 27);
@@ -364,7 +351,7 @@ void I2C2_init() {
 	I2C2->CR1 |= (1 << 0);
 	
 		// start
-	Start_GYRO_TRX(TRUE, 2);
+	Start_GYRO_TRX(FALSE, 2);
 	
 	// Continue once the TXIS flag is set and the NACKF flag is not set
 	while( !(I2C2->ISR & I2C_ISR_TXIS) || (I2C2->ISR & I2C_ISR_NACKF) ){}
@@ -386,6 +373,7 @@ void I2C2_init() {
 }
 
 void LEDs_init() {
+	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 		// Initialize all LEDs to general purpose output mode 
 	GPIOC->MODER |= (1 << 12) | (1 << 14) | (1 << 16) | (1 << 18);
 	
@@ -401,12 +389,12 @@ void LEDs_init() {
 
 // Initializes PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
 void USART3_init(void) {
-	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
+	//RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
 	// Configuring PC4 and PC5 to alternate function mode
 	GPIOC->MODER |= ((1<<9) | (1<<11));	
 	// Configuring the RX and TX lines to alternate function mode
-	// AF1 for PC4 (USART3_TX) and PC5 (USART3_RX) // Note: actual installation of cable is backword (PC4 is RX and PC6 is TX)
+	// AF1 for PC4 (USART3_TX) and PC5 (USART3_RX) // Note: actual installation of cable is backword (PC4 is RX and PC5 is TX)
 	GPIOC->AFR[0] |= (1<<20 | 1<<16);
 	GPIOC->AFR[0] &= ~(0xE<<20 | 0xE<<16);
 	// Set the baud rate for communication to be 115200 bits/seconds
@@ -464,16 +452,15 @@ void TIM6_DAC_IRQHandler(void) {
 //	set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
 //	HAL_Delay(roll_delay);
 
-		//poll_accel_rate();
+		poll_accel_rate();
 	
 		TIM6->SR &= ~TIM_SR_UIF;				// Acknowledge the interrupt
 
 }
-
+// READ THE GYRO DATA
 void poll_accel_rate(void) {
-	  uint8_t xlow, xhigh; 
-		uint8_t ylow, yhigh;
-		//***********************************READ THE GYRO DATA******************************************
+		char pbuff[15];
+		char rbuff[15];
 	
 		Start_GYRO_TRX(FALSE, 1);
 			
@@ -525,52 +512,59 @@ void poll_accel_rate(void) {
 			
 		actual_pitch_speed = (yhigh << 8) | ylow;
 			
-		char pbuff[15];
-		char rbuff[15];
-		
-		itoa(actual_roll_speed, pbuff);
-		itoa(actual_pitch_speed, rbuff);
-		transmit_string("\n\r\t");
-		transmit_string(pbuff);
-		transmit_string("\n\r\t");
-		transmit_string(rbuff);
+		if( actual_roll_speed > 5000) {
+			GPIOC->ODR |= (1 << 9);
+			sprintf(rbuff, "%d", actual_roll_speed);
+			transmit_string("\n\r\t");
+			transmit_string(rbuff);
+		}
+		else
+			GPIOC->ODR &= ~(1 << 9);
+	  if ( actual_roll_speed < -5000) {
+			GPIOC->ODR |= (1 << 8);
+			sprintf(rbuff, "%d", actual_roll_speed);
+			transmit_string("\n\r\t");
+			transmit_string(rbuff);
+		}
+  	else
+			GPIOC->ODR &= ~(1 << 8);
+		if( actual_pitch_speed > 5000) {
+			GPIOC->ODR |= (1 << 6);
+			sprintf(pbuff, "%d", actual_pitch_speed);
+			transmit_string("\n\r\t");
+			transmit_string(pbuff);
+		}
+		else
+			GPIOC->ODR &= ~(1 << 6);
+		if ( actual_pitch_speed < -5000) {
+			GPIOC->ODR |= (1 << 7);
+			sprintf(pbuff, "%d", actual_pitch_speed);
+			transmit_string("\n\r\t");
+			transmit_string(pbuff);
+		}	
+		else
+			GPIOC->ODR &= ~(1 << 7);
+
 }
 
-/* itoa:  convert n to characters in s */
- void itoa(int n, char s[])
- {
-     int i, sign;
- 
-     if ((sign = n) < 0)  /* record sign */
-         n = -n;          /* make n positive */
-     i = 0;
-     do {       /* generate digits in reverse order */
-         s[i++] = n % 10 + '0';   /* get next digit */
-     } while ((n /= 10) > 0);     /* delete it */
-     if (sign < 0)
-         s[i++] = '-';
-     s[i] = '\0';
-     reverse(s);
- }
- 
- #include <string.h>
- 
- /* reverse:  reverse string s in place */
- void reverse(char s[])
- {
-     int i, j;
-     char c;
- 
-     for (i = 0, j = strlen(s)-1; i<j; i++, j--) {
-         c = s[i];
-         s[i] = s[j];
-         s[j] = c;
-     }
- }
+void Start_GYRO_TRX(BOOL read, unsigned int dataSize)
+{
+	// clear nbytes and SADD
+	I2C2->CR2 &= ~((0xFF << 16) | (0x3FF << 0));
+	// SET to 2 Byte message and GYRO ADDRESS 
+	I2C2->CR2 |= (dataSize << 16) | (0x6B << 1);
+	
+	if (read) 
+		// RD_WRN to read
+		I2C2->CR2 |= (1 << 10);
+	else 
+		// RD_WRN to write
+		I2C2->CR2 &= ~(1 << 10);
+
+	// START bit
+	I2C2->CR2 |= (1 << 13);
+}
   
-
-/* USER CODE END 4 */
-
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None
@@ -582,9 +576,6 @@ void Error_Handler(void)
 
   /* USER CODE END Error_Handler_Debug */
 }
-
-
-
 
 #ifdef  USE_FULL_ASSERT
 #endif /* USE_FULL_ASSERT */
