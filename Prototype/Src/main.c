@@ -9,11 +9,12 @@
 #include "main.h"
 #include "stm32f0xx_hal.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 // Custom Macros
 #define BAUD_RATE 9600
-#define DEBUG_MODE '1'
-#define USER_MODE '2'
+#define DEBUG_MODE 'a'
+#define FG_MODE 'b'
 #define ROLL_CLOCKWISE 'w'
 #define ROLL_COUNTER_CLOCKWISE 's'
 #define PITCH_CLOCKWISE 'd'
@@ -24,6 +25,7 @@
 #define ROLL_DECREASE '-'
 #define PITCH_INCREASE '>'
 #define PITCH_DECREASE '<'
+#define QUIT 'q'
 #define SPACE ' '
 #define DEL 0x7F
 #define DELAY_UNIT 10
@@ -32,10 +34,11 @@
 #define ROLL_STEP_PIN GPIO_PIN_6
 #define PITCH_DIR_PIN GPIO_PIN_7
 #define PITCH_STEP_PIN GPIO_PIN_8
+#define MAX_ROLL_STEPS 200
+#define MAX_PITCH_STEPS 200
 #define TRUE 1
 #define FALSE 0
 #define BOOL uint8_t
-
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -48,7 +51,9 @@ void transmit_string(char *string);
 void transmit_char(char c);
 char receive_char(void);
 void debug_prompt(void);
+void fg_prompt(void);
 void debug_menu(void);
+void fg_menu(void);
 void main_prompt(void);
 void main_menu(void);
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL dir_to_set);
@@ -65,19 +70,19 @@ volatile BOOL pitch_enabled = FALSE;
 volatile BOOL roll_toggle = FALSE;
 volatile BOOL pitch_toggle = FALSE;
 volatile BOOL seat_needs_centering = TRUE;
-volatile int16_t target_roll = 0;	// Desired roll target
-volatile int16_t target_pitch = 0;	// Desired pitch target
 volatile int16_t roll_delay = 10;
 volatile int16_t pitch_delay = 10;
-volatile int16_t actual_roll_speed;
-volatile int16_t actual_pitch_speed;
-volatile uint8_t xlow, xhigh; 
-volatile uint8_t ylow, yhigh;
-volatile int16_t actual_roll_speed, actual_pitch_speed; 
+volatile uint8_t xlow, xhigh = 0;
+volatile uint8_t ylow, yhigh = 0;
+volatile int16_t actual_roll_speed, actual_pitch_speed = 0; 
+volatile int desired_roll = 0;
+volatile int desired_pitch = 0;
+volatile int current_roll_steps = 0;
+volatile int current_pitch_steps = 0;
+volatile BOOL roll_clockwise = TRUE;
+volatile BOOL pitch_clockwise = FALSE;
 
-
-int main(void)
-{
+int main(void) {
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
   /* Configure the system clock */
@@ -108,12 +113,12 @@ int main(void)
 	}
 }
 
+
 /**
   * @brief System Clock Configuration
   * @retval None
   */
-void SystemClock_Config(void)
-{
+void SystemClock_Config(void) {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
@@ -141,48 +146,52 @@ void SystemClock_Config(void)
   }
 }
 
-/* USER CODE BEGIN 4 */
 
+/* USER CODE BEGIN 4 */
 void main_prompt(void) {
 	transmit_string("\n\r\tSELECT MODE");
-	transmit_string("\n\r1 \t\tDEBUG Mode");
-	transmit_string("\n\r2 \t\tUSER Mode");
-	transmit_string("\n\r[ANY KEY] \tCenter Seat");
+	transmit_string("\n\r[a] \t\tDEBUG Mode");
+	transmit_string("\n\r[b] \t\tFG Mode");
 	transmit_string("\n\r");
 	USART_new_data = FALSE;
 	received_char = 0;
 	seat_needs_centering = TRUE;
 }
 
+
 void main_menu(void) {
 	main_prompt();
-	while (!USART_new_data); // Wait for new data.
-	target_roll = 0;
-	target_pitch = 0;
-	transmit_char(received_char);
-	switch(received_char) {
-	case DEBUG_MODE:
-		transmit_string("\tDebug mode selected");
-		debug_menu();
-		break;
-	case USER_MODE:
-		// TODO: use values from flight gear.
-		transmit_string("\n\r");
-		transmit_string("\tUSER MODE NOT IMPLEMENTED YET!");
-		break;
-	case '\n':
-	case '\r':
-	default:
-			transmit_string("\tUnrecognized Character: ");
+	BOOL done = FALSE;
+	while (!done) {
+		while (!USART_new_data); // Wait for new data.
+		desired_roll = 0;
+		desired_pitch = 0;
+		switch(received_char) {
+		case DEBUG_MODE:
 			transmit_char(received_char);
-		break;
+			transmit_string("\tDebug mode selected");
+			debug_menu();
+			done = TRUE;
+			break;
+		case FG_MODE:
+			transmit_char(received_char);
+			transmit_string("\tFlight Gear mode selected");
+			fg_menu();		
+			done = TRUE;
+			break;
+		case '\n':
+		case '\r':
+		default:
+			break;
+		}
 	}
 }
+
 void debug_prompt(void) {
 	received_char = 0;
 	USART_new_data = FALSE;
-	target_roll = 0;
-	target_pitch = 0;
+	desired_roll = 0;
+	desired_pitch = 0;
 	transmit_string("\n\r");
 	transmit_string("[w]Roll clockwise\t[s]Roll counter-clockwise\t[-]Decrease roll\t[+]Increase roll;");
 	transmit_string("\n\r");
@@ -190,6 +199,19 @@ void debug_prompt(void) {
 	transmit_string("\n\r");
 	transmit_string("[r]Reset\t\t[e]Enable Motors\t\t[Space]Stop\t\t[Enter]=Exit");
 }
+
+void fg_prompt(void) {
+	received_char = 0;
+	USART_new_data = FALSE;
+	desired_roll = 0;
+	desired_pitch = 0;
+	transmit_string("\n\r");
+	transmit_string("Reading Roll and Pitch (Press q to quit)");
+	transmit_string("\n\r");
+	transmit_string("Format: Roll,Pitch");
+	transmit_string("\n\r");
+}
+
 void debug_menu() {
 	debug_prompt();
 	while(received_char != '\n' && received_char != '\r') {
@@ -199,11 +221,13 @@ void debug_menu() {
 		switch(received_char) {
 			case ROLL_CLOCKWISE:
 				transmit_string("\tRoll direction is now clockwise!");
-				set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, TRUE);
+				roll_clockwise = TRUE;
+				set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
 				break;
 			case ROLL_COUNTER_CLOCKWISE:
 				transmit_string("\tRoll direction is now counter-clockwise!");
-				set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, FALSE);
+				roll_clockwise = FALSE;
+				set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
 				break;
 			case ROLL_DECREASE:
 				transmit_string("\tRoll speed decreased by 1 unit.");
@@ -220,11 +244,13 @@ void debug_menu() {
 				break;
 			case PITCH_CLOCKWISE:
 				transmit_string("\tPitch direction is now clockwise!");
-				set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, TRUE);
+				pitch_clockwise = TRUE;
+				set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
 				break;
 			case PITCH_COUNTER_CLOCKWISE:
 				transmit_string("\tPitch direction is now counter-clockwise!");
-				set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, FALSE);
+				pitch_clockwise = FALSE;
+				set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
 				break;
 			case PITCH_DECREASE:
 				transmit_string("\tPitch speed decreased by 1 unit.");
@@ -265,18 +291,91 @@ void debug_menu() {
 	}
 }
 
+
+void fg_menu() {
+	fg_prompt();
+	char roll_buff[100];
+	char pitch_buff[100];
+	USART_new_data = FALSE;
+	received_char = 0;
+	
+	while(received_char != QUIT) {
+		while(received_char != '\r' && received_char != QUIT) {
+			USART_new_data = FALSE;
+			while(!USART_new_data); // Wait for USART new data to arrive
+			transmit_char(received_char);
+		}
+		transmit_string("got CR!\r\n");
+		while(received_char != '\n' && received_char != QUIT) {
+			USART_new_data = FALSE;
+			while(!USART_new_data); // Wait for USART new data to arrive
+			transmit_char(received_char);
+		}
+		transmit_string("got newline!\r\n");
+		int i = 0;
+		while(received_char != ',') {
+			USART_new_data = FALSE;
+			while(!USART_new_data); // Wait for USART new data to arrive
+			if(received_char != ',') {
+				transmit_char(received_char);
+				roll_buff[i] = received_char;
+				i++;
+			} else {
+				roll_buff[i] = 0;
+			}
+		}
+		i = 0;
+		while(received_char != '\r') {
+			USART_new_data = FALSE;
+			while(!USART_new_data); // Wait for USART new data to arrive
+			if(received_char != '\r') {
+				transmit_char(received_char);
+				pitch_buff[i] = received_char;
+				i++;
+			} else {
+				pitch_buff[i] = 0;
+			}	
+		}
+		
+		transmit_string("got CR!\r\n");
+		char string_to_transmit[205];
+		desired_roll = atoi(roll_buff);
+		desired_pitch = atoi(pitch_buff);
+
+		sprintf(string_to_transmit, "-->%d,%d\r\n", atoi(roll_buff), atoi(pitch_buff));
+
+		transmit_string(string_to_transmit);
+		
+		USART_new_data = FALSE;
+		while(!USART_new_data); // Wait for USART new data to arrive
+	}
+	
+}
+
+
 // Sets the direction pin according to according to the desired direction. 
 void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll) {
 		GPIO_PinState pin_state = GPIO_PIN_RESET;
 		if(is_roll) {
 			pin_state = roll_enabled ? (roll_toggle ? GPIO_PIN_SET : GPIO_PIN_RESET) : GPIO_PIN_RESET;
-			roll_toggle = roll_toggle ? FALSE : TRUE;
+			if(roll_toggle) {
+				roll_toggle = FALSE;
+				current_roll_steps = roll_clockwise ? ((current_roll_steps + 1) % MAX_ROLL_STEPS) : ((current_roll_steps - 1) % MAX_ROLL_STEPS);
+			} else {
+				roll_toggle = TRUE;
+			}
 		} else {
 			pin_state = roll_enabled ? (pitch_toggle ? GPIO_PIN_SET : GPIO_PIN_RESET) : GPIO_PIN_RESET;
-			pitch_toggle = pitch_toggle ? FALSE : TRUE;
+			if(pitch_toggle) {
+				pitch_toggle = FALSE;
+				current_pitch_steps = pitch_clockwise ? ((current_pitch_steps + 1) % MAX_PITCH_STEPS) : ((current_pitch_steps - 1) % MAX_PITCH_STEPS);
+			} else {
+				pitch_toggle = TRUE;
+			}
 		}
 		HAL_GPIO_WritePin(gpiox_base, step_pin, pin_state);
 }
+
 
 // Sets the direction pins according to according to the desired direction. 
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL clockwise) {
@@ -286,9 +385,9 @@ void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL clockw
 			HAL_GPIO_WritePin(gpiox_base, dir_pins, GPIO_PIN_RESET);
 }
 
+
 // Initialises any GPIO between A - F pins as specified by the parameters.
-void GPIOx_init(GPIO_TypeDef *gpiox_base, uint16_t gpio_pins, uint32_t mode, uint32_t pull, uint32_t speed)
-{
+void GPIOx_init(GPIO_TypeDef *gpiox_base, uint16_t gpio_pins, uint32_t mode, uint32_t pull, uint32_t speed) {
   GPIO_InitTypeDef GPIO_InitStruct;
   /* GPIO Ports Clock Enable */
 		if(gpiox_base == GPIOA)
@@ -312,6 +411,7 @@ void GPIOx_init(GPIO_TypeDef *gpiox_base, uint16_t gpio_pins, uint32_t mode, uin
 	HAL_GPIO_WritePin(gpiox_base, gpio_pins, GPIO_PIN_RESET);
 
 }
+
 
 void I2C2_init() {
 		// Initialize clocks
@@ -372,6 +472,7 @@ void I2C2_init() {
 
 }
 
+
 void LEDs_init() {
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 		// Initialize all LEDs to general purpose output mode 
@@ -386,6 +487,7 @@ void LEDs_init() {
 	// all LEDs to no pull up and no pull down
 	GPIOC->PUPDR &= ~((1 << 12) | (1 << 13) | (1 << 14) | (1 << 15) | (1 << 16) | (1 << 17) | (1 << 18) | (1 << 19));
 }
+
 
 // Initializes PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
 void USART3_init(void) {
@@ -406,6 +508,7 @@ void USART3_init(void) {
 	NVIC_SetPriority(USART3_4_IRQn, 1);
 }
 
+
 // Initializes TIM6 to trigger an interrupt every 37.5 ms
 void TIM6_init(void) {
 		RCC->APB1ENR |= RCC_APB1ENR_TIM6EN;
@@ -417,12 +520,14 @@ void TIM6_init(void) {
 		NVIC_SetPriority(TIM6_DAC_IRQn,2);
 }
 
+
 // Transmits a char over USART3.
 void transmit_char(char c) {
 	// Waiting on the USART status flag to indicate the transmit register is empty.
 	while(!(USART3->ISR & USART_ISR_TXE));
 	USART3->TDR = c;
 }
+
 
 // Transmits every char in the string over USART3.
 void transmit_string(char *string) {
@@ -432,6 +537,17 @@ void transmit_string(char *string) {
 		i++;
 	}
 }
+
+
+int steps_to_degrees(int steps, int MAX_STEPS) {
+	return 360 * (steps/MAX_STEPS);
+}
+
+
+int degrees_to_steps(int degrees, int MAX_STEPS) {
+	return MAX_STEPS * (degrees/360);
+}
+
 
 // Receives the char from the USART3 buffer.
 char receive_char(void) {
@@ -447,16 +563,18 @@ void USART3_4_IRQHandler(void) {
 	return;
 }
 
+
 // This method is called once every 37.5 ms.
 void TIM6_DAC_IRQHandler(void) {
 //	set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
 //	HAL_Delay(roll_delay);
 
 		poll_accel_rate();
-	
+		
 		TIM6->SR &= ~TIM_SR_UIF;				// Acknowledge the interrupt
 
 }
+
 // READ THE GYRO DATA
 void poll_accel_rate(void) {
 		char pbuff[15];
@@ -520,6 +638,7 @@ void poll_accel_rate(void) {
 		}
 		else
 			GPIOC->ODR &= ~(1 << 9);
+		
 	  if ( actual_roll_speed < -5000) {
 			GPIOC->ODR |= (1 << 8);
 			sprintf(rbuff, "%d", actual_roll_speed);
@@ -528,6 +647,7 @@ void poll_accel_rate(void) {
 		}
   	else
 			GPIOC->ODR &= ~(1 << 8);
+		
 		if( actual_pitch_speed > 5000) {
 			GPIOC->ODR |= (1 << 6);
 			sprintf(pbuff, "%d", actual_pitch_speed);
@@ -536,6 +656,7 @@ void poll_accel_rate(void) {
 		}
 		else
 			GPIOC->ODR &= ~(1 << 6);
+		
 		if ( actual_pitch_speed < -5000) {
 			GPIOC->ODR |= (1 << 7);
 			sprintf(pbuff, "%d", actual_pitch_speed);
@@ -547,8 +668,8 @@ void poll_accel_rate(void) {
 
 }
 
-void Start_GYRO_TRX(BOOL read, unsigned int dataSize)
-{
+
+void Start_GYRO_TRX(BOOL read, unsigned int dataSize) {
 	// clear nbytes and SADD
 	I2C2->CR2 &= ~((0xFF << 16) | (0x3FF << 0));
 	// SET to 2 Byte message and GYRO ADDRESS 
@@ -565,12 +686,12 @@ void Start_GYRO_TRX(BOOL read, unsigned int dataSize)
 	I2C2->CR2 |= (1 << 13);
 }
   
+
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None
   */
-void Error_Handler(void)
-{
+void Error_Handler(void) {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
 
