@@ -363,21 +363,27 @@ void update_motors(void) {
 	BOOL roll_update_needed = TRUE;
 	BOOL pitch_update_needed = TRUE;
 	
+	int roll_distA = target_roll_steps - actual_roll_steps;
+	int roll_distB = actual_roll_steps + (MAX_ROLL_STEPS - target_roll_steps); 
+	
+	int pitch_distA = target_pitch_steps - actual_pitch_steps;
+	int pitch_distB = actual_pitch_steps + (MAX_PITCH_STEPS - target_pitch_steps); 
+	
 	// Set direction to target
-	if(target_roll_steps < (actual_roll_steps - MOTOR_TH)) {
-		roll_clockwise = FALSE;
+	if(roll_distA > roll_distB) {
+		roll_clockwise = target_roll_steps < actual_roll_steps;
 		set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
-	} else if (target_roll_steps > (actual_roll_steps + MOTOR_TH)) {
-		roll_clockwise = TRUE;
+	} else if (roll_distA < roll_distB) {
+		roll_clockwise = target_roll_steps < actual_roll_steps;
 		set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
 	} else {
 		roll_update_needed = FALSE;
 	}
-	if(target_pitch_steps < (actual_pitch_steps - MOTOR_TH)) {
-		pitch_clockwise = FALSE;
+	if(pitch_distA > pitch_distB) {
+		pitch_clockwise = target_pitch_steps < actual_pitch_steps;
 		set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
-	} else if (target_pitch_steps > (actual_pitch_steps + MOTOR_TH)) {
-		pitch_clockwise = TRUE;
+	} else if (pitch_distA < pitch_distB) {
+		pitch_clockwise = target_pitch_steps < actual_pitch_steps;
 		set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
 	} else {
 		pitch_update_needed = FALSE;
