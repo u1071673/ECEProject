@@ -54,6 +54,7 @@ void debug_prompt(void);
 void fg_prompt(void);
 void debug_menu(void);
 void fg_menu(void);
+int degrees_to_steps(int degrees, int MAX_STEPS);
 void main_prompt(void);
 void main_menu(void);
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL dir_to_set);
@@ -75,10 +76,10 @@ volatile int16_t pitch_delay = 10;
 volatile uint8_t xlow, xhigh = 0;
 volatile uint8_t ylow, yhigh = 0;
 volatile int16_t actual_roll_speed, actual_pitch_speed = 0; 
-volatile int desired_roll = 0;
-volatile int desired_pitch = 0;
-volatile int current_roll_steps = 0;
-volatile int current_pitch_steps = 0;
+volatile int target_roll_steps = 0;
+volatile int target_pitch_steps = 0;
+volatile int actual_roll_steps = 0;
+volatile int actual_pitch_steps = 0;
 volatile BOOL roll_clockwise = TRUE;
 volatile BOOL pitch_clockwise = FALSE;
 
@@ -164,8 +165,8 @@ void main_menu(void) {
 	BOOL done = FALSE;
 	while (!done) {
 		while (!USART_new_data); // Wait for new data.
-		desired_roll = 0;
-		desired_pitch = 0;
+		target_roll_steps = 0;
+		target_pitch_steps = 0;
 		switch(received_char) {
 		case DEBUG_MODE:
 			transmit_char(received_char);
@@ -190,8 +191,8 @@ void main_menu(void) {
 void debug_prompt(void) {
 	received_char = 0;
 	USART_new_data = FALSE;
-	desired_roll = 0;
-	desired_pitch = 0;
+	target_roll_steps = 0;
+	target_pitch_steps = 0;
 	transmit_string("\n\r");
 	transmit_string("[w]Roll clockwise\t[s]Roll counter-clockwise\t[-]Decrease roll\t[+]Increase roll;");
 	transmit_string("\n\r");
@@ -203,8 +204,8 @@ void debug_prompt(void) {
 void fg_prompt(void) {
 	received_char = 0;
 	USART_new_data = FALSE;
-	desired_roll = 0;
-	desired_pitch = 0;
+	target_roll_steps = 0;
+	target_pitch_steps = 0;
 	transmit_string("\n\r");
 	transmit_string("Reading Roll and Pitch (Press q to quit)");
 	transmit_string("\n\r");
@@ -339,8 +340,8 @@ void fg_menu() {
 		
 		transmit_string("got CR!\r\n");
 		char string_to_transmit[205];
-		desired_roll = atoi(roll_buff);
-		desired_pitch = atoi(pitch_buff);
+		target_roll_steps = degrees_to_steps(atoi(roll_buff), MAX_ROLL_STEPS);
+		target_pitch_steps = degrees_to_steps(atoi(pitch_buff), MAX_PITCH_STEPS);
 
 		sprintf(string_to_transmit, "-->%d,%d\r\n", atoi(roll_buff), atoi(pitch_buff));
 
@@ -348,19 +349,20 @@ void fg_menu() {
 		
 		USART_new_data = FALSE;
 		while(!USART_new_data); // Wait for USART new data to arrive
+		
 	}
 	
 }
 
 
-// Sets the direction pin according to according to the desired direction. 
+// Sets the direction pin according to according to the target direction. 
 void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll) {
 		GPIO_PinState pin_state = GPIO_PIN_RESET;
 		if(is_roll) {
 			pin_state = roll_enabled ? (roll_toggle ? GPIO_PIN_SET : GPIO_PIN_RESET) : GPIO_PIN_RESET;
 			if(roll_toggle) {
 				roll_toggle = FALSE;
-				current_roll_steps = roll_clockwise ? ((current_roll_steps + 1) % MAX_ROLL_STEPS) : ((current_roll_steps - 1) % MAX_ROLL_STEPS);
+				actual_roll_steps = roll_clockwise ? ((actual_roll_steps + 1) % MAX_ROLL_STEPS) : ((actual_roll_steps - 1) % MAX_ROLL_STEPS);
 			} else {
 				roll_toggle = TRUE;
 			}
@@ -368,7 +370,7 @@ void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll) {
 			pin_state = roll_enabled ? (pitch_toggle ? GPIO_PIN_SET : GPIO_PIN_RESET) : GPIO_PIN_RESET;
 			if(pitch_toggle) {
 				pitch_toggle = FALSE;
-				current_pitch_steps = pitch_clockwise ? ((current_pitch_steps + 1) % MAX_PITCH_STEPS) : ((current_pitch_steps - 1) % MAX_PITCH_STEPS);
+				actual_pitch_steps = pitch_clockwise ? ((actual_pitch_steps + 1) % MAX_PITCH_STEPS) : ((actual_pitch_steps - 1) % MAX_PITCH_STEPS);
 			} else {
 				pitch_toggle = TRUE;
 			}
@@ -377,7 +379,7 @@ void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll) {
 }
 
 
-// Sets the direction pins according to according to the desired direction. 
+// Sets the direction pins according to according to the target direction. 
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL clockwise) {
 		if(clockwise)
 			HAL_GPIO_WritePin(gpiox_base, dir_pins, GPIO_PIN_SET);
@@ -566,8 +568,8 @@ void USART3_4_IRQHandler(void) {
 
 // This method is called once every 37.5 ms.
 void TIM6_DAC_IRQHandler(void) {
-//	set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
-//	HAL_Delay(roll_delay);
+	set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
+	HAL_Delay(roll_delay);
 
 		poll_accel_rate();
 		
