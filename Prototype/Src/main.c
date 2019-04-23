@@ -39,6 +39,8 @@
 #define TRUE 1
 #define FALSE 0
 #define BOOL uint8_t
+#define ON_DELAY 10
+#define OFF_DELAY 10
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -59,8 +61,10 @@ void main_prompt(void);
 void main_menu(void);
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL dir_to_set);
 void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll);
+void set_step_pin_manually(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll, BOOL set_pin_high);
 void LEDs_init(void);
 void Start_GYRO_TRX(BOOL write, unsigned int dataSize);
+void update_motors(void);
 
 /* STATIC GLOBAL VARIABLES */
 volatile static char received_char = 0;
@@ -187,7 +191,6 @@ void main_menu(void) {
 		}
 	}
 }
-
 void debug_prompt(void) {
 	received_char = 0;
 	USART_new_data = FALSE;
@@ -304,21 +307,21 @@ void fg_menu() {
 		while(received_char != '\r' && received_char != QUIT) {
 			USART_new_data = FALSE;
 			while(!USART_new_data); // Wait for USART new data to arrive
-			transmit_char(received_char);
+			//transmit_char(received_char);
 		}
-		transmit_string("got CR!\r\n");
+		//transmit_string("got CR!\r\n");
 		while(received_char != '\n' && received_char != QUIT) {
 			USART_new_data = FALSE;
 			while(!USART_new_data); // Wait for USART new data to arrive
-			transmit_char(received_char);
+			//transmit_char(received_char);
 		}
-		transmit_string("got newline!\r\n");
+		//transmit_string("got newline!\r\n");
 		int i = 0;
 		while(received_char != ',') {
 			USART_new_data = FALSE;
 			while(!USART_new_data); // Wait for USART new data to arrive
 			if(received_char != ',') {
-				transmit_char(received_char);
+				//transmit_char(received_char);
 				roll_buff[i] = received_char;
 				i++;
 			} else {
@@ -330,7 +333,7 @@ void fg_menu() {
 			USART_new_data = FALSE;
 			while(!USART_new_data); // Wait for USART new data to arrive
 			if(received_char != '\r') {
-				transmit_char(received_char);
+				//transmit_char(received_char);
 				pitch_buff[i] = received_char;
 				i++;
 			} else {
@@ -338,19 +341,69 @@ void fg_menu() {
 			}	
 		}
 		
-		transmit_string("got CR!\r\n");
+		//transmit_string("got CR!\r\n");
 		char string_to_transmit[205];
 		target_roll_steps = degrees_to_steps(atoi(roll_buff), MAX_ROLL_STEPS);
 		target_pitch_steps = degrees_to_steps(atoi(pitch_buff), MAX_PITCH_STEPS);
 
-		sprintf(string_to_transmit, "-->%d,%d\r\n", atoi(roll_buff), atoi(pitch_buff));
+		sprintf(string_to_transmit, "FG GOT: %d,%d\r\n", atoi(roll_buff), atoi(pitch_buff));
 
 		transmit_string(string_to_transmit);
 		
 		USART_new_data = FALSE;
 		while(!USART_new_data); // Wait for USART new data to arrive
 		
+		update_motors();
 	}
+	
+}
+
+void update_motors(void) {
+	BOOL roll_update_needed = TRUE;
+	BOOL pitch_update_needed = TRUE;
+	
+	// Set direction to target
+	if(target_roll_steps < (actual_roll_steps - 10)) {
+		roll_clockwise = FALSE;
+		set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
+	} else if (target_roll_steps > actual_roll_steps + 10) {
+		roll_clockwise = TRUE;
+		set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
+	} else {
+		roll_update_needed = FALSE;
+	}
+	if(target_pitch_steps < (actual_pitch_steps - 10)) {
+		pitch_clockwise = FALSE;
+		set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
+	} else if (target_pitch_steps > actual_pitch_steps + 10) {
+		pitch_clockwise = TRUE;
+		set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
+	} else {
+		pitch_update_needed = FALSE;
+	}
+	
+	// Step if not at target
+	if(roll_update_needed) {
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE, TRUE);
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE, TRUE);
+	}
+	
+	if(pitch_update_needed) {
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, FALSE, TRUE);
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, FALSE, TRUE);
+	}
+	HAL_Delay(ON_DELAY);
+	
+	if(roll_update_needed) {
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE, FALSE);
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE, FALSE);
+	}
+	
+	if(pitch_update_needed) {
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, FALSE, FALSE);
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, FALSE, FALSE);
+	}
+	HAL_Delay(OFF_DELAY);
 	
 }
 
@@ -378,6 +431,15 @@ void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll) {
 		HAL_GPIO_WritePin(gpiox_base, step_pin, pin_state);
 }
 
+void set_step_pin_manually(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll, BOOL set_pin_high) {
+	GPIO_PinState pin_state = set_pin_high ? GPIO_PIN_SET : GPIO_PIN_RESET;
+		if(is_roll) {
+			actual_roll_steps = roll_clockwise ? ((actual_roll_steps + 1) % MAX_ROLL_STEPS) : ((actual_roll_steps - 1) % MAX_ROLL_STEPS);
+		} else {
+			actual_pitch_steps = pitch_clockwise ? ((actual_pitch_steps + 1) % MAX_PITCH_STEPS) : ((actual_pitch_steps - 1) % MAX_PITCH_STEPS);
+		}
+		HAL_GPIO_WritePin(gpiox_base, step_pin, pin_state);
+}
 
 // Sets the direction pins according to according to the target direction. 
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL clockwise) {
