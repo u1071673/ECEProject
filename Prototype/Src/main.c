@@ -41,6 +41,7 @@
 #define BOOL uint8_t
 #define ON_DELAY 10
 #define OFF_DELAY 10
+#define MOTOR_TH 10
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -59,7 +60,7 @@ void fg_menu(void);
 int degrees_to_steps(int degrees, int MAX_STEPS);
 void main_prompt(void);
 void main_menu(void);
-void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL dir_to_set);
+void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL set_pin_high);
 void set_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll);
 void set_step_pin_manually(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_roll, BOOL set_pin_high);
 void LEDs_init(void);
@@ -363,19 +364,19 @@ void update_motors(void) {
 	BOOL pitch_update_needed = TRUE;
 	
 	// Set direction to target
-	if(target_roll_steps < (actual_roll_steps - 10)) {
+	if(target_roll_steps < (actual_roll_steps - MOTOR_TH)) {
 		roll_clockwise = FALSE;
 		set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
-	} else if (target_roll_steps > actual_roll_steps + 10) {
+	} else if (target_roll_steps > (actual_roll_steps + MOTOR_TH)) {
 		roll_clockwise = TRUE;
 		set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
 	} else {
 		roll_update_needed = FALSE;
 	}
-	if(target_pitch_steps < (actual_pitch_steps - 10)) {
+	if(target_pitch_steps < (actual_pitch_steps - MOTOR_TH)) {
 		pitch_clockwise = FALSE;
 		set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
-	} else if (target_pitch_steps > actual_pitch_steps + 10) {
+	} else if (target_pitch_steps > (actual_pitch_steps + MOTOR_TH)) {
 		pitch_clockwise = TRUE;
 		set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
 	} else {
@@ -442,8 +443,8 @@ void set_step_pin_manually(GPIO_TypeDef *gpiox_base, uint16_t step_pin, BOOL is_
 }
 
 // Sets the direction pins according to according to the target direction. 
-void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL clockwise) {
-		if(clockwise)
+void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, BOOL set_pin_high) {
+		if(set_pin_high)
 			HAL_GPIO_WritePin(gpiox_base, dir_pins, GPIO_PIN_SET);
 		else
 			HAL_GPIO_WritePin(gpiox_base, dir_pins, GPIO_PIN_RESET);
@@ -630,8 +631,8 @@ void USART3_4_IRQHandler(void) {
 
 // This method is called once every 37.5 ms.
 void TIM6_DAC_IRQHandler(void) {
-	set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
-	HAL_Delay(roll_delay);
+	//set_step_pin(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE);
+	//HAL_Delay(roll_delay);
 
 		poll_accel_rate();
 		
