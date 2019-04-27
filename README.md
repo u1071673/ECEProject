@@ -186,6 +186,182 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 |:------------|:---------------|:---------|:------------|
 | Entire Team | Make necessary changes to presentation. | 3/5  | Some presentation dialog needs to be worked on and practiced. |
 
+#### Meeting Log for 4/16/2019 Tuesday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [ ] Dezeray Kowalski
+* [X] Jamision Bauer
+* [X] John Young
+* [ ] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Soldering motor Control Boards 
+Wiring 
+STM32 writing code
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|    Code    |     STM32 writing code    |      John       |  2 hrs   |
+|    Hardware setup    |     Wiring  /  Soldering motor Control Boards    |      Jamison       |  2 hrs   |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|      John       |        STM32 writing code        |          |             |
+
+#### Meeting Log for 4/18/2019 Thursday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [ ] Dezeray Kowalski
+* [X] Jamision Bauer
+* [X] John Young
+* [ ] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Motor Control
+writing stm32 
+wiring
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|    Code    |     STM32 writing code / Motor Control   |      John       |  2 hrs   |
+|    Hardware setup    |     Wiring  / Motor Control   |      Jamison       |  2 hrs   |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
+#### Meeting Log for  Monday 4/22/2019
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [ ] Dezeray Kowalski
+* [X] Jamision Bauer
+* [X] John Young
+* [X] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|    Prepare project    |      Prepare Project for Presentation      |    Everyone      |   6 hrs   |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
+#### Meeting Log for 4/23/2019 Tuesday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [X] Dezeray Kowalski
+* [X] Jamision Bauer
+* [X] John Young
+* [X] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring before this meeting -->
+Project Hardware and Software
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|  Presentation      |    Present to Brunvand   |    Everyone  |   2 hrs   |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|       Everyone      |      Present to Brunvand          |  4/23/2019  |    Present project to Brunvand    |
+
+#### Meeting Log for 4/27/2019 Saturdary 
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [ ] Dezeray Kowalski
+* [X] Jamision Bauer
+* [X] John Young
+* [X] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|        |         |             |      |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
 #### Meeting Log for [Date] [Day of the Week]
 
 ###### Attendees:
