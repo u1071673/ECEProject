@@ -362,6 +362,41 @@ Project Hardware and Software
 |:------------|:---------------|:---------|:------------|
 |             |                |          |             |
 
+#### Meeting Log for 4/29/2019 Monday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [X] Dezeray Kowalski
+* [X] Jamision Bauer
+* [ ] John Young
+* [X] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+1. Get Presentation Ready for Wednesday May 1, 2019
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+laptops: to work on presentation
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|    Presentation  |     Prepare for final on Wednesday 1    |      Everyone       |      |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
 #### Meeting Log for [Date] [Day of the Week]
 
 ###### Attendees:
