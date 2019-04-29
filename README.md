@@ -5,11 +5,13 @@ ECE Capstone Project
 
 #### Table of Contents
 |             #             | Section                                   | Short Description                                                               |
-|:-------------------------:|:------------------------------------------|:--------------------------------------------------------------------------------|
-| [1](#1-mission-statement) | [Mission Statement](#1-mission-statement) | Our team's Mission statement                                                    |
-|   [2](#3-team-members)    | [Team Members](#2-team-members)           | Team members for this project.                                                  |
-|   [3](#3-meeting-logs)    | [Meeting Logs](#3-meeting-logs)           | Record of all meeting logs as well as the meeting agenda.                       |
-| [4](#4-bill-of-materials) | [Bill of Materials](#4-bill-of-materials) | Bill of Materials for the project, including all monthly and non-recurring fees |
+|:-------------------------:|:------------------------------------------|:-------------------------------------------------------------|
+| [1](#1-mission-statement) | [Mission Statement](#1-mission-statement) | Our team's Mission statement                                 |
+|   [2](#3-team-members)    | [Team Members](#2-team-members)           | Team members for this project.                               |
+| [3](#3-bill-of-materials) | [Bill of Materials](#3-bill-of-materials) | Bill of Materials for the project                            |
+| [4](#4-technical-documentation) | [Technical Documentation](#4-technical-documentation) | Datasheets and documentation               |
+|   [5](#5-meeting-logs)    | [Meeting Logs](#5-meeting-logs)           | Record of all meeting logs as well as the meeting agenda.    |
+
 
 ## 1. Mission Statement
 Our mission is to provide arcade gaming interfaces that are unique, immersive and en-joyable to our users.  These interfaces will provide a more realistic and exciting experiencethrough  unique  physical  interaction.   There  are  few  organizations  who  implement  similartechnologies.  Unlike these organizations, we aim to make an affordable arcade product witha unique immersive experience
@@ -20,7 +22,31 @@ Our mission is to provide arcade gaming interfaces that are unique, immersive an
 * John Young
 * Seth Kingston
 
-## 3 Meeting Logs
+## 3 Bill of Materials
+
+https://docs.google.com/spreadsheets/d/1E5jHg0KErL1eJAIMd6SxGYYcoagG-iWO-heWENuRLdU/edit?usp=sharing
+
+## 4 Technical Documentation
+
+#### Motors
+
+https://www.pololu.com/product/1208
+https://www.pololu.com/product/1474
+
+#### Motor Control Boards
+
+https://www.pololu.com/product/2134
+https://www.pololu.com/product/3096
+
+#### STM32
+
+#### Gyro
+
+#### Force Sense Resistors
+
+https://www.mouser.com/ProductDetail/Ohmite/FSR03CE?qs=sGAEpiMZZMve4%2FbfQkoj%252BPOtsLdIyBHHN11TusasqYM%3D
+
+## 5 Meeting Logs
 
 #### Meeting Log for 2/21/19 Thursday
 
@@ -435,17 +461,3 @@ laptops: to work on presentation
 | Responsible | Responsibility | Due Date | Description |
 |:------------|:---------------|:---------|:------------|
 |             |                |          |             |
-
-## 4 Bill of Materials 
-
-https://docs.google.com/spreadsheets/d/1E5jHg0KErL1eJAIMd6SxGYYcoagG-iWO-heWENuRLdU/edit?usp=sharing
-
-|     Qty      |    Item     | Description        | Monthly unit cost | Non-recurring unit cost |
-|:------------:|:-----------:|:-------------------|:-----------------:|:-----------------------:|
-| [Item count] | [Item name] | [Item description] |        $0         |           $0            |
-
-
-| Monthly | Non-recurring |
-|:-------:|:-------------:|
-|   $0    |      $0       |
-
