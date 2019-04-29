@@ -399,6 +399,7 @@ laptops: to work on presentation
 |      John       |   Presentation Slides    |    4/30/2019   |  Flight Gear, STM32, and Sensor Slides    |
 |      Dezeray       |   Presentation Slides    |    4/30/2019   | TimeLine and Final Demo Slides   |
 |      Seth       |   Presentation Slides    |    4/30/2019   | Project Background and first demo Slides   |
+|      Everyone       |   update Website    |    4/31/2019   | update website on the project.   |
 
 
 #### Meeting Log for [Date] [Day of the Week]
