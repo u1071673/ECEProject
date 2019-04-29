@@ -40,7 +40,14 @@ https://www.pololu.com/product/3096
 
 #### STM32
 
+https://github.com/u1071673/ECEProject/blob/master/Disc_User_Man.pdf
+https://github.com/u1071673/ECEProject/blob/master/Chip_Data.pdf
+https://github.com/u1071673/ECEProject/blob/master/Core_Man.pdf
+https://github.com/u1071673/ECEProject/blob/master/Perph_Ref_Man.pdf
+
 #### Gyro
+
+https://github.com/u1071673/ECEProject/blob/master/GYRO%20l3gd20h.pdf
 
 #### Force Sense Resistors
 
