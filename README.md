@@ -395,7 +395,11 @@ laptops: to work on presentation
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsible | Responsibility | Due Date | Description |
 |:------------|:---------------|:---------|:------------|
-|             |                |          |             |
+|      Jamison       |   Presentation Slides    |    4/30/2019   |    Motor Control and Structure Slides    |
+|      John       |   Presentation Slides    |    4/30/2019   |  Flight Gear, STM32, and Sensor Slides    |
+|      Dezeray       |   Presentation Slides    |    4/30/2019   | TimeLine and Final Demo Slides   |
+|      Seth       |   Presentation Slides    |    4/30/2019   | Project Background and first demo Slides   |
+
 
 #### Meeting Log for [Date] [Day of the Week]
 
