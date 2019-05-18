@@ -54,6 +54,65 @@ https://www.digikey.com/catalog/en/partgroup/bno055-9-dof-absolute-orientation-i
 
 https://www.mouser.com/ProductDetail/Ohmite/FSR03CE?qs=sGAEpiMZZMve4%2FbfQkoj%252BPOtsLdIyBHHN11TusasqYM%3D
 
+VERIFIED GPIO PINS (FOR GENERAL PURPOSE OUTPUT MODE)
+All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MCU + 3-AXIS MEM SENSORS Discovery board.
+
+WORKING PIN (ALSO USED FOR)
+PA0 (Button)
+PA1
+PA4 (PWM TIMER 14 CH1)
+PA5
+PA8 (Encoder Input TIMER 1 CH1)
+PA9 (Encoder Input TIMER 1 CH2)
+PA10
+PA15
+PB2
+PB3
+PB4
+PB5
+PB6
+PB7
+PB8
+PB9 (PWM TIMER 17 CH1)
+PB10
+PB11 (I2C2_SDA)
+PB12
+PB13 (I2C2_SCL)
+PB14 (I2C2 SLAVE ADDRESS)
+PB15
+PC0 (SPI/I2C2 MODE SELECT PIN)
+PC3
+PC4 (USART3_TX)
+PC5 (USART3_RX)
+PC6 (Red LED; Encoder Input TIMER 3 CH1)
+PC7 (Blue LED; Encoder Input TIMER 3 CH2)
+PC8 (Orange LED)
+PC9 (Green LED)
+PC10
+PC12
+PC13
+PC14
+PC15
+PF0
+PF1
+PD2
+STAY AWAY FROM THESE PINS! THEY'VE BEEN VERIFIED TO NOT WORK.
+All of these pins have been verified to NOT WORK on the STM32 F0 128-KBYTE 32-BIT MCU + 3-AXIS MEM SENSORS Discovery board.
+
+NOT WORKING
+PA2
+PA3
+PA6
+PA7
+PA11
+PA12
+PA13
+PA14
+PB0
+PB1
+PC1
+PC2
+
 ## 5 Meeting Logs
 
 #### Meeting Log for 2/21/19 Thursday
