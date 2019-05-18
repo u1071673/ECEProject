@@ -434,6 +434,44 @@ laptops: to work on presentation
 |      Seth       |   Presentation Slides    |    4/30/2019   | Project Background and first demo Slides   |
 |      Everyone       |   update Website    |    4/31/2019   | update website on the project.   |
 
+#### Meeting Log for 5/18/2019 Saturday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [X] Dezeray Kowalski
+* [X] Jamision Bauer
+* [X] John Young
+* [X] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Assign out start of Summer Assignments
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to bring before this meeting -->
+###### Please Bring:
+laptops: yourself
+<!-- Any additional resources to bring before this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|    Responisibilities  |  Assign them out  |      Everyone       |      |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|      Jamison       |   Wiring Structure and Hardware    |   5/18/2019  |        |
+|      John       |   Flight Gear Position Algorithm    |    5/18/2019   |        |
+|      Dezeray       |   IMU/Gyro ordering + data output   | 5/18/2019  |         |
+|      Seth       |   FSR's ordering + communicating w/ STM    |   5/18/2019   |  Order up FSR03 from datasheet use lab on it   |
+|      Everyone       |   PAY UP   |   5/18/2019  |      |
 
 #### Meeting Log for [Date] [Day of the Week]
 
