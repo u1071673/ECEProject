@@ -48,6 +48,7 @@ https://github.com/u1071673/ECEProject/blob/master/Perph_Ref_Man.pdf
 #### Gyro
 
 https://github.com/u1071673/ECEProject/blob/master/GYRO%20l3gd20h.pdf
+https://www.digikey.com/catalog/en/partgroup/bno055-9-dof-absolute-orientation-imu-fusion-breakout-board/56944
 
 #### Force Sense Resistors
 
