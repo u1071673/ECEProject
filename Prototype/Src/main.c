@@ -42,6 +42,8 @@
 #define ON_DELAY 10
 #define OFF_DELAY 10
 #define MOTOR_TH 10
+#define CW 1
+#define CCW 0
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -182,7 +184,7 @@ void main_menu(void) {
 		case FG_MODE:
 			transmit_char(received_char);
 			transmit_string("\tFlight Gear mode selected");
-			fg_menu();		
+			fg_menu();
 			done = TRUE;
 			break;
 		case '\n':
@@ -359,56 +361,69 @@ void fg_menu() {
 	
 }
 
+
+BOOL prev_roll_dir = FALSE;
+BOOL prev_pitch_dir = FALSE;
+
 void update_motors(void) {
 	BOOL roll_update_needed = TRUE;
 	BOOL pitch_update_needed = TRUE;
+	BOOL roll_dir = FALSE;
+	BOOL pitch_dir = FALSE;
+
+	int roll_cw_dist = (target_roll_steps - actual_roll_steps) % MAX_ROLL_STEPS;
+	int roll_ccw_dist = (actual_roll_steps - target_roll_steps) % MAX_ROLL_STEPS;
 	
-	int roll_distA = target_roll_steps - actual_roll_steps;
-	int roll_distB = actual_roll_steps + (MAX_ROLL_STEPS - target_roll_steps); 
+	int pitch_cw_dist = (target_pitch_steps - actual_pitch_steps) % MAX_PITCH_STEPS;
+	int pitch_ccw_dist = (actual_pitch_steps - target_pitch_steps) % MAX_PITCH_STEPS;
 	
-	int pitch_distA = target_pitch_steps - actual_pitch_steps;
-	int pitch_distB = actual_pitch_steps + (MAX_PITCH_STEPS - target_pitch_steps); 
-	
-	// Set direction to target
-	if(roll_distA > roll_distB) {
-		roll_clockwise = target_roll_steps < actual_roll_steps;
-		set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
-	} else if (roll_distA < roll_distB) {
-		roll_clockwise = target_roll_steps < actual_roll_steps;
-		set_direction_pins(MOTORS_GPIO_BASE, ROLL_DIR_PIN, roll_clockwise);
-	} else {
+	if(roll_cw_dist < roll_ccw_dist) 
+		roll_dir = CW;
+	else if(roll_cw_dist < roll_ccw_dist)
+		roll_dir = CCW;
+	else if (roll_cw_dist) // NOT ZERO
+		roll_dir = prev_roll_dir;
+	else
 		roll_update_needed = FALSE;
-	}
-	if(pitch_distA > pitch_distB) {
-		pitch_clockwise = target_pitch_steps < actual_pitch_steps;
-		set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
-	} else if (pitch_distA < pitch_distB) {
-		pitch_clockwise = target_pitch_steps < actual_pitch_steps;
-		set_direction_pins(MOTORS_GPIO_BASE, PITCH_DIR_PIN, pitch_clockwise);
-	} else {
+	
+	if(pitch_cw_dist < pitch_ccw_dist)
+		pitch_dir = CW;
+	else if(pitch_cw_dist < pitch_ccw_dist)
+		pitch_dir = CCW;
+	else if (pitch_cw_dist) // NOT ZERO
+		pitch_dir = prev_pitch_dir;
+	else
 		pitch_update_needed = FALSE;
-	}
+	
+	BOOL is_roll = TRUE;
+	set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_DIR_PIN, is_roll, roll_dir);
+	is_roll = FALSE;
+	set_step_pin_manually(MOTORS_GPIO_BASE, PITCH_DIR_PIN, is_roll, pitch_dir);
 	
 	// Step if not at target
 	if(roll_update_needed) {
-		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE, TRUE);
-		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE, TRUE);
+		is_roll = TRUE;
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, is_roll, TRUE);
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, is_roll, TRUE);
 	}
 	
 	if(pitch_update_needed) {
-		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, FALSE, TRUE);
-		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, FALSE, TRUE);
+		is_roll = FALSE;
+		set_step_pin_manually(MOTORS_GPIO_BASE, PITCH_STEP_PIN, is_roll, TRUE);
+		set_step_pin_manually(MOTORS_GPIO_BASE, PITCH_STEP_PIN, is_roll, TRUE);
 	}
 	HAL_Delay(ON_DELAY);
 	
 	if(roll_update_needed) {
-		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE, FALSE);
-		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, TRUE, FALSE);
+		is_roll = TRUE;
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, is_roll, FALSE);
+		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, is_roll, FALSE);
 	}
 	
 	if(pitch_update_needed) {
-		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, FALSE, FALSE);
-		set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, FALSE, FALSE);
+		is_roll = FALSE;
+		set_step_pin_manually(MOTORS_GPIO_BASE, PITCH_STEP_PIN, is_roll, FALSE);
+		set_step_pin_manually(MOTORS_GPIO_BASE, PITCH_STEP_PIN, is_roll, FALSE);
 	}
 	HAL_Delay(OFF_DELAY);
 	
