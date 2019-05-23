@@ -54,8 +54,10 @@ https://www.digikey.com/catalog/en/partgroup/bno055-9-dof-absolute-orientation-i
 
 https://www.mouser.com/ProductDetail/Ohmite/FSR03CE?qs=sGAEpiMZZMve4%2FbfQkoj%252BPOtsLdIyBHHN11TusasqYM%3D
 
-VERIFIED GPIO PINS (FOR GENERAL PURPOSE OUTPUT MODE)
+## VERIFIED GPIO PINS (FOR GENERAL PURPOSE OUTPUT MODE)
+
 All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MCU + 3-AXIS MEM SENSORS Discovery board.
+
 
 | WORKING PIN (ALSO USED FOR) |
 |:----:|
@@ -98,7 +100,8 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 | PF1 |
 | PD2 |
 
-STAY AWAY FROM THESE PINS! THEY'VE BEEN VERIFIED TO NOT WORK.
+## STAY AWAY FROM THESE PINS! THEY'VE BEEN VERIFIED TO NOT WORK.
+
 All of these pins have been verified to NOT WORK on the STM32 F0 128-KBYTE 32-BIT MCU + 3-AXIS MEM SENSORS Discovery board.
 
 | NOT WORKING |
