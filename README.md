@@ -60,7 +60,7 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 
 
 | WORKING PIN (ALSO USED FOR) |
-|:----:|
+|:----|
 | PA0 (Button) |
 | PA1 |
 | PA4 (PWM TIMER 14 CH1) |
@@ -105,7 +105,7 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 All of these pins have been verified to NOT WORK on the STM32 F0 128-KBYTE 32-BIT MCU + 3-AXIS MEM SENSORS Discovery board.
 
 | NOT WORKING |
-|:----:|
+|:----|
 | PA2 |
 | PA3 |
 | PA6 |
