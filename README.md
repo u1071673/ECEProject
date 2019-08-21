@@ -16,17 +16,17 @@ ECE Capstone Project
 ## 1. Mission Statement
 Our mission is to provide arcade gaming interfaces that are unique, immersive and en-joyable to our users.  These interfaces will provide a more realistic and exciting experiencethrough  unique  physical  interaction.   There  are  few  organizations  who  implement  similartechnologies.  Unlike these organizations, we aim to make an affordable arcade product witha unique immersive experience
 
-## 2 Team Members
+## 2. Team Members
 * Dezeray Kowalski
 * Jamision Bauer
 * John Young
 * Seth Kingston
 
-## 3 Bill of Materials
+## 3. Bill of Materials
 
 https://docs.google.com/spreadsheets/d/1E5jHg0KErL1eJAIMd6SxGYYcoagG-iWO-heWENuRLdU/edit?usp=sharing
 
-## 4 Technical Documentation
+## 4. Technical Documentation
 
 #### Motors
 
@@ -119,7 +119,7 @@ All of these pins have been verified to NOT WORK on the STM32 F0 128-KBYTE 32-BI
 | PC1 |
 | PC2 |
 
-## 5 Meeting Logs
+## 5. Meeting Logs
 
 #### Meeting Log for 2/21/19 Thursday
 
