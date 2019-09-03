@@ -600,6 +600,7 @@ laptops: yourself
 ###### Meeting Objectives
 Meet with Ken
 Start Printing Parts
+Add Assignments to Project Kanban on Github
 
 <!-- What to read before this meeting -->
 ###### Please Read:
