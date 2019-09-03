@@ -583,6 +583,43 @@ laptops: yourself
 |   Dezeray |   Bring IMU   |   8/28/2019   |       |
 |   John    |  Get Better   |   8/28/2019   |   Heal up   |
 
+
+#### Meeting Log for 9/3/2019 Tuesday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [X] Dezeray Kowalski
+* [X] Jamision Bauer
+* [X] John Young
+* [X] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Meet with Ken
+Start Printing Parts
+
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to know before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring for this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|        |         |             |      |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|   Seth    |    Bring Force Sensors    |      9/4/2018    |   Bring Force Sensors   |
+
 #### Meeting Log for [Date] [Day of the Week]
 
 ###### Attendees:
