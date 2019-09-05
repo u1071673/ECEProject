@@ -621,6 +621,44 @@ Add Assignments to Project Kanban on Github
 |:------------|:---------------|:---------|:------------|
 |   Seth    |    Bring Force Sensors    |      9/4/2018    |   Bring Force Sensors   |
 
+#### Meeting Log for 9/5/2019 Thursday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [X] Dezeray Kowalski
+* [work at home] Jamision Bauer
+* [work at home] John Young
+* [X] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Work on solo assigned work.
+
+<!-- What to read before this meeting -->
+###### Please Read:
+Your tasks in the 'Project' tab.
+
+<!-- What to know before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring for this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|   Continue Reprinting Parts     |    restart failed print     |       Dez & Seth      |   5   |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|     Dezeray        |        IMU library       |    9/12/19      |      Figure out how we can use the provided Adafruit library       |
+
+
 #### Meeting Log for [Date] [Day of the Week]
 
 ###### Attendees:
@@ -653,3 +691,4 @@ Add Assignments to Project Kanban on Github
 | Responsible | Responsibility | Due Date | Description |
 |:------------|:---------------|:---------|:------------|
 |             |                |          |             |
+
