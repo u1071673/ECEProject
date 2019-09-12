@@ -659,6 +659,82 @@ Your tasks in the 'Project' tab.
 |     Dezeray        |        IMU library       |    9/12/19      |      Figure out how we can use the provided Adafruit library       |
 
 
+#### Meeting Log for 09/10/2019 Tuesday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [x] Dezeray Kowalski
+* [x] Jamision Bauer
+* [x] John Young
+* [x] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Assemble structure with newly printed parts.
+Test force sensing resistors.
+
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to know before this meeting -->
+###### Please Bring:
+Any pieces needed for the structure, and FSRs.
+<!-- Any additional resources to bring for this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+| Talk about new design for pressue on FSRs | Decide a way to best put pressure on the FSRs for accurate modeling of flight chair | John | 15 min |
+| Assemble structure | Make sure things still work & identify any persisting issues | Jamison, John, Dezeray | 20 min |
+| Testing of FSRs | See what kind of resistance output we get with different pressures, what to expect | Seth | 10 min |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+| Seth | Code for FSRs | TBD | Figure out reading of pressure from FSRs |
+| John | Design new piece for putting pressure on FSRs | 09/17/2019 | |
+
+#### Meeting Log for 09/12/2019 Thursday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [x] Dezeray Kowalski
+* [ ] Jamision Bauer
+* [ ] John Young
+* [x] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Continue individual work.
+Possibly print new pressure piece.
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to know before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring for this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|        |         |             |      |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
+
 #### Meeting Log for [Date] [Day of the Week]
 
 ###### Attendees:
@@ -691,4 +767,6 @@ Your tasks in the 'Project' tab.
 | Responsible | Responsibility | Due Date | Description |
 |:------------|:---------------|:---------|:------------|
 |             |                |          |             |
+
+
 
