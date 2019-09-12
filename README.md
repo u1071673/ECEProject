@@ -726,7 +726,7 @@ Possibly print new pressure piece.
 <!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
 | Agenda | Purpose | Responsible | Mins |
 |:-------|:--------|:------------|:-----|
-|        |         |             |      |
+| Print new piece | Print the new pressue piece that John desinged | Dezeray | 15 min |
 
 ###### Action Items
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
