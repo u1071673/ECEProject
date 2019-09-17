@@ -72,10 +72,10 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 | PB2 |
 | PB3 |
 | PB4 |
-| PB5 |
-| PB6 |
-| PB7 |
-| PB8 |
+| PB5 [X]| 
+| PB6 [X]|
+| PB7 [X]|
+| PB8 [X]|
 | PB9 (PWM TIMER 17 CH1) |
 | PB10 |
 | PB11 (I2C2_SDA) |
