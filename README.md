@@ -61,10 +61,10 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 
 | WORKING PIN (ALSO USED FOR) |
 |:----|
-| PA0 (Button) |
-| PA1 |
-| PA4 (PWM TIMER 14 CH1) |
-| PA5 |
+| PA0 (Button) (ADC Force Sensor) |
+| PA1 (ADC Force Sensor [X]) |
+| PA4 (PWM TIMER 14 CH1) (ADC Force Sensor [X])|
+| PA5 (ADC Force Sensor [X]) |
 | PA8 (Encoder Input TIMER 1 CH1) |
 | PA9 (Encoder Input TIMER 1 CH2) |
 | PA10 |
@@ -84,9 +84,9 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 | PB14 (I2C2 SLAVE ADDRESS) |
 | PB15 |
 | PC0 (SPI/I2C2 MODE SELECT PIN) |
-| PC3 |
-| PC4 (USART3_TX) |
-| PC5 (USART3_RX) |
+| PC3 (ADC Force Sensor [X]) |
+| PC4 (USART3_TX [X]) |
+| PC5 (USART3_RX [X]) |
 | PC6 (Red LED; Encoder Input TIMER 3 CH1) |
 | PC7 (Blue LED; Encoder Input TIMER 3 CH2) |
 | PC8 (Orange LED) |
