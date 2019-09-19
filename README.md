@@ -735,6 +735,78 @@ Possibly print new pressure piece.
 |             |                |          |             |
 
 
+#### Meeting Log for 09/17/19 Tuesday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [Work at Home] Dezeray Kowalski
+* [x] Jamision Bauer
+* [x] John Young
+* [x] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Continue code & structure work. 
+
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to know before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring for this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+| Wiring | Get wiring working in the structure | Jamison |      |
+| Force Sensors | Work on code | Seth, John |   |
+| IMU | Work on getting some reading/communication with libraries | Dezeray
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
+
+#### Meeting Log for 09/19/19 Thursday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [x] Dezeray Kowalski
+* [ ] Jamision Bauer
+* [ ] John Young
+* [x] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Continue Tuesdays work.
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to know before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring for this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+|        |         |             |      |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
 #### Meeting Log for [Date] [Day of the Week]
 
 ###### Attendees:
@@ -767,6 +839,7 @@ Possibly print new pressure piece.
 | Responsible | Responsibility | Due Date | Description |
 |:------------|:---------------|:---------|:------------|
 |             |                |          |             |
+
 
 
 
