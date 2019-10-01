@@ -842,7 +842,9 @@ IMU, FSRs
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsible | Responsibility | Due Date | Description |
 |:------------|:---------------|:---------|:------------|
-|             |                |          |             |
+| Finish IMU code | Dezeray, Kowalski | 10/7/19 | build our IMU library, error free |
+| Sensor tested | Seth | 10/7/19 | |
+| Wiring done & everything hooked up | 10/12/19 | get to a point where we can test with structure |
 
 
 
