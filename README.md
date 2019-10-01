@@ -807,6 +807,45 @@ Continue Tuesdays work.
 |:------------|:---------------|:---------|:------------|
 |             |                |          |             |
 
+
+
+#### Meeting Log for 10/1/19 Tuesday
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [x] Dezeray Kowalski
+* [x] Jamision Bauer
+* [x] John Young
+* [x] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Continue work on wiring and code.
+<!-- What to read before this meeting -->
+###### Please Read:
+<!-- What to know before this meeting -->
+###### Please Bring:
+<!-- Any additional resources to bring for this meeting -->
+###### Resources Required:
+IMU, FSRs
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+| IMU Communication | Works with Arduino, figure out libraries with STM | Dezeray, John |      |
+| FSR Code | Debug | Seth | |
+| Wiring | Put structure together | Jamison | |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
+
+
 #### Meeting Log for [Date] [Day of the Week]
 
 ###### Attendees:
