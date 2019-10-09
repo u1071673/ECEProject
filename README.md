@@ -842,9 +842,49 @@ IMU, FSRs
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsible | Responsibility | Due Date | Description |
 |:------------|:---------------|:---------|:------------|
-| Finish IMU code | Dezeray, Kowalski | 10/7/19 | build our IMU library, error free |
-| Sensor tested | Seth | 10/7/19 | |
-| Wiring done & everything hooked up | 10/12/19 | get to a point where we can test with structure |
+| Finish IMU library | Dezeray, John | 10/13/19 | build our IMU library, error free |
+| Force Sensor tested | Seth | 10/13/19 | |
+| Wiring done & everything hooked up | 10/13/19 | get to a point where we can test with structure |
+
+
+#### Meeting Log for [10/9/2019] Wednesday
+
+###### Attendees:
+<!--
+* [X] Present
+* [ ] Not Present
+-->
+* [x] Dezeray Kowalski
+* [x] Jamision Bauer
+* [x] John Young
+* [x] Seth Kingston
+
+<!-- List of objectives to acomplish at meeting -->
+###### Meeting Objectives
+Continue structure and sensor work.
+<!-- What to read before this meeting -->
+###### Please Read:
+
+<!-- What to know before this meeting -->
+###### Please Bring:
+Sensors
+<!-- Any additional resources to bring for this meeting -->
+###### Resources Required:
+
+###### Meeting Agenda
+<!-- | Agenda Item to go over | What's Purpose/Reason to go over it | Who's responsible for it | How long do we want to spend on it | -->
+| Agenda | Purpose | Responsible | Mins |
+|:-------|:--------|:------------|:-----|
+| FSR Code  | Pressure sensing  | Seth  |      |
+| IMU Code  | Define our library for orientation data | John & Dez  | |
+| Wiring  | Wire structure  | Jamison | |
+
+###### Action Items
+<!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
+| Responsible | Responsibility | Due Date | Description |
+|:------------|:---------------|:---------|:------------|
+|             |                |          |             |
+
 
 
 
