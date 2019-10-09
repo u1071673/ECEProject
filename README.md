@@ -883,7 +883,10 @@ Sensors
 <!-- | Who's responsible for the action item discussed. | When is it due. | Details about the action item | -->
 | Responsible | Responsibility | Due Date | Description |
 |:------------|:---------------|:---------|:------------|
-|             |                |          |             |
+| Finish IMU Library | John | 10/13/2019  | So we can test with the sensor  |
+| Test IMU | Dez | 10/13/2019 | Test the sensor with the library, note changes needed |
+| Force Sensor tested | Seth | 10/13/19 | |
+| Wiring done & everything hooked up | 10/13/19 | get to a point where we can test with structure |
 
 
 
