@@ -54,6 +54,12 @@ https://www.digikey.com/catalog/en/partgroup/bno055-9-dof-absolute-orientation-i
 
 https://www.mouser.com/ProductDetail/Ohmite/FSR03CE?qs=sGAEpiMZZMve4%2FbfQkoj%252BPOtsLdIyBHHN11TusasqYM%3D
 
+#### IMU
+
+https://cdn-shop.adafruit.com/datasheets/BST_BNO055_DS000_12.pdf
+https://www.mouser.com/datasheet/2/737/adafruit-bno055-absolute-orientation-sensor-1006287.pdf
+https://github.com/adafruit/Adafruit_BNO055/blob/master/Adafruit_BNO055.h
+
 ## VERIFIED GPIO PINS (FOR GENERAL PURPOSE OUTPUT MODE)
 
 All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MCU + 3-AXIS MEM SENSORS Discovery board.
