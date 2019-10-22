@@ -27,3 +27,11 @@ prototype\main.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c_ex.h
 prototype\main.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h
 prototype\main.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h
 prototype\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+prototype\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+prototype\main.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.3.1\Include\EventRecorder.h
+prototype\main.o: ../Inc/game_parser.h
+prototype\main.o: ../Inc/motors.h
+prototype\main.o: ../Inc/putty.h
+prototype\main.o: ../Inc/LEDs.h
+prototype\main.o: ../Inc/USARTs.h
+prototype\main.o: ../Inc/BNO055.h

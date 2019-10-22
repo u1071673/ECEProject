@@ -3,6 +3,14 @@
 "prototype\main.o"
 "prototype\stm32f0xx_it.o"
 "prototype\stm32f0xx_hal_msp.o"
+"prototype\bno055.o"
+"prototype\game_parser.o"
+"prototype\gpios.o"
+"prototype\leds.o"
+"prototype\motors.o"
+"prototype\putty.o"
+"prototype\timers.o"
+"prototype\usarts.o"
 "prototype\stm32f0xx_hal_tim.o"
 "prototype\stm32f0xx_hal_tim_ex.o"
 "prototype\stm32f0xx_hal_rcc.o"
@@ -18,7 +26,9 @@
 "prototype\stm32f0xx_hal_flash.o"
 "prototype\stm32f0xx_hal_flash_ex.o"
 "prototype\system_stm32f0xx.o"
+"prototype\eventrecorder.o"
+"prototype\retarget_io.o"
 --library_type=microlib --strict --scatter "Prototype\Prototype.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "Prototype.map" -o Prototype\Prototype.axf
