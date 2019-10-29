@@ -37,9 +37,12 @@ void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, bool set_pi
 void toggle_step_pin(GPIO_TypeDef *gpiox_base, uint16_t step_pin, bool is_roll);
 	
 void motors_init(void) {
+	printf("Initializing Motors...\n");
 	// Initialize PB5 and PB6 for the ROLL motor's direction and step Pins.
 	// Initialize PB7 and PB8 for the PITCH motor's direction and step Pins.
 	GPIO_PINs_init();
+	printf("Motor Initialization Complete!\n");
+
 }
 
 void update_motors(void) {

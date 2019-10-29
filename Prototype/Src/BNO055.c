@@ -8,6 +8,7 @@ volatile static float azimuth_deg = 0.0;
 volatile static bool orientation_updated = false;
 
 void BNO055_init(void) {
+	printf("Initializing BNO055...\n");
 
 	// Initialize PB6 and PB7 for USART1_TX (RXD) and USART1_RX (TXD) for BNO055.
 	USART1_init();
@@ -32,6 +33,9 @@ void BNO055_init(void) {
 	transmit_char(USART1, (char)0x3D);
 	transmit_char(USART1, (char)0x01);
 	transmit_char(USART1, (char)0x0C);
+	
+	printf("BNO055 Initialization Complete!\n");
+
 }
 
 void BNO055_request_data() {

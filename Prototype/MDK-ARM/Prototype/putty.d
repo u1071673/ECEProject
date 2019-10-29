@@ -1,5 +1,6 @@
 prototype\putty.o: ..\Src\putty.c
 prototype\putty.o: ../Inc/putty.h
+prototype\putty.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 prototype\putty.o: ../Inc/USARTs.h
 prototype\putty.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h
 prototype\putty.o: ../Inc/stm32f0xx_hal_conf.h
@@ -27,4 +28,3 @@ prototype\putty.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c.h
 prototype\putty.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c_ex.h
 prototype\putty.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h
 prototype\putty.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h
-prototype\putty.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

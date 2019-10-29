@@ -17,6 +17,8 @@ bool wait_for_USART1_char(char c);
 // Wait till USART3 sends a character and returns true if character matches the parameter.
 bool wait_for_USART3_char(char c);
 
+bool USART3_has_data(void);
+char get_USART3_data(void);
 char receive_char(USART_TypeDef *USARTx);
 void transmit_char(USART_TypeDef *USARTx, char c);
 void transmit_string(USART_TypeDef *USARTx, char *string);

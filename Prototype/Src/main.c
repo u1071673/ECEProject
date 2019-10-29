@@ -21,7 +21,7 @@
 #include "BNO055.h"
 
 #define DEBUG_MODE 'a'
-#define FG_MODE 'b'
+#define GAME_MODE 'b'
 #define ROLL_CLOCKWISE 'w'
 #define ROLL_COUNTER_CLOCKWISE 's'
 #define PITCH_CLOCKWISE 'd'
@@ -41,7 +41,7 @@
 void SystemClock_Config(void);
 void chair_init(void);
 void main_menu(void);
-void fg_menu(void);
+void game_menu(void);
 void debug_menu(void);
 void reset_values(void);
 
@@ -59,17 +59,13 @@ int main(void) {
 
 	chair_init();
 
-  	/* Infinite loop */
-	while (true)
-	{
-		printf("Hello World");
-		main_menu();
-	}
+	main_menu();
 }
 
 // Initialize all peripherals needed to have a functioning chair.
 void chair_init(void) {
-
+	printf("Initializing Chair...\n");
+	
 	// PB5 (Roll Dir), PB6 (Roll Step), PB7 (Pitch Dir), PB8 (Pitch step)
 	motors_init();
 
@@ -77,10 +73,13 @@ void chair_init(void) {
 	LEDs_init();
 
 	// PC4 (USART3_TX), PC5 (USART_RX)
-	FG_init();
+	game_parser_init();
 	
 	// PB6 (USART1_TX), PB7 (USART1_RX)
 	BNO055_init();
+	
+	printf("Chair Initialization Complete!\n");
+
 }
 
 
@@ -119,81 +118,20 @@ void SystemClock_Config(void) {
 
 /* USER CODE BEGIN 4 */
 void main_menu(void) {
+	printf("Opening Main Menu\n");
+	reset_values();
+	char c = 0;
 	putty_main_prompt();
-	reset_values();
-	bool done = false;
-	char c = 0;
-	while (!done) {
-		for(c = wait_for_USART3_data(); c != QUIT; c = wait_for_USART3_data()) {
-			putty_putc(c); // Print character pressed for user feedback.
-			switch(c) {
-			case DEBUG_MODE:
-				debug_menu();
-			break;
-			case FG_MODE:
-				fg_menu();
-			break;
-			case QUIT:
-				putty_goodbye_prompt();
-				done = true;
-			break;
-			case '\n':
-			case '\r':
-			break;
-			default:
-				putty_unrecognized_prompt(c);
-			break;
-			}
-		}
-	}
-}
-
-void fg_menu() {
-	putty_fg_prompt();
-	reset_values();
-	while(true) {
-		FG_data fg_data = wait_for_FG_data(QUIT);
-		int target_roll_steps = degrees_to_roll_steps(fg_data.roll_deg);
-		int target_pitch_steps = degrees_to_pitch_steps(fg_data.pitch_deg);
-
-		set_target_roll_steps(target_roll_steps);
-		set_target_pitch_steps(target_roll_steps);
-		
-		char string_to_transmit[40];
-		sprintf(string_to_transmit, "FG GOT: %d,%d\r\n", fg_data.roll_deg, fg_data.pitch_deg);
-		putty_print(string_to_transmit);
-
-		update_motors();
-	}
-}
-
-void debug_menu() {
-	putty_debug_prompt();
-	reset_values();
-	char c = 0;
-	for(c = wait_for_USART3_data(); c != QUIT; c = wait_for_USART3_data()) { // Loop until quit char is received
+	for(c = wait_for_USART3_data(); c != QUIT; c = wait_for_USART3_data()) {
 		putty_putc(c); // Print character pressed for user feedback.
-		// Decypher user input
 		switch(c) {
-		case ROLL_CLOCKWISE:
-			putty_print("\r\n\t Roll Stepping Clockwise...");
-			step_roll_motor(true);
+		case DEBUG_MODE:
+			debug_menu();
+			putty_main_prompt();
 		break;
-		case ROLL_COUNTER_CLOCKWISE:
-			putty_print("\r\n\t Roll Stepping Counter-Clockwise...");
-			step_roll_motor(false);
-		break;
-		case PITCH_CLOCKWISE:
-			putty_print("\r\n\t Roll Stepping Clockwise...");
-			step_pitch_motor(true);
-		break;
-		case PITCH_COUNTER_CLOCKWISE:
-			putty_print("\r\n\t Roll Stepping Counter-Clockwise...");
-			step_pitch_motor(false);
-		break;
-		case RESET:
-			putty_print("\tReseting all!");
-			reset_values();
+		case GAME_MODE:
+			game_menu();
+			putty_main_prompt();
 		break;
 		case '\n':
 		case '\r':
@@ -203,9 +141,77 @@ void debug_menu() {
 		break;
 		}
 	}
+	putty_goodbye_prompt();
+}
+
+void game_menu() {
+	printf("Enabling Game Mode\n");
+	reset_values();
+	putty_game_prompt();
+	while(get_putty_cmd() != QUIT) {
+		while(!recieved_putty_cmd()) {
+//			game_data g_data = wait_for_game_data(QUIT);
+//			int target_roll_steps = degrees_to_roll_steps(g_data.roll_deg);
+//			int target_pitch_steps = degrees_to_pitch_steps(g_data.pitch_deg);
+
+//			set_target_roll_steps(target_roll_steps);
+//			set_target_pitch_steps(target_roll_steps);
+//			
+//			char string_to_transmit[40];
+//			sprintf(string_to_transmit, "GAME GOT: %d,%d\r\n", g_data.roll_deg, g_data.pitch_deg);
+//			putty_print(string_to_transmit);
+
+//			update_motors();
+				putty_print("Not yet implemented \r\n");
+		}
+	}
+	putty_print("Leaving Game Mode...");
+	putty_print("\n\r");
+}
+
+void debug_menu() {
+	printf("Debug Mode enabled!\n");
+	reset_values();
+	putty_debug_prompt();
+	char c = 0;
+	for(c = wait_for_USART3_data(); c != QUIT; c = wait_for_USART3_data()) { // Loop until quit char is received
+		putty_putc(c); // Print character pressed for user feedback.
+		// Decypher user input
+		switch(c) {
+		case ROLL_CLOCKWISE:
+			step_roll_motor(true);
+			putty_print("\r\n\t Stepped Roll Clockwise!");
+		break;
+		case ROLL_COUNTER_CLOCKWISE:
+			step_roll_motor(false);
+			putty_print("\r\n\t Stepped Roll Counter-Clockwise!");
+		break;
+		case PITCH_CLOCKWISE:
+			step_pitch_motor(true);
+			putty_print("\r\n\t Stepped Pitch Clockwise!");
+		break;
+		case PITCH_COUNTER_CLOCKWISE:
+			step_pitch_motor(false);
+			putty_print("\r\n\t Stepped Pitch Counter-Clockwise!");
+		break;
+		case RESET:
+			reset_values();
+			putty_print("\r\n\t Values Reset!");
+		break;
+		case '\n':
+		case '\r':
+		break;
+		default:
+			putty_unrecognized_prompt(c);
+		break;
+		}
+
+	}
+	putty_print("Leaving Debug Mode...");
 }
 
 void reset_values(void) {
+	printf("Reseting\n");
 	set_target_roll_steps(0);
 	set_target_pitch_steps(0);
 }

@@ -9,6 +9,7 @@ volatile static char USART1_received_char = 0;
 
 // Initializes PB6 and PB7 for USART1_TX (RXD) and USART1_RX (TXD).
 void USART1_init(void) {
+	printf("Initializing USART1...\n");
 	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 	RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
 	// Configuring PB6 and PB7 to alternate function mode
@@ -17,17 +18,19 @@ void USART1_init(void) {
 	// AF1 for PB6 (USART1_TX) and PB7 (USART1_RX) // Note: actual installation of cable is backword (PC4 is RX and PC5 is TX)
 	GPIOB->AFR[0] |= (1<<24 | 1<<28);
 	GPIOB->AFR[0] &= ~(0xE<<24 | 0xE<<28);
-	// Set the baud rate for communication to be 115200 bits/seconds
+	// Set the baud rate for communication to be 9600 bits/seconds
 	USART1->BRR = HAL_RCC_GetHCLKFreq()/BAUD_RATE;
 	// Enabling the transmitter and reciever hardware.
 	USART1->CR1 |= USART_CR1_TE | USART_CR1_RE | USART_CR1_UE | USART_CR1_RXNEIE;
 	// Enabling the receive register non empty interupt
 	NVIC_EnableIRQ(USART1_IRQn);
 	NVIC_SetPriority(USART1_IRQn, 1);
+	printf("USART1 Initialization Complete!\n");
 }
 
 // Initializes PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
 void USART3_init(void) {
+	printf("Initializing USART3...\n");
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
 	// Configuring PC4 and PC5 to alternate function mode
@@ -36,13 +39,14 @@ void USART3_init(void) {
 	// AF1 for PC4 (USART3_TX) and PC5 (USART3_RX) // Note: actual installation of cable is backword (PC4 is RX and PC5 is TX)
 	GPIOC->AFR[0] |= (1<<16 | 1<<20);
 	GPIOC->AFR[0] &= ~(0xE<<16 | 0xE<<20);
-	// Set the baud rate for communication to be 115200 bits/seconds
+	// Set the baud rate for communication to be 9600 bits/seconds
 	USART3->BRR = HAL_RCC_GetHCLKFreq()/BAUD_RATE;
 	// Enabling the transmitter and reciever hardware.
 	USART3->CR1 |= USART_CR1_TE | USART_CR1_RE | USART_CR1_UE | USART_CR1_RXNEIE;
 	// Enabling the receive register non empty interupt
 	NVIC_EnableIRQ(USART3_4_IRQn);
 	NVIC_SetPriority(USART3_4_IRQn, 1);
+	printf("USART3 Initialization Complete!\n");
 }
 
 // This is called every time a char is received on USART1
@@ -59,6 +63,19 @@ void USART3_4_IRQHandler(void) {
 	return;
 }
 
+// Used to check if USART3 has data and clear it if it does
+bool USART3_has_data(void) {
+	bool ret = USART3_new_data;
+	USART3_new_data = false;
+	return ret;
+}
+// Used to retrieve and clear USART3's received char
+char get_USART3_data(void) {
+	char c = USART3_received_char;
+	USART3_received_char = 0;
+	return c;
+}
+
 // Wait for USART1 new data to arrive
 char wait_for_USART1_data(void) {
 	USART1_new_data = false;
@@ -66,6 +83,7 @@ char wait_for_USART1_data(void) {
 	while(!USART1_new_data);
 	char c = USART1_received_char;
 	USART1_received_char = 0; // Clear, to discourcage use of it else where. (Adds un-needed complexity if used elsewhere)
+	USART1_new_data = false;
 	return c;
 }
 
@@ -76,6 +94,7 @@ char wait_for_USART3_data(void) {
 	while(!USART3_new_data);
 	char c = USART3_received_char;
 	USART3_received_char = 0; // Clear, to discourcage use of it else where. (Adds un-needed complexity if used elsewhere)
+	USART3_new_data = false;
 	return c;
 }
 

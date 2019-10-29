@@ -4,7 +4,10 @@
 #include <stdlib.h>
 
 void GPIO_PINs_init(void) {
+	printf("Initialization GPIOs...\n");
 	GPIOx_init(MOTORS_GPIO_BASE, ROLL_DIR_PIN|ROLL_STEP_PIN|PITCH_DIR_PIN|PITCH_STEP_PIN, GPIO_MODE_OUTPUT_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW);
+	printf("GPIO Initialization Complete!\n");
+
 }
 
 // Initialises any GPIO between A - F pins as specified by the parameters.

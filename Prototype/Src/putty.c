@@ -3,8 +3,8 @@
 
 void putty_main_prompt(void) {
 	putty_print("\n\r\tSELECT MODE");
-	putty_print("\n\r[a] \t\tDEBUG Mode");
-	putty_print("\n\r[b] \t\tFG Mode");
+	putty_print("\n\r[a] \t\tDebug Mode");
+	putty_print("\n\r[b] \t\tGame Mode");
 	putty_print("\n\r");
 }
 
@@ -19,8 +19,8 @@ void putty_debug_prompt(void) {
 	putty_print("\n\r");
 }
 
-void putty_fg_prompt(void) {
-	putty_print("\n\r\tFlight Gear mode selected");
+void putty_game_prompt(void) {
+	putty_print("\n\r\tGame mode selected");
 	putty_print("\n\r");
 	putty_print("Reading Roll and Pitch (Press q to quit)");
 	putty_print("\n\r");
@@ -45,4 +45,13 @@ void putty_print(char *message) {
 
 void putty_putc(char c) {
 	transmit_char(USART3, c);
+}
+
+// Method used to check if putty has input to check
+bool recieved_putty_cmd(void) {
+	return USART3_has_data();
+}
+
+char get_putty_cmd(void) {
+	return get_USART3_data();
 }

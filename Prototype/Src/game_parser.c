@@ -2,13 +2,15 @@
 #include "game_parser.h"
 #include "USARTs.h"
 
-void FG_init(void) {
-	// Initialize PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD) for Flight Gear.
+void game_parser_init(void) {
+	printf("Initializing Game Parser...\n");
+	// Initialize PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD) for Game.
 	USART3_init();
+	printf("Game Parser Initialization Complete!\n");
 }
 
-// Wait for Flight Gear to send data for roll and pitch in the format "\r\n<roll>, <pitch>\r"
-FG_data wait_for_FG_data(char cancel_cmd) {
+// Wait for Game to send data for roll and pitch in the format "\r\n<roll>, <pitch>\r"
+game_data wait_for_game_data(char cancel_cmd) {
 
 	while(!wait_for_USART3_char('\r'));
 	printf("got CR!\n");
@@ -34,12 +36,12 @@ FG_data wait_for_FG_data(char cancel_cmd) {
 	pitch_buff[i] = 0;
 	// TODO: Add acceleration data.
 
-	printf("GOT (%s, %s) from Flight Gear\n", roll_buff, pitch_buff); // TODO: Add acceleration data.
-	FG_data fg_data;
+	printf("GOT (%s, %s) from Game\n", roll_buff, pitch_buff); // TODO: Add acceleration data.
+	game_data g_data;
 
-	fg_data.roll_deg = atoi(roll_buff);
-	fg_data.pitch_deg = atoi(pitch_buff);
+	g_data.roll_deg = atoi(roll_buff);
+	g_data.pitch_deg = atoi(pitch_buff);
 	// TODO: Add acceleration data.
 
-	return fg_data;
+	return g_data;
 }
