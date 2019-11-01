@@ -11,9 +11,9 @@ void putty_main_prompt(void) {
 void putty_debug_prompt(void) {
 	putty_print("\n\r\tDebug mode selected");
 	putty_print("\n\r");
-	putty_print("[w]Roll clockwise\t[s]Roll counter-clockwise\t[-]Decrease roll\t[+]Increase roll;");
+	putty_print("[w]Roll clockwise\t[s]Roll counter-clockwise\t");
 	putty_print("\n\r");
-	putty_print("[d]Pitch clockwise\t[a]Pitch coutner-clockwise\t[<]Decrease pitch\t[>]Increase pitch");
+	putty_print("[d]Pitch clockwise\t[a]Pitch counter-clockwise\t");
 	putty_print("\n\r");
 	putty_print("[r]Reset\t\t[q]=quit");
 	putty_print("\n\r");

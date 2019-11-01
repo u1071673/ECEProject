@@ -27,10 +27,10 @@ volatile static int16_t actual_roll_speed, actual_pitch_speed = 0;
 volatile static int target_roll_steps, target_pitch_steps = 0;
 volatile static int actual_roll_steps, actual_pitch_steps = 0;
 
-void set_roll_dir(bool clockwise);
-void set_pitch_dir(bool clockwise);
-void set_roll_pin(bool state);
-void set_pitch_pin(bool state);
+void set_roll_dir_pin(bool clockwise);
+void set_pitch_dir_pin(bool clockwise);
+void set_roll_step_pin(bool state);
+void set_pitch_step_pin(bool state);
 int steps_to_degrees(int steps, int MAX_STEPS);
 void set_step_pin_manually(GPIO_TypeDef *gpiox_base, uint16_t step_pin, bool is_roll, bool set_pin_high);
 void set_direction_pins(GPIO_TypeDef *gpiox_base, uint16_t dir_pins, bool set_pin_high);
@@ -77,40 +77,45 @@ void update_motors(void) {
 		pitch_update_needed = false;
 	
 	// Set direction pins accordingly
-	set_roll_dir(roll_dir);
-	set_pitch_dir(pitch_dir);
+	set_roll_dir_pin(roll_dir);
+	set_pitch_dir_pin(pitch_dir);
 	
 	// Step toward target if not already there
 	if(roll_update_needed) {
-		set_roll_pin(true); // Set high to enable a step
+		set_roll_step_pin(true); // Set high to enable a step
 	}
 	if(pitch_update_needed) {
-		set_pitch_pin(true); // Set high to enable a step
+		set_pitch_step_pin(true); // Set high to enable a step
 	}
 	HAL_Delay(ON_DELAY);
 	
 	if(roll_update_needed) {
-		set_roll_pin(false); // Set low to finish a step
+		set_roll_step_pin(false); // Set low to finish a step
 	}
 	if(pitch_update_needed) {
-		set_pitch_pin(false); // Set low to finish a step
+		set_pitch_step_pin(false); // Set low to finish a step
 	}
 	HAL_Delay(OFF_DELAY);	
 }
 
 void step_roll_motor(bool clockwise) {
-	set_roll_pin(true); // Set high to enable a step
+	
+	set_roll_dir_pin(clockwise); // Set the direction
+	
+	set_roll_step_pin(true); // Set high to enable a step
 	HAL_Delay(ON_DELAY);
 	
-	set_roll_pin(false); // Set low to finish a step
+	set_roll_step_pin(false); // Set low to finish a step
 	HAL_Delay(OFF_DELAY);	
 }
 
 void step_pitch_motor(bool clockwise) {
-	set_pitch_pin(true); // Set high to enable a step
+	set_pitch_dir_pin(clockwise); // Set the direction
+
+	set_pitch_step_pin(true); // Set high to enable a step
 	HAL_Delay(ON_DELAY);
 	
-	set_pitch_pin(false); // Set low to finish a step
+	set_pitch_step_pin(false); // Set low to finish a step
 	HAL_Delay(OFF_DELAY);		
 }
 
@@ -140,19 +145,19 @@ int steps_to_degrees(int steps, int MAX_STEPS) {
 	return 360 * (steps/MAX_STEPS);
 }
 
-void set_roll_dir(bool clockwise) {
+void set_roll_dir_pin(bool clockwise) {
 	set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_DIR_PIN, true, clockwise); // Set Roll Direction
 }
 
-void set_pitch_dir(bool clockwise) {
+void set_pitch_dir_pin(bool clockwise) {
 	set_step_pin_manually(MOTORS_GPIO_BASE, PITCH_DIR_PIN, false, clockwise); // Set Pitch Direction
 }
 
-void set_roll_pin(bool state) { // High or low
+void set_roll_step_pin(bool state) { // High or low
 	set_step_pin_manually(MOTORS_GPIO_BASE, ROLL_STEP_PIN, true, state);
 }
 
-void set_pitch_pin(bool state) { // High or low
+void set_pitch_step_pin(bool state) { // High or low
 	set_step_pin_manually(MOTORS_GPIO_BASE, PITCH_STEP_PIN, false, state);
 }
 
