@@ -7,17 +7,17 @@ volatile static bool USART3_new_data = false;
 volatile static char USART3_received_char = 0;
 volatile static char USART1_received_char = 0;
 
-// Initializes PB6 and PB7 for USART1_TX (RXD) and USART1_RX (TXD).
+// Initializes PB6 and PB7 for USART1_TX (SCL/Rx) and USART1_RX (SDA/Tx).
 void USART1_init(void) {
 	printf("Initializing USART1...\n");
 	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 	RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
 	// Configuring PB6 and PB7 to alternate function mode
-	GPIOB->MODER |= ((1<<13) | (1<<15));
+	GPIOB->MODER &= ~(0xF<<12); // Clear bits 15-12
+	GPIOB->MODER |= ((1<<15) | (1<<13));
 	// Configuring the RX and TX lines to alternate function mode
-	// AF1 for PB6 (USART1_TX) and PB7 (USART1_RX) // Note: actual installation of cable is backword (PC4 is RX and PC5 is TX)
-	GPIOB->AFR[0] |= (1<<24 | 1<<28);
-	GPIOB->AFR[0] &= ~(0xE<<24 | 0xE<<28);
+	// AF0 for PB6 (USART1_TX) and PB7 (USART1_RX) // Note: actual installation of the IMU is backword (PB6 is SCL/Rx and PB7 is SDA/Tx)
+	GPIOB->AFR[0] &= ~(0xFF<<24); // Clear all bits for AF0
 	// Set the baud rate for communication to be 9600 bits/seconds
 	USART1->BRR = HAL_RCC_GetHCLKFreq()/BAUD_RATE;
 	// Enabling the transmitter and reciever hardware.
@@ -34,11 +34,12 @@ void USART3_init(void) {
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
 	// Configuring PC4 and PC5 to alternate function mode
-	GPIOC->MODER |= ((1<<9) | (1<<11));	
+	GPIOB->MODER &= ~(0xF<<8); // Clear bits 11-8
+	GPIOC->MODER |= ((1<<11) | (1<<9));
 	// Configuring the RX and TX lines to alternate function mode
-	// AF1 for PC4 (USART3_TX) and PC5 (USART3_RX) // Note: actual installation of cable is backword (PC4 is RX and PC5 is TX)
-	GPIOC->AFR[0] |= (1<<16 | 1<<20);
-	GPIOC->AFR[0] &= ~(0xE<<16 | 0xE<<20);
+	// AF1 for PC4 (USART3_TX) and PC5 (USART3_RX) // Note: actual installation of debug cable is backword (PC4 is RXD and PC5 is TXD)
+	GPIOC->AFR[0] |= (1<<20 | 1<<16);
+	GPIOC->AFR[0] &= ~(0xE<<20 | 0xE<<16);
 	// Set the baud rate for communication to be 9600 bits/seconds
 	USART3->BRR = HAL_RCC_GetHCLKFreq()/BAUD_RATE;
 	// Enabling the transmitter and reciever hardware.
@@ -114,13 +115,16 @@ bool wait_for_USART3_char(char c) {
 char receive_char(USART_TypeDef *USARTx) {
 	// Wait for RXNE=0 inside ISR
 	while(!(USARTx->ISR & USART_ISR_RXNE));
-	return USARTx->RDR;
+	char c = USARTx->RDR;
+	printf("Received: 0x%X\n", c);
+	return c;
 }
 
 // Transmits a char over USARTx.
 void transmit_char(USART_TypeDef *USARTx, char c) {
 	// Waiting on the USART status flag to indicate the transmit register is empty.
 	while(!(USARTx->ISR & USART_ISR_TXE));
+	printf("Transmitting: 0x%X\n", c);
 	USARTx->TDR = c;
 }
 
