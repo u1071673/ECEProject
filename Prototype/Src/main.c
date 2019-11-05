@@ -26,6 +26,7 @@
 #define ROLL_COUNTER_CLOCKWISE 's'
 #define PITCH_CLOCKWISE 'd'
 #define PITCH_COUNTER_CLOCKWISE 'a'
+#define GET_ORIENTATION 'o'
 #define RESET 'r'
 #define ENABLE '\r'
 #define ROLL_INCREASE '+'
@@ -159,10 +160,10 @@ void game_menu() {
 //			
 //			char string_to_transmit[40];
 //			sprintf(string_to_transmit, "GAME GOT: %d,%d\r\n", g_data.roll_deg, g_data.pitch_deg);
+//			
 //			putty_print(string_to_transmit);
 
 //			update_motors();
-				putty_print("Not yet implemented \r\n");
 		}
 	}
 	putty_print("Leaving Game Mode...");
@@ -176,27 +177,32 @@ void debug_menu() {
 	char c = 0;
 	for(c = wait_for_USART3_data(); c != QUIT; c = wait_for_USART3_data()) { // Loop until quit char is received
 		putty_putc(c); // Print character pressed for user feedback.
+		putty_print("\r\n");
 		// Decypher user input
 		switch(c) {
 		case ROLL_CLOCKWISE:
 			step_roll_motor(true);
-			putty_print("\r\n\t Stepped Roll Clockwise!");
+			putty_print("\t Stepped Roll Clockwise!\r\n");
 		break;
 		case ROLL_COUNTER_CLOCKWISE:
 			step_roll_motor(false);
-			putty_print("\r\n\t Stepped Roll Counter-Clockwise!");
+			putty_print("\t Stepped Roll Counter-Clockwise!\r\n");
 		break;
 		case PITCH_CLOCKWISE:
 			step_pitch_motor(true);
-			putty_print("\r\n\t Stepped Pitch Clockwise!");
+			putty_print("\t Stepped Pitch Clockwise!\r\n");
 		break;
 		case PITCH_COUNTER_CLOCKWISE:
 			step_pitch_motor(false);
-			putty_print("\r\n\t Stepped Pitch Counter-Clockwise!");
+			putty_print("\t Stepped Pitch Counter-Clockwise!\r\n");
+		break;
+		case GET_ORIENTATION:
+			putty_print("\t Requesting data from BNO055!\r\n");
+			BNO055_request_data();
 		break;
 		case RESET:
 			reset_values();
-			putty_print("\r\n\t Values Reset!");
+			putty_print("t Values Reset!\r\n");
 		break;
 		case '\n':
 		case '\r':

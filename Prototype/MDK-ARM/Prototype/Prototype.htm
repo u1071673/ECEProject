@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Prototype\Prototype.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Prototype\Prototype.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Fri Nov 01 15:33:57 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Nov 04 18:23:33 2019
 <BR><P>
 <H3>Maximum Stack Usage =        172 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -58,7 +58,7 @@ Function Pointers
  <LI><a href="#[25]">USB_IRQHandler</a> from startup_stm32f072xb.o(.text) referenced from startup_stm32f072xb.o(RESET)
  <LI><a href="#[6]">WWDG_IRQHandler</a> from startup_stm32f072xb.o(.text) referenced from startup_stm32f072xb.o(RESET)
  <LI><a href="#[28]">__main</a> from entry.o(.ARM.Collect$$$$00000000) referenced from startup_stm32f072xb.o(.text)
- <LI><a href="#[29]">fputc</a> from retarget_io.o(i.fputc) referenced from printf5.o(i.__0printf$5)
+ <LI><a href="#[29]">fputc</a> from retarget_io.o(i.fputc) referenced from printfa.o(i.__0printf)
  <LI><a href="#[26]">main</a> from main.o(i.main) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
 <P>
@@ -68,25 +68,25 @@ Global Symbols
 <P><STRONG><a name="[28]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(.text)
 </UL>
-<P><STRONG><a name="[7a]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[89]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[2a]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[34]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<P><STRONG><a name="[3d]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[7b]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[8a]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[7c]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[8b]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[7d]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[8c]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[7e]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[8d]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[7f]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[8e]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f072xb.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
@@ -182,61 +182,64 @@ Global Symbols
 <P><STRONG><a name="[6]"></a>WWDG_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f072xb.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
-<P><STRONG><a name="[80]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<P><STRONG><a name="[8f]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 
 <P><STRONG><a name="[2d]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = __aeabi_uidivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
-<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
+<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[81]"></a>__aeabi_idiv</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, idiv.o(.text), UNUSED)
+<P><STRONG><a name="[90]"></a>__aeabi_idiv</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, idiv.o(.text), UNUSED)
 
 <P><STRONG><a name="[2c]"></a>__aeabi_idivmod</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, idiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
 </UL>
 
 <P><STRONG><a name="[32]"></a>__aeabi_llsr</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, llushr.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[82]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llushr.o(.text), UNUSED)
+<P><STRONG><a name="[91]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llushr.o(.text), UNUSED)
 
-<P><STRONG><a name="[3e]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
+<P><STRONG><a name="[49]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
 </UL>
 
-<P><STRONG><a name="[83]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+<P><STRONG><a name="[92]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
-<P><STRONG><a name="[84]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+<P><STRONG><a name="[93]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
 <P><STRONG><a name="[2f]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 
-<P><STRONG><a name="[85]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[94]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
-<P><STRONG><a name="[86]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[95]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[2e]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 
-<P><STRONG><a name="[42]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<P><STRONG><a name="[4d]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
-<P><STRONG><a name="[87]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[96]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[30]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
@@ -246,192 +249,270 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+</UL>
+
+<P><STRONG><a name="[97]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, iusefp.o(.text), UNUSED)
+
+<P><STRONG><a name="[34]"></a>__aeabi_dadd</STRONG> (Thumb, 328 bytes, Stack size 48 bytes, dadd.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_lasr
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+</UL>
+<BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+</UL>
+
+<P><STRONG><a name="[38]"></a>__aeabi_dsub</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+</UL>
+
+<P><STRONG><a name="[39]"></a>__aeabi_drsub</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+</UL>
+
+<P><STRONG><a name="[3a]"></a>__aeabi_dmul</STRONG> (Thumb, 202 bytes, Stack size 72 bytes, dmul.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+</UL>
+<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+</UL>
+
+<P><STRONG><a name="[3b]"></a>__aeabi_ddiv</STRONG> (Thumb, 234 bytes, Stack size 40 bytes, ddiv.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
+</UL>
+<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+</UL>
+
+<P><STRONG><a name="[3c]"></a>__aeabi_d2ulz</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, dfixul.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+</UL>
+<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+</UL>
+
+<P><STRONG><a name="[69]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[2b]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
+<BR><BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[88]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[98]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[33]"></a>__aeabi_llsl</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[89]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
+<P><STRONG><a name="[99]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
 
-<P><STRONG><a name="[35]"></a>BNO055_init</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, bno055.o(i.BNO055_init))
+<P><STRONG><a name="[35]"></a>__aeabi_lasr</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+</UL>
+
+<P><STRONG><a name="[9a]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
+
+<P><STRONG><a name="[37]"></a>_double_round</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, depilogue.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+</UL>
+
+<P><STRONG><a name="[36]"></a>_double_epilogue</STRONG> (Thumb, 164 bytes, Stack size 48 bytes, depilogue.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_clz
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+</UL>
+
+<P><STRONG><a name="[3f]"></a>BNO055_init</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, bno055.o(i.BNO055_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = BNO055_init &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
-<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
 </UL>
 
-<P><STRONG><a name="[3c]"></a>EventRecordData</STRONG> (Thumb, 236 bytes, Stack size 32 bytes, eventrecorder.o(i.EventRecordData))
+<P><STRONG><a name="[43]"></a>BNO055_request_data</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, bno055.o(i.BNO055_request_data))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = BNO055_request_data &rArr; transmit_char &rArr; __2printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+</UL>
+
+<P><STRONG><a name="[47]"></a>EventRecordData</STRONG> (Thumb, 236 bytes, Stack size 32 bytes, eventrecorder.o(i.EventRecordData))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = EventRecordData &rArr; EventRecordItem
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetContext
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordItem
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventGetTS
-<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventCheckFilter
+<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetContext
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordItem
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventGetTS
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventCheckFilter
 </UL>
 <BR>[Called By]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
 
-<P><STRONG><a name="[43]"></a>EventRecorderEnable</STRONG> (Thumb, 76 bytes, Stack size 20 bytes, eventrecorder.o(i.EventRecorderEnable))
+<P><STRONG><a name="[4e]"></a>EventRecorderEnable</STRONG> (Thumb, 76 bytes, Stack size 20 bytes, eventrecorder.o(i.EventRecorderEnable))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = EventRecorderEnable
 </UL>
-<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
+<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
 </UL>
 
-<P><STRONG><a name="[41]"></a>EventRecorderInitialize</STRONG> (Thumb, 198 bytes, Stack size 24 bytes, eventrecorder.o(i.EventRecorderInitialize))
+<P><STRONG><a name="[4c]"></a>EventRecorderInitialize</STRONG> (Thumb, 198 bytes, Stack size 24 bytes, eventrecorder.o(i.EventRecorderInitialize))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = EventRecorderInitialize &rArr; EventRecordItem
 </UL>
-<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderTimerInit
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderEnable
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordItem
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventGetTS
+<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderTimerInit
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderEnable
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordItem
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventGetTS
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[3a]"></a>EventRecorderTimerGet</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, eventrecorder.o(i.EventRecorderTimerGet))
-<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventGetTS
+<P><STRONG><a name="[45]"></a>EventRecorderTimerGet</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, eventrecorder.o(i.EventRecorderTimerGet))
+<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventGetTS
 </UL>
 
-<P><STRONG><a name="[44]"></a>EventRecorderTimerInit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, eventrecorder.o(i.EventRecorderTimerInit))
-<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
+<P><STRONG><a name="[4f]"></a>EventRecorderTimerInit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, eventrecorder.o(i.EventRecorderTimerInit))
+<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
 </UL>
 
-<P><STRONG><a name="[45]"></a>GPIO_PINs_init</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, gpios.o(i.GPIO_PINs_init))
+<P><STRONG><a name="[50]"></a>GPIO_PINs_init</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, gpios.o(i.GPIO_PINs_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = GPIO_PINs_init &rArr; GPIOx_init &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOx_init
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOx_init
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motors_init
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motors_init
 </UL>
 
-<P><STRONG><a name="[46]"></a>GPIOx_init</STRONG> (Thumb, 174 bytes, Stack size 48 bytes, gpios.o(i.GPIOx_init))
+<P><STRONG><a name="[51]"></a>GPIOx_init</STRONG> (Thumb, 174 bytes, Stack size 48 bytes, gpios.o(i.GPIOx_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = GPIOx_init &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
+<BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PINs_init
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PINs_init
 </UL>
 
-<P><STRONG><a name="[49]"></a>HAL_Delay</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, stm32f0xx_hal.o(i.HAL_Delay))
+<P><STRONG><a name="[54]"></a>HAL_Delay</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, stm32f0xx_hal.o(i.HAL_Delay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = HAL_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_roll_motor
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_pitch_motor
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_roll_motor
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_pitch_motor
 </UL>
 
-<P><STRONG><a name="[47]"></a>HAL_GPIO_Init</STRONG> (Thumb, 314 bytes, Stack size 24 bytes, stm32f0xx_hal_gpio.o(i.HAL_GPIO_Init))
+<P><STRONG><a name="[52]"></a>HAL_GPIO_Init</STRONG> (Thumb, 314 bytes, Stack size 24 bytes, stm32f0xx_hal_gpio.o(i.HAL_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = HAL_GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOx_init
+<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOx_init
 </UL>
 
-<P><STRONG><a name="[48]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin))
-<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOx_init
+<P><STRONG><a name="[53]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin))
+<BR><BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOx_init
 </UL>
 
-<P><STRONG><a name="[4a]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f0xx_hal.o(i.HAL_GetTick))
-<BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
+<P><STRONG><a name="[55]"></a>HAL_GetTick</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f0xx_hal.o(i.HAL_GetTick))
+<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 </UL>
 
-<P><STRONG><a name="[56]"></a>HAL_IncTick</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f0xx_hal.o(i.HAL_IncTick))
+<P><STRONG><a name="[61]"></a>HAL_IncTick</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f0xx_hal.o(i.HAL_IncTick))
 <BR><BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[4b]"></a>HAL_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, stm32f0xx_hal.o(i.HAL_Init))
+<P><STRONG><a name="[56]"></a>HAL_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, stm32f0xx_hal.o(i.HAL_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = HAL_Init &rArr; HAL_InitTick &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspInit
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_MspInit
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4c]"></a>HAL_InitTick</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, stm32f0xx_hal.o(i.HAL_InitTick))
+<P><STRONG><a name="[57]"></a>HAL_InitTick</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, stm32f0xx_hal.o(i.HAL_InitTick))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = HAL_InitTick &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetHCLKFreq
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_Config
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetHCLKFreq
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_Config
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 </UL>
 
-<P><STRONG><a name="[4d]"></a>HAL_MspInit</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, stm32f0xx_hal_msp.o(i.HAL_MspInit))
+<P><STRONG><a name="[58]"></a>HAL_MspInit</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, stm32f0xx_hal_msp.o(i.HAL_MspInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_MspInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
+<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 </UL>
 
-<P><STRONG><a name="[50]"></a>HAL_NVIC_SetPriority</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f0xx_hal_cortex.o(i.HAL_NVIC_SetPriority))
+<P><STRONG><a name="[5b]"></a>HAL_NVIC_SetPriority</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f0xx_hal_cortex.o(i.HAL_NVIC_SetPriority))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_NVIC_SetPriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
 
-<P><STRONG><a name="[52]"></a>HAL_RCC_ClockConfig</STRONG> (Thumb, 320 bytes, Stack size 24 bytes, stm32f0xx_hal_rcc.o(i.HAL_RCC_ClockConfig))
+<P><STRONG><a name="[5d]"></a>HAL_RCC_ClockConfig</STRONG> (Thumb, 320 bytes, Stack size 24 bytes, stm32f0xx_hal_rcc.o(i.HAL_RCC_ClockConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetSysClockFreq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
-</UL>
-
-<P><STRONG><a name="[4e]"></a>HAL_RCC_GetHCLKFreq</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f0xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
-<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
-<P><STRONG><a name="[53]"></a>HAL_RCC_GetSysClockFreq</STRONG> (Thumb, 90 bytes, Stack size 48 bytes, stm32f0xx_hal_rcc.o(i.HAL_RCC_GetSysClockFreq))
+<P><STRONG><a name="[59]"></a>HAL_RCC_GetHCLKFreq</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f0xx_hal_rcc.o(i.HAL_RCC_GetHCLKFreq))
+<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+</UL>
+
+<P><STRONG><a name="[5e]"></a>HAL_RCC_GetSysClockFreq</STRONG> (Thumb, 90 bytes, Stack size 48 bytes, stm32f0xx_hal_rcc.o(i.HAL_RCC_GetSysClockFreq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = HAL_RCC_GetSysClockFreq &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
+<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 </UL>
 
-<P><STRONG><a name="[54]"></a>HAL_RCC_OscConfig</STRONG> (Thumb, 966 bytes, Stack size 32 bytes, stm32f0xx_hal_rcc.o(i.HAL_RCC_OscConfig))
+<P><STRONG><a name="[5f]"></a>HAL_RCC_OscConfig</STRONG> (Thumb, 966 bytes, Stack size 32 bytes, stm32f0xx_hal_rcc.o(i.HAL_RCC_OscConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = HAL_RCC_OscConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
-<P><STRONG><a name="[4f]"></a>HAL_SYSTICK_Config</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_Config))
+<P><STRONG><a name="[5a]"></a>HAL_SYSTICK_Config</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, stm32f0xx_hal_cortex.o(i.HAL_SYSTICK_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_SYSTICK_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
 
 <P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f0xx_it.o(i.HardFault_Handler))
@@ -441,12 +522,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
-<P><STRONG><a name="[55]"></a>LEDs_init</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, leds.o(i.LEDs_init))
+<P><STRONG><a name="[60]"></a>LEDs_init</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, leds.o(i.LEDs_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LEDs_init &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
 </UL>
 
 <P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f0xx_it.o(i.NMI_Handler))
@@ -461,16 +542,16 @@ Global Symbols
 <P><STRONG><a name="[5]"></a>SysTick_Handler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f0xx_it.o(i.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SysTick_Handler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_IncTick
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_IncTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
-<P><STRONG><a name="[57]"></a>SystemClock_Config</STRONG> (Thumb, 64 bytes, Stack size 80 bytes, main.o(i.SystemClock_Config))
+<P><STRONG><a name="[62]"></a>SystemClock_Config</STRONG> (Thumb, 64 bytes, Stack size 80 bytes, main.o(i.SystemClock_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -484,418 +565,456 @@ Global Symbols
 <P><STRONG><a name="[21]"></a>USART1_IRQHandler</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, usarts.o(i.USART1_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = USART1_IRQHandler &rArr; receive_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_char
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_char
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
-<P><STRONG><a name="[37]"></a>USART1_init</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, usarts.o(i.USART1_init))
+<P><STRONG><a name="[41]"></a>USART1_init</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, usarts.o(i.USART1_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = USART1_init &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetHCLKFreq
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetHCLKFreq
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
+<BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
 </UL>
 
 <P><STRONG><a name="[23]"></a>USART3_4_IRQHandler</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, usarts.o(i.USART3_4_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = USART3_4_IRQHandler &rArr; receive_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_char
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_char
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
-<P><STRONG><a name="[72]"></a>USART3_has_data</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, usarts.o(i.USART3_has_data))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recieved_putty_cmd
+<P><STRONG><a name="[81]"></a>USART3_has_data</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usarts.o(i.USART3_has_data))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recieved_putty_cmd
 </UL>
 
-<P><STRONG><a name="[5a]"></a>USART3_init</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, usarts.o(i.USART3_init))
+<P><STRONG><a name="[65]"></a>USART3_init</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, usarts.o(i.USART3_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = USART3_init &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetHCLKFreq
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_GetHCLKFreq
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_parser_init
-</UL>
-
-<P><STRONG><a name="[5b]"></a>__0printf$5</STRONG> (Thumb, 24 bytes, Stack size 24 bytes, printf5.o(i.__0printf$5), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_parser_init
 </UL>
 
-<P><STRONG><a name="[8a]"></a>__1printf$5</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf5.o(i.__0printf$5), UNUSED)
+<P><STRONG><a name="[66]"></a>__0printf</STRONG> (Thumb, 24 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
 
-<P><STRONG><a name="[36]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf5.o(i.__0printf$5))
+<P><STRONG><a name="[9b]"></a>__1printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+
+<P><STRONG><a name="[40]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_char
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PINs_init
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
-<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motors_init
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_parser_init
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LEDs_init
-<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_char
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PINs_init
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motors_init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_parser_init
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LEDs_init
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
 </UL>
 
-<P><STRONG><a name="[8b]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[9c]"></a>__c89printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
 
-<P><STRONG><a name="[8c]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[9d]"></a>printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
 
-<P><STRONG><a name="[8d]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[3e]"></a>__ARM_clz</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, depilogue.o(i.__ARM_clz), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+</UL>
 
-<P><STRONG><a name="[5d]"></a>chair_init</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, main.o(i.chair_init))
+<P><STRONG><a name="[9e]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+
+<P><STRONG><a name="[9f]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+
+<P><STRONG><a name="[a0]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+
+<P><STRONG><a name="[6c]"></a>chair_init</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, main.o(i.chair_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = chair_init &rArr; motors_init &rArr; GPIO_PINs_init &rArr; GPIOx_init &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motors_init
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_parser_init
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LEDs_init
-<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motors_init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_parser_init
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LEDs_init
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[60]"></a>debug_menu</STRONG> (Thumb, 130 bytes, Stack size 8 bytes, main.o(i.debug_menu))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = debug_menu &rArr; putty_unrecognized_prompt &rArr; putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
+<P><STRONG><a name="[6f]"></a>debug_menu</STRONG> (Thumb, 152 bytes, Stack size 8 bytes, main.o(i.debug_menu))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = debug_menu &rArr; wait_for_USART3_data &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_for_USART3_data
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_roll_motor
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_pitch_motor
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_unrecognized_prompt
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_debug_prompt
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_for_USART3_data
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_roll_motor
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_pitch_motor
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_unrecognized_prompt
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_debug_prompt
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_request_data
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
 </UL>
 
 <P><STRONG><a name="[29]"></a>fputc</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, retarget_io.o(i.fputc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = fputc &rArr; EventRecordData &rArr; EventRecordItem
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
+<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> printf5.o(i.__0printf$5)
+<BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0printf)
 </UL>
-<P><STRONG><a name="[69]"></a>game_menu</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, main.o(i.game_menu))
+<P><STRONG><a name="[78]"></a>game_menu</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, main.o(i.game_menu))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = game_menu &rArr; putty_game_prompt &rArr; putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recieved_putty_cmd
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_game_prompt
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_putty_cmd
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;recieved_putty_cmd
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_game_prompt
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_putty_cmd
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
 </UL>
 
-<P><STRONG><a name="[5f]"></a>game_parser_init</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, game_parser.o(i.game_parser_init))
+<P><STRONG><a name="[6e]"></a>game_parser_init</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, game_parser.o(i.game_parser_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = game_parser_init &rArr; USART3_init &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
-</UL>
-
-<P><STRONG><a name="[6d]"></a>get_USART3_data</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, usarts.o(i.get_USART3_data))
-<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_putty_cmd
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
 </UL>
 
-<P><STRONG><a name="[6c]"></a>get_putty_cmd</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, putty.o(i.get_putty_cmd))
+<P><STRONG><a name="[7c]"></a>get_USART3_data</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, usarts.o(i.get_USART3_data))
+<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_putty_cmd
+</UL>
+
+<P><STRONG><a name="[7b]"></a>get_putty_cmd</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, putty.o(i.get_putty_cmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = get_putty_cmd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_USART3_data
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_USART3_data
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
 <P><STRONG><a name="[26]"></a>main</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 172<LI>Call Chain = main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
-<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[6e]"></a>main_menu</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, main.o(i.main_menu))
+<P><STRONG><a name="[7d]"></a>main_menu</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, main.o(i.main_menu))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = main_menu &rArr; game_menu &rArr; putty_game_prompt &rArr; putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_for_USART3_data
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_unrecognized_prompt
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_main_prompt
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_goodbye_prompt
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_for_USART3_data
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_unrecognized_prompt
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_main_prompt
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_goodbye_prompt
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5e]"></a>motors_init</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, motors.o(i.motors_init))
+<P><STRONG><a name="[6d]"></a>motors_init</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, motors.o(i.motors_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = motors_init &rArr; GPIO_PINs_init &rArr; GPIOx_init &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PINs_init
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PINs_init
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
 </UL>
 
-<P><STRONG><a name="[62]"></a>putty_debug_prompt</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, putty.o(i.putty_debug_prompt))
+<P><STRONG><a name="[71]"></a>putty_debug_prompt</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, putty.o(i.putty_debug_prompt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = putty_debug_prompt &rArr; putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
 </UL>
-<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
 </UL>
 
-<P><STRONG><a name="[6a]"></a>putty_game_prompt</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, putty.o(i.putty_game_prompt))
+<P><STRONG><a name="[79]"></a>putty_game_prompt</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, putty.o(i.putty_game_prompt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = putty_game_prompt &rArr; putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[6f]"></a>putty_goodbye_prompt</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, putty.o(i.putty_goodbye_prompt))
+<P><STRONG><a name="[7e]"></a>putty_goodbye_prompt</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, putty.o(i.putty_goodbye_prompt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = putty_goodbye_prompt &rArr; putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
 </UL>
 
-<P><STRONG><a name="[70]"></a>putty_main_prompt</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, putty.o(i.putty_main_prompt))
+<P><STRONG><a name="[7f]"></a>putty_main_prompt</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, putty.o(i.putty_main_prompt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = putty_main_prompt &rArr; putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
 </UL>
 
-<P><STRONG><a name="[66]"></a>putty_print</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, putty.o(i.putty_print))
+<P><STRONG><a name="[73]"></a>putty_print</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, putty.o(i.putty_print))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
+<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_unrecognized_prompt
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_main_prompt
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_goodbye_prompt
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_game_prompt
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_debug_prompt
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_unrecognized_prompt
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_main_prompt
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_goodbye_prompt
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_game_prompt
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_debug_prompt
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
 </UL>
 
-<P><STRONG><a name="[63]"></a>putty_putc</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, putty.o(i.putty_putc))
+<P><STRONG><a name="[72]"></a>putty_putc</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, putty.o(i.putty_putc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = putty_putc &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_unrecognized_prompt
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_unrecognized_prompt
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
 </UL>
 
-<P><STRONG><a name="[64]"></a>putty_unrecognized_prompt</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, putty.o(i.putty_unrecognized_prompt))
+<P><STRONG><a name="[74]"></a>putty_unrecognized_prompt</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, putty.o(i.putty_unrecognized_prompt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = putty_unrecognized_prompt &rArr; putty_print &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
+<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
 </UL>
 
-<P><STRONG><a name="[58]"></a>receive_char</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, usarts.o(i.receive_char))
+<P><STRONG><a name="[63]"></a>receive_char</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, usarts.o(i.receive_char))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = receive_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_4_IRQHandler
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[6b]"></a>recieved_putty_cmd</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, putty.o(i.recieved_putty_cmd))
+<P><STRONG><a name="[7a]"></a>recieved_putty_cmd</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, putty.o(i.recieved_putty_cmd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = recieved_putty_cmd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_has_data
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_has_data
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[61]"></a>reset_values</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, main.o(i.reset_values))
+<P><STRONG><a name="[70]"></a>reset_values</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, main.o(i.reset_values))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = reset_values &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_roll_steps
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_pitch_steps
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_roll_steps
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_pitch_steps
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
 </UL>
 
-<P><STRONG><a name="[75]"></a>set_pitch_dir_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_pitch_dir_pin))
+<P><STRONG><a name="[84]"></a>set_pitch_dir_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_pitch_dir_pin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = set_pitch_dir_pin &rArr; set_step_pin_manually &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
 </UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_pitch_motor
+<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_pitch_motor
 </UL>
 
-<P><STRONG><a name="[77]"></a>set_pitch_step_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_pitch_step_pin))
+<P><STRONG><a name="[86]"></a>set_pitch_step_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_pitch_step_pin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = set_pitch_step_pin &rArr; set_step_pin_manually &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
 </UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_pitch_motor
+<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_pitch_motor
 </UL>
 
-<P><STRONG><a name="[78]"></a>set_roll_dir_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_roll_dir_pin))
+<P><STRONG><a name="[87]"></a>set_roll_dir_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_roll_dir_pin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = set_roll_dir_pin &rArr; set_step_pin_manually &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
 </UL>
-<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_roll_motor
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_roll_motor
 </UL>
 
-<P><STRONG><a name="[79]"></a>set_roll_step_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_roll_step_pin))
+<P><STRONG><a name="[88]"></a>set_roll_step_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_roll_step_pin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = set_roll_step_pin &rArr; set_step_pin_manually &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
 </UL>
-<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_roll_motor
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;step_roll_motor
 </UL>
 
-<P><STRONG><a name="[76]"></a>set_step_pin_manually</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, motors.o(i.set_step_pin_manually))
+<P><STRONG><a name="[85]"></a>set_step_pin_manually</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, motors.o(i.set_step_pin_manually))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = set_step_pin_manually &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_step_pin
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_dir_pin
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_step_pin
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_dir_pin
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_step_pin
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_dir_pin
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_step_pin
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_dir_pin
 </UL>
 
-<P><STRONG><a name="[74]"></a>set_target_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.set_target_pitch_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<P><STRONG><a name="[83]"></a>set_target_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.set_target_pitch_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
 </UL>
 
-<P><STRONG><a name="[73]"></a>set_target_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.set_target_roll_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<P><STRONG><a name="[82]"></a>set_target_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.set_target_roll_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
 </UL>
 
-<P><STRONG><a name="[68]"></a>step_pitch_motor</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, motors.o(i.step_pitch_motor))
+<P><STRONG><a name="[77]"></a>step_pitch_motor</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, motors.o(i.step_pitch_motor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = step_pitch_motor &rArr; set_pitch_step_pin &rArr; set_step_pin_manually &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_step_pin
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_dir_pin
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_step_pin
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_dir_pin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
 </UL>
 
-<P><STRONG><a name="[67]"></a>step_roll_motor</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, motors.o(i.step_roll_motor))
+<P><STRONG><a name="[76]"></a>step_roll_motor</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, motors.o(i.step_roll_motor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = step_roll_motor &rArr; set_roll_step_pin &rArr; set_step_pin_manually &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_step_pin
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_dir_pin
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_step_pin
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_dir_pin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
 </UL>
 
-<P><STRONG><a name="[38]"></a>transmit_char</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, usarts.o(i.transmit_char))
+<P><STRONG><a name="[42]"></a>transmit_char</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, usarts.o(i.transmit_char))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
-<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
+<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_request_data
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
 </UL>
 
-<P><STRONG><a name="[71]"></a>transmit_string</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, usarts.o(i.transmit_string))
+<P><STRONG><a name="[80]"></a>transmit_string</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, usarts.o(i.transmit_string))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = transmit_string &rArr; transmit_char &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
 </UL>
-<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait_for_USART3_data
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
 </UL>
 
-<P><STRONG><a name="[65]"></a>wait_for_USART3_data</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, usarts.o(i.wait_for_USART3_data))
-<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
+<P><STRONG><a name="[75]"></a>wait_for_USART3_data</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, usarts.o(i.wait_for_USART3_data))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = wait_for_USART3_data &rArr; transmit_string &rArr; transmit_char &rArr; __2printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main_menu
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debug_menu
 </UL>
 <P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[59]"></a>NVIC_SetPriority</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, usarts.o(i.NVIC_SetPriority))
-<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
-<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
+<P><STRONG><a name="[64]"></a>NVIC_SetPriority</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, usarts.o(i.NVIC_SetPriority))
+<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_init
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_init
 </UL>
 
-<P><STRONG><a name="[51]"></a>NVIC_SetPriority</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, stm32f0xx_hal_cortex.o(i.NVIC_SetPriority))
-<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_Config
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
+<P><STRONG><a name="[5c]"></a>NVIC_SetPriority</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, stm32f0xx_hal_cortex.o(i.NVIC_SetPriority))
+<BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SYSTICK_Config
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
 </UL>
 
-<P><STRONG><a name="[3d]"></a>EventCheckFilter</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, eventrecorder.o(i.EventCheckFilter))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
+<P><STRONG><a name="[48]"></a>EventCheckFilter</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, eventrecorder.o(i.EventCheckFilter))
+<BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
 </UL>
 
-<P><STRONG><a name="[39]"></a>EventGetTS</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, eventrecorder.o(i.EventGetTS))
+<P><STRONG><a name="[44]"></a>EventGetTS</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, eventrecorder.o(i.EventGetTS))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = EventGetTS
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderTimerGet
-<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc32
+<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderTimerGet
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc32
 </UL>
-<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
-<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
+<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
 </UL>
 
-<P><STRONG><a name="[40]"></a>EventRecordItem</STRONG> (Thumb, 216 bytes, Stack size 40 bytes, eventrecorder.o(i.EventRecordItem))
+<P><STRONG><a name="[4b]"></a>EventRecordItem</STRONG> (Thumb, 216 bytes, Stack size 40 bytes, eventrecorder.o(i.EventRecordItem))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = EventRecordItem
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc32
+<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atomic_inc32
 </UL>
-<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
-<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
-</UL>
-
-<P><STRONG><a name="[3f]"></a>GetContext</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, eventrecorder.o(i.GetContext))
-<BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
+<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecorderInitialize
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
 </UL>
 
-<P><STRONG><a name="[3b]"></a>atomic_inc32</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, eventrecorder.o(i.atomic_inc32))
-<BR><BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordItem
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventGetTS
+<P><STRONG><a name="[4a]"></a>GetContext</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, eventrecorder.o(i.GetContext))
+<BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordData
 </UL>
 
-<P><STRONG><a name="[5c]"></a>_printf_core</STRONG> (Thumb, 688 bytes, Stack size 96 bytes, printf5.o(i._printf_core), UNUSED)
+<P><STRONG><a name="[46]"></a>atomic_inc32</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, eventrecorder.o(i.atomic_inc32))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventRecordItem
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EventGetTS
+</UL>
+
+<P><STRONG><a name="[68]"></a>_fp_digits</STRONG> (Thumb, 344 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$5
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
+
+<P><STRONG><a name="[67]"></a>_printf_core</STRONG> (Thumb, 1754 bytes, Stack size 128 bytes, printfa.o(i._printf_core), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+</UL>
+<BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf
+</UL>
+
+<P><STRONG><a name="[6b]"></a>_printf_post_padding</STRONG> (Thumb, 32 bytes, Stack size 24 bytes, printfa.o(i._printf_post_padding), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
+
+<P><STRONG><a name="[6a]"></a>_printf_pre_padding</STRONG> (Thumb, 44 bytes, Stack size 40 bytes, printfa.o(i._printf_pre_padding), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 <P>
 <H3>

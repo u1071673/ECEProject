@@ -1,6 +1,7 @@
 #include "BNO055.h"
 #include "USARTs.h"
 #include "stm32f0xx_hal.h"
+#include "putty.h"
 
 volatile static float slope_deg = 0.0;
 volatile static float cant_deg = 0.0;
@@ -38,43 +39,20 @@ void BNO055_init(void) {
 
 }
 
-void BNO055_request_data() {
+void BNO055_request_data(void) {
 	// Request 6 bytes of orientation data (starting at 1A register)
 	transmit_char(USART1, (char)0xAA);
-	transmit_char(USART1, (char)0x00);
-	transmit_char(USART1, (char)0x3D);
 	transmit_char(USART1, (char)0x01);
-	transmit_char(USART1, (char)0x0C);
+	transmit_char(USART1, (char)0x1A);
+	transmit_char(USART1, (char)0x06);
 }
 
-volatile static int euler_index = 0;
-volatile static char euler_data[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-void BNO055_refresh_orientation() {
-//	if(USART1_new_data) {
-//		USART1_new_data = false;
-//		
-//		euler_data[euler_index++] = USART1_received_char;
-//		
-//		euler_index = euler_index == 8 ? 0 : euler_index;
+void BNO055_refresh_orientation(void) {
+	if(has_new_orientation()) {
+		char string_to_transmit[40];
+		euler_data data = get_orientation_data();
+		sprintf(string_to_transmit, "BNO055 GOT: %f,%f,%f\r\n", data.slope_deg, data.cant_deg, data.azimuth_deg);
+		putty_print(string_to_transmit);
+	}
 
-//		switch(euler_data[0]) {
-//		case (char)0xBB: // Euler data
-//			if (euler_index == 0) {
-//					// New values completely received and ready to store.
-//				slope_deg = -((float)(euler_data[6] | euler_data[7] << 8) / 16);
-//				cant_deg = -((float)(euler_data[4] | euler_data[5] << 8) / 16);
-//				azimuth_deg = -((float)(euler_data[2] | euler_data[3] << 8) / 16);
-
-//				orientation_updated = true;
-//			}
-//		break;
-//		case (char)0xEE: // Error
-//			// TODO: print error and current buffer
-//			euler_index = 0;
-//		break;
-//		default:
-//			// TODO: print buffer
-//		break;
-//		}
-//	}
 }

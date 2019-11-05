@@ -1,11 +1,17 @@
 #include "USARTs.h"
 
-#define BAUD_RATE 9600
+#define BAUD_RATE 115200
 
 volatile static bool USART1_new_data = false;
 volatile static bool USART3_new_data = false;
-volatile static char USART3_received_char = 0;
 volatile static char USART1_received_char = 0;
+volatile static char USART3_received_char = 0;
+volatile static int USART1_rx_index = 0;
+volatile static char USART1_rx[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+volatile static bool orientation_updated = false;
+volatile static euler_data orientation;
+
+void add_to_USART1_buffer(char c);
 
 // Initializes PB6 and PB7 for USART1_TX (SCL/Rx) and USART1_RX (SDA/Tx).
 void USART1_init(void) {
@@ -18,7 +24,7 @@ void USART1_init(void) {
 	// Configuring the RX and TX lines to alternate function mode
 	// AF0 for PB6 (USART1_TX) and PB7 (USART1_RX) // Note: actual installation of the IMU is backword (PB6 is SCL/Rx and PB7 is SDA/Tx)
 	GPIOB->AFR[0] &= ~(0xFF<<24); // Clear all bits for AF0
-	// Set the baud rate for communication to be 9600 bits/seconds
+	// Set the baud rate for communication to be 115200 bits/seconds
 	USART1->BRR = HAL_RCC_GetHCLKFreq()/BAUD_RATE;
 	// Enabling the transmitter and reciever hardware.
 	USART1->CR1 |= USART_CR1_TE | USART_CR1_RE | USART_CR1_UE | USART_CR1_RXNEIE;
@@ -40,7 +46,7 @@ void USART3_init(void) {
 	// AF1 for PC4 (USART3_TX) and PC5 (USART3_RX) // Note: actual installation of debug cable is backword (PC4 is RXD and PC5 is TXD)
 	GPIOC->AFR[0] |= (1<<20 | 1<<16);
 	GPIOC->AFR[0] &= ~(0xE<<20 | 0xE<<16);
-	// Set the baud rate for communication to be 9600 bits/seconds
+	// Set the baud rate for communication to be 115200 bits/seconds
 	USART3->BRR = HAL_RCC_GetHCLKFreq()/BAUD_RATE;
 	// Enabling the transmitter and reciever hardware.
 	USART3->CR1 |= USART_CR1_TE | USART_CR1_RE | USART_CR1_UE | USART_CR1_RXNEIE;
@@ -54,9 +60,53 @@ void USART3_init(void) {
 void USART1_IRQHandler(void) {
 	USART1_received_char = receive_char(USART1);
 	USART1_new_data = true;
+	// add_to_USART1_buffer(USART1_received_char);
 	return;
 }
 
+void add_to_USART1_buffer(char c) {
+		USART1_rx[USART1_rx_index++] = c;
+		USART1_rx_index = USART1_rx_index == 8 ? 0 : USART1_rx_index; // Reset to zero once we got 8 bytes
+		switch(USART1_rx[0]) {
+		case (char)0xBB: // Euler data
+			if (USART1_rx_index == 0) {
+				// New values completely received and ready to store.
+				orientation.slope_deg = -((float)(USART1_rx[6] | USART1_rx[7] << 8) / 16);
+				orientation.cant_deg = -((float)(USART1_rx[4] | USART1_rx[5] << 8) / 16);
+				orientation.azimuth_deg = -((float)(USART1_rx[2] | USART1_rx[3] << 8) / 16);
+				orientation_updated = true;
+			}
+		break;
+		case (char)0xEE: // Error
+			// TODO: print error and current buffer
+			USART1_rx_index = 0;
+		break;
+		default:
+			// TODO: print buffer
+		break;
+		}
+}
+
+bool has_new_orientation(void) {
+	return orientation_updated;
+}
+
+euler_data get_orientation_data(void) {
+	orientation_updated = false;
+	return orientation;
+}
+
+// Used to check if USART1 has data
+bool USART1_has_data(void) {
+	return USART1_new_data;
+}
+// Used to retrieve and clear USART1's received char
+char get_USART1_data(void) {
+	char c = USART1_received_char;
+	USART1_received_char = 0;
+	USART1_new_data = false; // No longer new data.
+	return c;
+}
 // This is called every time a char is received on USART3_4
 void USART3_4_IRQHandler(void) {
 	USART3_received_char = receive_char(USART3);
@@ -64,16 +114,16 @@ void USART3_4_IRQHandler(void) {
 	return;
 }
 
-// Used to check if USART3 has data and clear it if it does
+// Used to check if USART3 has data
 bool USART3_has_data(void) {
-	bool ret = USART3_new_data;
-	USART3_new_data = false;
-	return ret;
+	return USART3_new_data;
 }
+
 // Used to retrieve and clear USART3's received char
 char get_USART3_data(void) {
 	char c = USART3_received_char;
 	USART3_received_char = 0;
+	USART3_new_data = false; // No longer new data.
 	return c;
 }
 
@@ -116,7 +166,11 @@ char receive_char(USART_TypeDef *USARTx) {
 	// Wait for RXNE=0 inside ISR
 	while(!(USARTx->ISR & USART_ISR_RXNE));
 	char c = USARTx->RDR;
-	printf("Received: 0x%X\n", c);
+	if(USARTx == USART1) {
+		printf("USART1 Received: 0x%X\n", c);
+	} else if(USARTx == USART3) {
+		//printf("USART3 Received: %c\n", c);
+	}
 	return c;
 }
 
@@ -124,8 +178,13 @@ char receive_char(USART_TypeDef *USARTx) {
 void transmit_char(USART_TypeDef *USARTx, char c) {
 	// Waiting on the USART status flag to indicate the transmit register is empty.
 	while(!(USARTx->ISR & USART_ISR_TXE));
-	printf("Transmitting: 0x%X\n", c);
+	if(USARTx == USART1) {
+		printf("USART1 Transmitting: 0x%X\n", c);
+	} else if(USARTx == USART3) {
+		//printf("USART3 Transmitting: %c\n", c);
+	}
 	USARTx->TDR = c;
+
 }
 
 // Transmits every char in the string over USART3.

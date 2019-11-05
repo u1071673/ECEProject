@@ -15,6 +15,8 @@ void putty_debug_prompt(void) {
 	putty_print("\n\r");
 	putty_print("[d]Pitch clockwise\t[a]Pitch counter-clockwise\t");
 	putty_print("\n\r");
+	putty_print("[o]Get Orientation\t");
+	putty_print("\n\r");
 	putty_print("[r]Reset\t\t[q]=quit");
 	putty_print("\n\r");
 }
