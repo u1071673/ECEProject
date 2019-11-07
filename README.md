@@ -67,7 +67,7 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 
 | WORKING PIN (ALSO USED FOR) |
 |:----|
-| PA0 (Button) (ADC Force Sensor) |
+| PA0 (Button) (ADC Force Sensor [X]) |
 | PA1 (ADC Force Sensor [X]) |
 | PA4 (PWM TIMER 14 CH1) (ADC Force Sensor [X])|
 | PA5 (ADC Force Sensor [X]) |
