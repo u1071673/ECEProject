@@ -67,7 +67,7 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 
 | WORKING PIN (ALSO USED FOR) |
 |:----|
-| PA0 (Button) (ADC Force Sensor) |
+| PA0 (Button) (ADC Force Sensor [X]) |
 | PA1 (ADC Force Sensor [X]) |
 | PA4 (PWM TIMER 14 CH1) (ADC Force Sensor [X])|
 | PA5 (ADC Force Sensor [X]) |
@@ -77,8 +77,8 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 | PA15 |
 | PB2 [X]|
 | PB3 [X]|
-| PB4 [X]|
-| PB5 [X]| 
+| PB4 |
+| PB5 | 
 | PB6 (USART1_TX [X]) |
 | PB7 (USART1_RX [X]) |
 | PB8 |
@@ -97,8 +97,8 @@ All of these pins have been verified to work on the STM32 F0 128-KBYTE 32-BIT MC
 | PC7 (Blue LED; Encoder Input TIMER 3 CH2) |
 | PC8 (Orange LED) |
 | PC9 (Green LED) |
-| PC10 |
-| PC12 |
+| PC10 [X] |
+| PC12 [X] |
 | PC13 |
 | PC14 |
 | PC15 |
