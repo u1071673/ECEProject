@@ -22,10 +22,10 @@
 
 #define DEBUG_MODE 'a'
 #define GAME_MODE 'b'
-#define ROLL_CLOCKWISE 'w'
-#define ROLL_COUNTER_CLOCKWISE 's'
-#define PITCH_CLOCKWISE 'd'
-#define PITCH_COUNTER_CLOCKWISE 'a'
+#define ROLL_CLOCKWISE 'd'
+#define ROLL_COUNTER_CLOCKWISE 'a'
+#define PITCH_CLOCKWISE 'w'
+#define PITCH_COUNTER_CLOCKWISE 's'
 #define GET_ORIENTATION 'o'
 #define RESET 'r'
 #define ENABLE '\r'
@@ -37,7 +37,9 @@
 #define SPACE ' '
 #define DEL 0x7F
 #define DELAY_UNIT 10
-
+#define CW true
+#define CCW false
+	
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void chair_init(void);
@@ -77,7 +79,7 @@ void chair_init(void) {
 	game_parser_init();
 	
 	// PB6 (USART1_TX), PB7 (USART1_RX)
-	BNO055_init();
+	//BNO055_init();
 	
 	printf("Chair Initialization Complete!\n");
 
@@ -177,32 +179,32 @@ void debug_menu() {
 	char c = 0;
 	for(c = wait_for_USART3_data(); c != QUIT; c = wait_for_USART3_data()) { // Loop until quit char is received
 		putty_putc(c); // Print character pressed for user feedback.
-		putty_print("\r\n");
+		putty_print(": ");
 		// Decypher user input
 		switch(c) {
 		case ROLL_CLOCKWISE:
-			step_roll_motor(true);
-			putty_print("\t Stepped Roll Clockwise!\r\n");
+			step_roll_motor(CW);
+			putty_print("Rolled Clockwise!\r\n");
 		break;
 		case ROLL_COUNTER_CLOCKWISE:
-			step_roll_motor(false);
-			putty_print("\t Stepped Roll Counter-Clockwise!\r\n");
+			step_roll_motor(CCW);
+			putty_print("Rolled Counter-Clockwise!\r\n");
 		break;
 		case PITCH_CLOCKWISE:
-			step_pitch_motor(true);
-			putty_print("\t Stepped Pitch Clockwise!\r\n");
+			step_pitch_motor(CW);
+			putty_print("Pitched Clockwise!\r\n");
 		break;
 		case PITCH_COUNTER_CLOCKWISE:
-			step_pitch_motor(false);
-			putty_print("\t Stepped Pitch Counter-Clockwise!\r\n");
+			step_pitch_motor(CCW);
+			putty_print("Pitched Counter-Clockwise!\r\n");
 		break;
 		case GET_ORIENTATION:
-			putty_print("\t Requesting data from BNO055!\r\n");
+			putty_print("data from BNO055!\r\n");
 			BNO055_request_data();
 		break;
 		case RESET:
 			reset_values();
-			putty_print("t Values Reset!\r\n");
+			putty_print("Values Reset!\r\n");
 		break;
 		case '\n':
 		case '\r':
