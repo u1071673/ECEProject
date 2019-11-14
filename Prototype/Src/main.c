@@ -1,9 +1,8 @@
 
 /**
   ******************************************************************************
-  Written by : Usman Ali Butt
-	Dated      : 8 July 2018
-	Property of: www.microcontroller-projecct.ccom
+  Written by : 
+	Dated      :
   ******************************************************************************
   */
 	

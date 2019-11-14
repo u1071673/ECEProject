@@ -1,4 +1,4 @@
-prototype\retarget_io.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.3.1\Source\retarget_io.c
+prototype\retarget_io.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Source\retarget_io.c
 prototype\retarget_io.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 prototype\retarget_io.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 prototype\retarget_io.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
@@ -6,4 +6,4 @@ prototype\retarget_io.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 prototype\retarget_io.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 prototype\retarget_io.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\rt_sys.h
 prototype\retarget_io.o: .\RTE\_Prototype\RTE_Components.h
-prototype\retarget_io.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.3.1\Include\EventRecorder.h
+prototype\retarget_io.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include\EventRecorder.h

@@ -23,9 +23,12 @@ bool wait_for_USART1_char(char c);
 // Wait till USART3 sends a character and returns true if character matches the parameter.
 bool wait_for_USART3_char(char c);
 
+bool get_USART1_read_success(void);
+bool get_USART1_write_success(void);
 bool has_new_orientation(void);
 euler_data get_orientation_data(void);
 bool USART3_has_data(void);
+char get_USART1_data(void);
 char get_USART3_data(void);
 char receive_char(USART_TypeDef *USARTx);
 void transmit_char(USART_TypeDef *USARTx, char c);
