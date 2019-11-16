@@ -27,3 +27,4 @@ prototype\usarts.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c_ex.h
 prototype\usarts.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h
 prototype\usarts.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h
 prototype\usarts.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+prototype\usarts.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

@@ -14,8 +14,6 @@ volatile static euler_data orientation;
 volatile static bool write_success = false;
 volatile static bool read_success = false;
 void add_to_USART1_buffer(char c);
-char USART1_resp_hdr();
-char USART1_resp_status();
 
 // Initializes PB6 and PB7 for USART1_TX (SCL/Rx) and USART1_RX (SDA/Tx).
 void USART1_init(void) {
@@ -68,52 +66,58 @@ void USART1_IRQHandler(void) {
 	return;
 }
 
-int length_to_receive = 2;
+bool reading = false;
+int length_to_receive = 0;
 void add_to_USART1_buffer(char c) {
-		// Set buffer with received char
-		USART1_rx[USART1_rx_index++] = c;
-		// Check if we are done getting data and reset the counter if we are
-		USART1_rx_index = USART1_rx_index == length_to_receive ? 0 : USART1_rx_index; // Reset to zero once we got 8 bytes
+		int i = USART1_rx_index++;
+		USART1_rx[i] = c;
 
-		switch(USART1_rx[0]) { // Check response header
-		case (char)0xBB: // Euler data
-			// If we are receiving the second value then set the length accordingly
-			if(USART1_rx_index == 2) {
-				length_to_receive = c + '0';
-			}
-	
+		if (i == 0 && c == (char) 0xEE) { // First byte - Read response failure or write success.
 			read_success = false;
-			write_success = false;
-			if (USART1_rx_index == 0) { // If we are done reading values store the value
-				length_to_receive = 2; // Reset length to receive
-				
-				orientation.slope_deg = -((float)(USART1_rx[6] | USART1_rx[7] << 8) / 16);
-				orientation.cant_deg = -((float)(USART1_rx[4] | USART1_rx[5] << 8) / 16);
-				orientation.azimuth_deg = -((float)(USART1_rx[2] | USART1_rx[3] << 8) / 16);
-				orientation_updated = true;
-				read_success = false;
-			}
-		break;
-		case (char)0xEE:
+		} else if (i == 1 && USART1_rx[0] == (char) 0xBB) { // Reading: Second byte - save len to read.
+			reading = true;
+			length_to_receive = c + '0';
+		} else if(i == 1 && USART1_rx[0] == (char) 0xEE) { // Second byte - detemine if write was successful
+			write_success = c == (char)0x01; // Success only if we've received the right response (1).
+			// Reset other values
+			USART1_rx_index = 0;
 			read_success = false;
-			// Checking if write successfull
-			if(USART1_rx_index == 2) {
-					write_success = USART1_resp_status() == 1;
-					USART1_rx_index = 0;
-			}
-		break;
-		default:
-			// TODO: print buffer
-		break;
 		}
-}
+		
+		if(reading && i == length_to_receive) {
+			read_success = true;
+			// Reset other values
+			USART1_rx_index = 0;
+			write_success = false;
+		}
+		USART1_rx_index++;
 
-char USART1_resp_hdr(void) {
-	return USART1_rx[0];
-}
+//		// Set buffer with received char
+//		USART1_rx[USART1_rx_index++] = c;
+//		// Check if we are done getting data and reset the counter if we are
 
-char USART1_resp_len_or_status(void) {
-	return USART1_rx[1];
+//		switch(USART1_rx[0]) { // Check response header
+//		case (char)0xBB: // Euler data
+//			// If we are receiving the second value then set the length accordingly
+//			if(USART1_rx_index == 2) {
+//				length_to_receive = c + '0';
+//			}
+//			if (USART1_rx_index == 0) { // If we are done reading values store the value
+//				length_to_receive = 2; // Reset length to receive
+//				
+//				orientation.slope_deg = -((float)(USART1_rx[6] | USART1_rx[7] << 8) / 16);
+//				orientation.cant_deg = -((float)(USART1_rx[4] | USART1_rx[5] << 8) / 16);
+//				orientation.azimuth_deg = -((float)(USART1_rx[2] | USART1_rx[3] << 8) / 16);
+//				orientation_updated = true;
+//				read_success = false;
+//			}
+//		break;
+//		case (char)0xEE:
+//		break;
+//		default:
+//			// TODO: print buffer
+//		break;
+//		}
 }
 
 bool get_USART1_read_success(void) {

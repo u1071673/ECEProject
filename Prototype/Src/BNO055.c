@@ -20,6 +20,15 @@ void BNO055_init(void) {
 	// Initialize PB6 and PB7 for USART1_TX (RXD) and USART1_RX (TXD) for BNO055.
 	USART1_init();
 	
+	;
+	while(!get_USART1_read_success() && get_USART1_data() != 0xF) {
+		transmit_char(USART1, (char)0xAA); // Start
+		transmit_char(USART1, (char)0x01); // Read
+		transmit_char(USART1, (char)0x36); // Reg: CALIB_STAT
+		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
+		//HAL_Delay(WAIT_FOR_RESP_TIME); // Give time for response
+	}
+	
 	int retry_count = NUMBER_OF_RETRIES;
 	while(retry_count && !get_USART1_write_success()) {
 	// Select "page 0"
@@ -31,7 +40,7 @@ void BNO055_init(void) {
 		HAL_Delay(WAIT_FOR_RESP_TIME); // Give time for response
 		retry_count --;
 	}
-	
+ 	
 	retry_count = NUMBER_OF_RETRIES;
 	while(retry_count && !get_USART1_write_success()) {
 		// Set power to "normal" mode

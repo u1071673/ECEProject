@@ -78,7 +78,7 @@ void chair_init(void) {
 	game_parser_init();
 	
 	// PB6 (USART1_TX), PB7 (USART1_RX)
-	//BNO055_init();
+	BNO055_init();
 	
 	printf("Chair Initialization Complete!\n");
 
