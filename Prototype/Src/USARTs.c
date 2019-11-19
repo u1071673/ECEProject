@@ -17,7 +17,7 @@ void add_to_USART1_buffer(char c);
 
 // Initializes PB6 and PB7 for USART1_TX (SCL/Rx) and USART1_RX (SDA/Tx).
 void USART1_init(void) {
-	printf("Initializing USART1...\n");
+	// printf("Initializing USART1...\n");
 	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 	RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
 	// Configuring PB6 and PB7 to alternate function mode
@@ -33,12 +33,12 @@ void USART1_init(void) {
 	// Enabling the receive register non empty interupt
 	NVIC_EnableIRQ(USART1_IRQn);
 	NVIC_SetPriority(USART1_IRQn, 1);
-	printf("USART1 Initialization Complete!\n");
+	// printf("USART1 Initialization Complete!\n");
 }
 
 // Initializes PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
 void USART3_init(void) {
-	printf("Initializing USART3...\n");
+	// printf("Initializing USART3...\n");
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
 	// Configuring PC4 and PC5 to alternate function mode
@@ -55,7 +55,7 @@ void USART3_init(void) {
 	// Enabling the receive register non empty interupt
 	NVIC_EnableIRQ(USART3_4_IRQn);
 	NVIC_SetPriority(USART3_4_IRQn, 1);
-	printf("USART3 Initialization Complete!\n");
+	// printf("USART3 Initialization Complete!\n");
 }
 
 // This is called every time a char is received on USART1
@@ -88,7 +88,7 @@ void add_to_USART1_buffer(char c) {
 
 		} else if (i == 1 && USART1_rx[0] == (char) 0xBB) { // Reading: Second byte - save len to read.
 			reading = true;
-			length_to_receive = CTOI(c);
+			length_to_receive = (int)USART1_rx[1];
 
 		} else if(i == 1 && USART1_rx[0] == (char) 0xEE) { // Second byte - detemine if write was successful
 			// Success only if we've received the right response (1).
@@ -143,7 +143,7 @@ euler_data get_orientation_data(void) {
 
 // Return the response after a successful read
 char response_data(void) {
-	return USART1_rx_buffer[2];
+	return USART1_rx[2];
 }
 
 // This is called every time a char is received on USART3_4
@@ -166,17 +166,6 @@ char get_USART3_data(void) {
 	return c;
 }
 
-// Wait for USART1 new data to arrive
-char wait_for_USART1_data(void) {
-	USART1_new_data = false;
-	USART1_received_char = 0;
-	while(!USART1_new_data);
-	char c = USART1_received_char;
-	USART1_received_char = 0; // Clear, to discourcage use of it else where. (Adds un-needed complexity if used elsewhere)
-	USART1_new_data = false;
-	return c;
-}
-
 // Wait for USART3 new data to arrive
 char wait_for_USART3_data(void) {
 	USART3_new_data = false;
@@ -186,12 +175,6 @@ char wait_for_USART3_data(void) {
 	USART3_received_char = 0; // Clear, to discourcage use of it else where. (Adds un-needed complexity if used elsewhere)
 	USART3_new_data = false;
 	return c;
-}
-
-// Wait till USART1 sends a character and returns true if character matches the parameter.
-bool wait_for_USART1_char(char c) {
-	char data = wait_for_USART1_data();
-	return data == c;
 }
 
 // Wait till USART3 sends a character and returns true if character matches the parameter.
@@ -206,9 +189,9 @@ char receive_char(USART_TypeDef *USARTx) {
 	while(!(USARTx->ISR & USART_ISR_RXNE));
 	char c = USARTx->RDR;
 	if(USARTx == USART1) {
-		printf("USART1 Received: 0x%X\n", c);
+		// printf("USART1 Received: 0x%X\n", c);
 	} else if(USARTx == USART3) {
-		//printf("USART3 Received: %c\n", c);
+		//// printf("USART3 Received: %c\n", c);
 	}
 	return c;
 }
@@ -218,9 +201,9 @@ void transmit_char(USART_TypeDef *USARTx, char c) {
 	// Waiting on the USART status flag to indicate the transmit register is empty.
 	while(!(USARTx->ISR & USART_ISR_TXE));
 	if(USARTx == USART1) {
-		printf("USART1 Transmitting: 0x%X\n", c);
+		// printf("USART1 Transmitting: 0x%X\n", c);
 	} else if(USARTx == USART3) {
-		//printf("USART3 Transmitting: %c\n", c);
+		//// printf("USART3 Transmitting: %c\n", c);
 	}
 	USARTx->TDR = c;
 

@@ -18,14 +18,12 @@ void USART3_init(void);
 char wait_for_USART1_data(void);
 // Wait for USART3 new data to arrive and then return it
 char wait_for_USART3_data(void);
-// Wait till USART1 sends a character and returns true if character matches the parameter.
-bool wait_for_USART1_char(char c);
 // Wait till USART3 sends a character and returns true if character matches the parameter.
 bool wait_for_USART3_char(char c);
 
 char response_data(void);
 bool USART1_read_successfully(void);
-bool get_USART1_write_success(void);
+bool USART1_wrote_successfully(void);
 bool has_new_orientation(void);
 euler_data get_orientation_data(void);
 bool USART3_has_data(void);

@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "EventRecorder.h"	// Keil::ARM_Compiler (Needed For printf to work)
+//#include "EventRecorder.h"	// Keil::ARM_Compiler (Needed For printf to work)
 #include "game_parser.h"
 #include "motors.h"
 #include "putty.h"
@@ -57,7 +57,7 @@ int main(void) {
 	SystemClock_Config();
 
   	/* Initialize all configured peripherals */
-	EventRecorderInitialize (EventRecordAll, 1);  // initialize and start Event Recorder (Needed For printf to work)
+	//EventRecorderInitialize (EventRecordAll, 1);  // initialize and start Event Recorder (Needed For printf to work)
 
 	chair_init();
 

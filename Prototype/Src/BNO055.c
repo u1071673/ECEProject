@@ -21,16 +21,16 @@ void BNO055_init(void) {
 	USART1_init();
 	
 	;
-	while(!USART1_read_successfully() && response_data() != (char)0xF) {
+	do {
 		transmit_char(USART1, (char)0xAA); // Start
 		transmit_char(USART1, (char)0x01); // Read
 		transmit_char(USART1, (char)0x36); // Reg: CALIB_STAT
 		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
-		//HAL_Delay(WAIT_FOR_RESP_TIME); // Give time for response
-	}
+		HAL_Delay(WAIT_FOR_RESP_TIME); // Give time for response
+	} while(!USART1_read_successfully() && response_data() != (char)0xF);
 	
 	int retry_count = NUMBER_OF_RETRIES;
-	while(retry_count && !get_USART1_write_success()) {
+	do {
 	// Select "page 0"
 		transmit_char(USART1, (char)0xAA); // Start
 		transmit_char(USART1, (char)0x00); // Write
@@ -39,10 +39,10 @@ void BNO055_init(void) {
 		transmit_char(USART1, (char)0x00); // Write 0x00
 		HAL_Delay(WAIT_FOR_RESP_TIME); // Give time for response
 		retry_count --;
-	}
+	} while (retry_count && !USART1_wrote_successfully());
  	
 	retry_count = NUMBER_OF_RETRIES;
-	while(retry_count && !get_USART1_write_success()) {
+	do {
 		// Set power to "normal" mode
 		transmit_char(USART1, (char)0xAA); // Start
 		transmit_char(USART1, (char)0x00); // Write
@@ -51,10 +51,10 @@ void BNO055_init(void) {
 		transmit_char(USART1, (char)0x00); // Write 0x00
 		HAL_Delay(WAIT_FOR_RESP_TIME); // Give time for response
 		retry_count--;
-	}
+	} while (retry_count && !USART1_wrote_successfully());
 	
 	retry_count = NUMBER_OF_RETRIES;
-	while(retry_count && !get_USART1_write_success()) {
+	do {
 		// Set operation mode to "NDOF"
 		transmit_char(USART1, (char)0xAA); // Start
 		transmit_char(USART1, (char)0x00); // Write
@@ -63,7 +63,7 @@ void BNO055_init(void) {
 		transmit_char(USART1, (char)0x0C); // Sending data: 0x0C
 		HAL_Delay(WAIT_FOR_RESP_TIME); // Give time for response
 		retry_count--;
-	}
+	} while (retry_count && !USART1_wrote_successfully());
 	
 	// Check if gyro is calibrated
 	bool calibrated = BNO055_gryo_is_calib();
@@ -80,26 +80,14 @@ void BNO055_init(void) {
 
 bool BNO055_gryo_is_calib(void) {
 	int retry_count = NUMBER_OF_RETRIES;
-	while(retry_count && !USART1_read_successfully()) {
+	do {
 		transmit_char(USART1, (char)0xAA); // Start
 		transmit_char(USART1, (char)0x01); // Read
 		transmit_char(USART1, (char)0x35); // Reg: CALIB_STAT
 		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
 		retry_count--;
-	}
+	} while (retry_count && !USART1_read_successfully());
 	return true;
-	
-//	char 
-//	wait_for_USART1_char((char)0xBB); // Response byte
-//	uint8_t d = GYR_CAL_STATUS(wait_for_USART1_data());
-//	int len = wait_for_USART1_data() - '0';
-//	int i;
-//	for(i = 0; i < len; i++) {
-//		d = GYR_CAL_STATUS(wait_for_USART1_data());
-//	}
-//	wait_for_USART1_char((char)0x01); // Wait for 1 byte response
-//	
-//	return d == 0x3;
 }
 
 void BNO055_request_data(void) {
