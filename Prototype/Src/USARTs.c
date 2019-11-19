@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 #define BAUD_RATE 115200
+#define CTOI(c) c + '0'
 
 volatile static bool USART1_new_data = false;
 volatile static bool USART3_new_data = false;
-volatile static char USART1_received_char = 0;
 volatile static char USART3_received_char = 0;
 volatile static int USART1_rx_index = 0;
 volatile static char USART1_rx[8] = {0, 0, 0, 0, 0, 0, 0, 0};
@@ -60,73 +60,73 @@ void USART3_init(void) {
 
 // This is called every time a char is received on USART1
 void USART1_IRQHandler(void) {
-	USART1_received_char = receive_char(USART1);
+	add_to_USART1_buffer(receive_char(USART1));
 	USART1_new_data = true;
-	add_to_USART1_buffer(USART1_received_char);
 	return;
 }
 
+// Interupt handler helper adding received char to buffer
 bool reading = false;
 int length_to_receive = 0;
 void add_to_USART1_buffer(char c) {
+
+		// Set current index and increment for next time and save the current char in a buffer at the current index.
 		int i = USART1_rx_index++;
 		USART1_rx[i] = c;
-
-		if (i == 0 && c == (char) 0xEE) { // First byte - Read response failure or write success.
+		
+		// Reset values
+		if (i ==0) {
 			read_success = false;
+			write_success = false;
+			reading = false;
+			length_to_receive = 0;
+		}
+
+		// First byte - Read response failure or write success.
+		if (i == 0 && c == (char) 0xEE) { 
+			read_success = false;
+
 		} else if (i == 1 && USART1_rx[0] == (char) 0xBB) { // Reading: Second byte - save len to read.
 			reading = true;
-			length_to_receive = c + '0';
+			length_to_receive = CTOI(c);
+
 		} else if(i == 1 && USART1_rx[0] == (char) 0xEE) { // Second byte - detemine if write was successful
-			write_success = c == (char)0x01; // Success only if we've received the right response (1).
-			// Reset other values
+			// Success only if we've received the right response (1).
+			write_success = c == (char)0x01; 
+			
+			// Reset values
 			USART1_rx_index = 0;
 			read_success = false;
-		}
-		
-		if(reading && i == length_to_receive) {
+			reading = false;
+			length_to_receive = 0;
+
+		} else if(reading && i == length_to_receive + 1) { // We are at the end of read response (+ 1: for response header and len bytes)
 			read_success = true;
-			// Reset other values
+			// We know that we are reading orientation values
+			if (length_to_receive == 1) {
+
+			} else if (length_to_receive == 8) { 
+				orientation.slope_deg = -((float)(USART1_rx[6] | USART1_rx[7] << 8) / 16);
+				orientation.cant_deg = -((float)(USART1_rx[4] | USART1_rx[5] << 8) / 16);
+				orientation.azimuth_deg = -((float)(USART1_rx[2] | USART1_rx[3] << 8) / 16);
+				orientation_updated = true;
+			}
+			// Reset values
 			USART1_rx_index = 0;
 			write_success = false;
+			reading = false;
+			length_to_receive = 0;
 		}
-		USART1_rx_index++;
 
-//		// Set buffer with received char
-//		USART1_rx[USART1_rx_index++] = c;
-//		// Check if we are done getting data and reset the counter if we are
-
-//		switch(USART1_rx[0]) { // Check response header
-//		case (char)0xBB: // Euler data
-//			// If we are receiving the second value then set the length accordingly
-//			if(USART1_rx_index == 2) {
-//				length_to_receive = c + '0';
-//			}
-//			if (USART1_rx_index == 0) { // If we are done reading values store the value
-//				length_to_receive = 2; // Reset length to receive
-//				
-//				orientation.slope_deg = -((float)(USART1_rx[6] | USART1_rx[7] << 8) / 16);
-//				orientation.cant_deg = -((float)(USART1_rx[4] | USART1_rx[5] << 8) / 16);
-//				orientation.azimuth_deg = -((float)(USART1_rx[2] | USART1_rx[3] << 8) / 16);
-//				orientation_updated = true;
-//				read_success = false;
-//			}
-//		break;
-//		case (char)0xEE:
-//		break;
-//		default:
-//			// TODO: print buffer
-//		break;
-//		}
 }
 
-bool get_USART1_read_success(void) {
+bool USART1_read_successfully(void) {
 	bool rs = read_success;
 	read_success = false;
 	return rs;
 }
 
-bool get_USART1_write_success(void) {
+bool USART1_wrote_successfully(void) {
 	bool ws = write_success;
 	write_success = false;
 	return ws;
@@ -141,17 +141,11 @@ euler_data get_orientation_data(void) {
 	return orientation;
 }
 
-// Used to check if USART1 has data
-bool USART1_has_data(void) {
-	return USART1_new_data;
+// Return the response after a successful read
+char response_data(void) {
+	return USART1_rx_buffer[2];
 }
-// Used to retrieve and clear USART1's received char
-char get_USART1_data(void) {
-	char c = USART1_received_char;
-	USART1_received_char = 0;
-	USART1_new_data = false; // No longer new data.
-	return c;
-}
+
 // This is called every time a char is received on USART3_4
 void USART3_4_IRQHandler(void) {
 	USART3_received_char = receive_char(USART3);
