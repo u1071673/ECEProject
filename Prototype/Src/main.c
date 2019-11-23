@@ -47,6 +47,9 @@ void game_menu(void);
 void debug_menu(void);
 void reset_values(void);
 
+volatile static float roll;
+volatile static float pitch;
+
 /* STATIC GLOBAL VARIABLES */
 
 int main(void) {
@@ -199,7 +202,13 @@ void debug_menu() {
 		break;
 		case GET_ORIENTATION:
 			putty_print("data from BNO055!\r\n");
-			BNO055_request_data();
+			while(true) {
+				BNO055_request_data();
+				char string_to_transmit[40];
+				euler_data data = BNO055_get_orientation();
+				sprintf(string_to_transmit, "BNO055 GOT: %.2f,%.2f,%.2f\r\n", data.pitch_deg, data.roll_deg, data.heading_deg);
+				putty_print(string_to_transmit);
+			}
 		break;
 		case RESET:
 			reset_values();

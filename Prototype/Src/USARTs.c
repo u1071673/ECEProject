@@ -105,10 +105,10 @@ void add_to_USART1_buffer(char c) {
 			// We know that we are reading orientation values
 			if (length_to_receive == 1) {
 
-			} else if (length_to_receive == 8) { 
-				orientation.slope_deg = -((float)(USART1_rx[6] | USART1_rx[7] << 8) / 16);
-				orientation.cant_deg = -((float)(USART1_rx[4] | USART1_rx[5] << 8) / 16);
-				orientation.azimuth_deg = -((float)(USART1_rx[2] | USART1_rx[3] << 8) / 16);
+			} else if (length_to_receive == 6) { 
+				orientation.pitch_deg = -((float)(USART1_rx[6] | USART1_rx[7] << 8) / 16);
+				orientation.roll_deg = -((float)(USART1_rx[4] | USART1_rx[5] << 8) / 16);
+				orientation.heading_deg = -((float)(USART1_rx[2] | USART1_rx[3] << 8) / 16);
 				orientation_updated = true;
 			}
 			// Reset values

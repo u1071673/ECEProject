@@ -5,9 +5,9 @@
 #include <stdbool.h>
 
 typedef struct euler_data {
-	float slope_deg;
-	float cant_deg;
-	float azimuth_deg;
+	float pitch_deg;
+	float roll_deg;
+	float heading_deg;
 } euler_data;
 
 // Initializes PB6 and PB7 for USART1_TX (RXD) and USART1_RX (TXD).
