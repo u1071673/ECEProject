@@ -8,7 +8,7 @@ volatile static bool USART1_new_data = false;
 volatile static bool USART3_new_data = false;
 volatile static char USART3_received_char = 0;
 volatile static int USART1_rx_index = 0;
-volatile static char USART1_rx[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+volatile static unsigned char USART1_rx[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 volatile static bool orientation_updated = false;
 volatile static euler_data orientation;
 volatile static bool write_success = false;
@@ -86,11 +86,11 @@ void add_to_USART1_buffer(char c) {
 		if (i == 0 && c == (char) 0xEE) { 
 			read_success = false;
 
-		} else if (i == 1 && USART1_rx[0] == (char) 0xBB) { // Reading: Second byte - save len to read.
+		} else if (i == 1 && USART1_rx[0] == (unsigned char) 0xBB) { // Reading: Second byte - save len to read.
 			reading = true;
 			length_to_receive = (int)USART1_rx[1];
 
-		} else if(i == 1 && USART1_rx[0] == (char) 0xEE) { // Second byte - detemine if write was successful
+		} else if(i == 1 && USART1_rx[0] == (unsigned char) 0xEE) { // Second byte - detemine if write was successful
 			// Success only if we've received the right response (1).
 			write_success = c == (char)0x01; 
 			
@@ -106,9 +106,13 @@ void add_to_USART1_buffer(char c) {
 			if (length_to_receive == 1) {
 
 			} else if (length_to_receive == 6) { 
-				orientation.pitch_deg = -((float)(USART1_rx[6] | USART1_rx[7] << 8) / 16);
-				orientation.roll_deg = -((float)(USART1_rx[4] | USART1_rx[5] << 8) / 16);
-				orientation.heading_deg = -((float)(USART1_rx[2] | USART1_rx[3] << 8) / 16);
+				int16_t x = ((USART1_rx[3] << 8) | USART1_rx[2]);
+				int16_t y = ((USART1_rx[5] << 8) | USART1_rx[4]);
+				int16_t z = ((USART1_rx[7] << 8) | USART1_rx[6]);
+				
+				orientation.heading_deg = (float)x/16; // Swapping with z to correcth
+				orientation.roll_deg = (float)y/16;
+				orientation.pitch_deg = (float)z/16;
 				orientation_updated = true;
 			}
 			// Reset values

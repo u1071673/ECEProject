@@ -206,7 +206,7 @@ void debug_menu() {
 				BNO055_request_data();
 				char string_to_transmit[40];
 				euler_data data = BNO055_get_orientation();
-				sprintf(string_to_transmit, "BNO055 GOT: %.2f,%.2f,%.2f\r\n", data.pitch_deg, data.roll_deg, data.heading_deg);
+				sprintf(string_to_transmit, "Roll:%.2f, Pitch:%.2f\r\n", data.roll_deg, data.pitch_deg);
 				putty_print(string_to_transmit);
 			}
 		break;

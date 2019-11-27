@@ -1,6 +1,6 @@
 Dependencies for Project 'Prototype', Target 'Prototype': (DO NOT MODIFY !)
 F (startup_stm32f072xb.s)(0x5DC1B7CE)(--cpu Cortex-M0 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include--pd "__UVISION_VERSION SETA 526" --pd "_RTE_ SETA 1" --pd "STM32F072xB SETA 1"--list startup_stm32f072xb.lst --xref -o prototype\startup_stm32f072xb.o --depend prototype\startup_stm32f072xb.d)
-F (../Src/main.c)(0x5DD9BD52)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\main.o --omf_browse prototype\main.crf --depend prototype\main.d)
+F (../Src/main.c)(0x5DDDD7BF)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\main.o --omf_browse prototype\main.crf --depend prototype\main.d)
 I (../Inc/main.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5DC1B7CD)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5DC1B7CD)
@@ -33,7 +33,7 @@ I (../Inc/game_parser.h)(0x5DC1B7CD)
 I (../Inc/motors.h)(0x5DC1B7CD)
 I (../Inc/putty.h)(0x5DC1B7CD)
 I (../Inc/LEDs.h)(0x5DC1B7CD)
-I (../Inc/USARTs.h)(0x5DD9B2BB)
+I (../Inc/USARTs.h)(0x5DDDC4F6)
 I (../Inc/BNO055.h)(0x5DD9B8F3)
 F (../Src/stm32f0xx_it.c)(0x5DC1B7CE)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\stm32f0xx_it.o --omf_browse prototype\stm32f0xx_it.crf --depend prototype\stm32f0xx_it.d)
 I (../Inc/main.h)(0x5DC1B7CD)
@@ -90,10 +90,10 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c_ex.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5DC1B7CD)
-F (..\Src\BNO055.c)(0x5DD9BCFB)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\bno055.o --omf_browse prototype\bno055.crf --depend prototype\bno055.d)
+F (..\Src\BNO055.c)(0x5DDDE9DF)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\bno055.o --omf_browse prototype\bno055.crf --depend prototype\bno055.d)
 I (../Inc/BNO055.h)(0x5DD9B8F3)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599FAE2E)
-I (../Inc/USARTs.h)(0x5DD9B2BB)
+I (../Inc/USARTs.h)(0x5DDDC4F6)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5DC1B7CD)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h)(0x5DC1B7CD)
@@ -123,7 +123,7 @@ I (../Inc/putty.h)(0x5DC1B7CD)
 F (..\Src\game_parser.c)(0x5DC1B7CE)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\game_parser.o --omf_browse prototype\game_parser.crf --depend prototype\game_parser.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599FAE2C)
 I (../Inc/game_parser.h)(0x5DC1B7CD)
-I (../Inc/USARTs.h)(0x5DD9B2BB)
+I (../Inc/USARTs.h)(0x5DDDC4F6)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5DC1B7CD)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h)(0x5DC1B7CD)
@@ -238,7 +238,7 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5DC1B7CD)
 F (..\Src\putty.c)(0x5DC4B850)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\putty.o --omf_browse prototype\putty.crf --depend prototype\putty.d)
 I (../Inc/putty.h)(0x5DC1B7CD)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599FAE2E)
-I (../Inc/USARTs.h)(0x5DD9B2BB)
+I (../Inc/USARTs.h)(0x5DDDC4F6)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5DC1B7CD)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h)(0x5DC1B7CD)
@@ -291,8 +291,8 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c_ex.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h)(0x5DC1B7CD)
-F (..\Src\USARTs.c)(0x5DD9B684)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\usarts.o --omf_browse prototype\usarts.crf --depend prototype\usarts.d)
-I (../Inc/USARTs.h)(0x5DD9B2BB)
+F (..\Src\USARTs.c)(0x5DDDD56A)(--c99 -c --cpu Cortex-M0 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\Compiler-I.\RTE\_Prototype-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="526" -D_RTE_ -DSTM32F072xB -DUSE_HAL_DRIVER -DSTM32F072xB-o prototype\usarts.o --omf_browse prototype\usarts.crf --depend prototype\usarts.d)
+I (../Inc/USARTs.h)(0x5DDDC4F6)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x5DC1B7CD)
 I (../Inc/stm32f0xx_hal_conf.h)(0x5DC1B7CD)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h)(0x5DC1B7CD)
