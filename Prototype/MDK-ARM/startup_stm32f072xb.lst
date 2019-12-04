@@ -412,12 +412,12 @@ ARM Macro Assembler    Page 7
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
 ork --depend=prototype\startup_stm32f072xb.d -oprototype\startup_stm32f072xb.o 
--I.\RTE\Compiler -I.\RTE\_Prototype -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS
-\Core\Include -IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include -IC:\Keil_v
-5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include -
--predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISI
-ON_VERSION SETA 526" --predefine="_RTE_ SETA 1" --predefine="STM32F072xB SETA 1
-" --list=startup_stm32f072xb.lst startup_stm32f072xb.s
+-I.\RTE\Compiler -I.\RTE\_Prototype -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS
+\Include -IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.3.1\Include -IC:\Keil_v5\ARM
+\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include --pred
+efine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VE
+RSION SETA 524" --predefine="_RTE_ SETA 1" --predefine="STM32F072xB SETA 1" --l
+ist=startup_stm32f072xb.lst startup_stm32f072xb.s
 
 
 

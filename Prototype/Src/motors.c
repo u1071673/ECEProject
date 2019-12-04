@@ -12,14 +12,22 @@
 #define CW 1
 #define CCW 0
 
+int mod(int a, int b) { 
+	if(a < 0) {
+		return b + (a%b);
+	} else {
+		return a % b;
+	}
+}
+
 volatile static bool roll_toggle, pitch_toggle = false; // Used to toggle step pin from on to off
 volatile static bool prev_roll_dir, prev_pitch_dir = false; // Used to track previous direction of motor to find fastest route
 volatile static bool roll_clockwise, pitch_clockwise = false; // Used 
 volatile static int16_t roll_delay, pitch_delay = 10;
 volatile static uint8_t xlow, xhigh, ylow, yhigh  = 0;
-volatile static int16_t actual_roll_speed, actual_pitch_speed = 0;
 volatile static int target_roll_steps, target_pitch_steps = 0;
 volatile static int actual_roll_steps, actual_pitch_steps = 0;
+volatile static int current_roll_steps, current_pitch_steps = 0;
 
 void set_roll_dir_pin(bool clockwise);
 void set_pitch_dir_pin(bool clockwise);
@@ -45,31 +53,34 @@ void update_motors(void) {
 	bool roll_dir = false;
 	bool pitch_dir = false;
 
-	int roll_cw_dist = (target_roll_steps - actual_roll_steps) % MAX_ROLL_STEPS;
-	int roll_ccw_dist = (actual_roll_steps - target_roll_steps) % MAX_ROLL_STEPS;
+	volatile int roll_cw_dist = mod((target_roll_steps - actual_roll_steps), MAX_ROLL_STEPS);
+	volatile int roll_ccw_dist = mod((actual_roll_steps - target_roll_steps), MAX_ROLL_STEPS);
 	
-	int pitch_cw_dist = (target_pitch_steps - actual_pitch_steps) % MAX_PITCH_STEPS;
-	int pitch_ccw_dist = (actual_pitch_steps - target_pitch_steps) % MAX_PITCH_STEPS;
+	volatile int pitch_cw_dist = mod((target_pitch_steps - actual_pitch_steps), MAX_PITCH_STEPS);
+	volatile int pitch_ccw_dist = mod((actual_pitch_steps - target_pitch_steps), MAX_PITCH_STEPS);
 	
-	// Find shortest path to target
-	if(roll_cw_dist < roll_ccw_dist) 
+	if(roll_cw_dist < 20 || roll_ccw_dist < 20)
+			roll_update_needed = false;
+	else if(roll_cw_dist < roll_ccw_dist) // find shortest path
 		roll_dir = CW;
-	else if(roll_cw_dist < roll_ccw_dist)
+	else if(roll_cw_dist > roll_ccw_dist)
 		roll_dir = CCW;
-	else if (roll_cw_dist) // NOT ZERO
+	else if (roll_cw_dist) // If it ever gets here we know the distances are equal. T.F. keep going same direction to get to target.
 		roll_dir = prev_roll_dir;
-	else
+	else// Distance is Zero
 		roll_update_needed = false;
 	
-	if(pitch_cw_dist < pitch_ccw_dist)
-		pitch_dir = CW;
-	else if(pitch_cw_dist < pitch_ccw_dist)
-		pitch_dir = CCW;
-	else if (pitch_cw_dist) // NOT ZERO
-		pitch_dir = prev_pitch_dir;
-	else
+	if(pitch_cw_dist < 20 || pitch_ccw_dist < 20)
 		pitch_update_needed = false;
-	
+	else if(pitch_cw_dist < pitch_ccw_dist)
+		pitch_dir = CW;
+	else if(pitch_cw_dist > pitch_ccw_dist)
+		pitch_dir = CCW;
+	else if (pitch_cw_dist) // If it ever gets here we know the distances are equal. T.F. keep going same direction to get to target.
+		pitch_dir = prev_pitch_dir;
+	else // Distance is Zero
+		pitch_update_needed = false;
+
 	// Set direction pins accordingly
 	set_roll_dir_pin(roll_dir);
 	set_pitch_dir_pin(pitch_dir);
@@ -90,6 +101,7 @@ void update_motors(void) {
 		set_pitch_step_pin(false); // Set low to finish a step
 	}
 	HAL_Delay(OFF_DELAY);	
+	
 }
 
 void step_roll_motor(bool clockwise) {	
@@ -120,6 +132,31 @@ void set_target_pitch_steps(int target_steps) {
 	target_pitch_steps = target_steps;
 }
 
+void set_actual_roll_steps(float roll) {
+	if(roll < 0) { // negative
+		actual_roll_steps = (int)(100.0f + ((180.0f + roll) * (0.56f)));
+	} else {
+		actual_roll_steps = (int)(roll * (0.56f));
+	}
+	actual_roll_steps = actual_roll_steps % 200;
+}
+
+void set_actual_pitch_steps(float pitch) {
+	if (pitch < 0) { // negative
+		actual_pitch_steps = (int)((-pitch) * (100.0f/180.0f));
+	} else {
+		actual_pitch_steps = (int)(200.0f - (pitch * (100.0f/180.0f)));
+	}
+	actual_pitch_steps = actual_pitch_steps % 200;
+}
+
+int get_actual_roll_steps(void) {
+	return actual_roll_steps;
+}
+
+int get_actual_pitch_steps(void) {
+	return actual_pitch_steps;
+}
 
 int degrees_to_steps(int degrees, int MAX_STEPS) {
 	return MAX_STEPS * (degrees/360);
@@ -163,7 +200,7 @@ void toggle_step_pin(uint16_t step_pin, bool is_roll) {
 		gpiox_base = ROLL_MOTORS_GPIO_BASE;
 		if(roll_toggle) {
 			roll_toggle = false;
-			actual_roll_steps = roll_clockwise ? ((actual_roll_steps + 1) % MAX_ROLL_STEPS) : ((actual_roll_steps - 1) % MAX_ROLL_STEPS);
+			current_roll_steps = roll_clockwise ? ((current_roll_steps + 1) % MAX_ROLL_STEPS) : ((current_roll_steps - 1) % MAX_ROLL_STEPS);
 		} else {
 			roll_toggle = true;
 		}
@@ -172,7 +209,7 @@ void toggle_step_pin(uint16_t step_pin, bool is_roll) {
 		gpiox_base = PITCH_MOTORS_GPIO_BASE;
 		if(pitch_toggle) {
 			pitch_toggle = false;
-			actual_pitch_steps = pitch_clockwise ? ((actual_pitch_steps + 1) % MAX_PITCH_STEPS) : ((actual_pitch_steps - 1) % MAX_PITCH_STEPS);
+			current_pitch_steps = pitch_clockwise ? ((current_pitch_steps + 1) % MAX_PITCH_STEPS) : ((current_pitch_steps - 1) % MAX_PITCH_STEPS);
 		} else {
 			pitch_toggle = true;
 		}
@@ -186,10 +223,10 @@ void set_step_pin_manually(uint16_t step_pin, bool is_roll, bool set_pin_high) {
 	// Track steps taken.
 	if(is_roll) {
 		gpiox_base = ROLL_MOTORS_GPIO_BASE;
-		actual_roll_steps = roll_clockwise ? ((actual_roll_steps + 1) % MAX_ROLL_STEPS) : ((actual_roll_steps - 1) % MAX_ROLL_STEPS);
+		current_roll_steps = roll_clockwise ? ((current_roll_steps + 1) % MAX_ROLL_STEPS) : ((current_roll_steps - 1) % MAX_ROLL_STEPS);
 	} else {
 		gpiox_base = PITCH_MOTORS_GPIO_BASE;
-		actual_pitch_steps = pitch_clockwise ? ((actual_pitch_steps + 1) % MAX_PITCH_STEPS) : ((actual_pitch_steps - 1) % MAX_PITCH_STEPS);
+		current_pitch_steps = pitch_clockwise ? ((current_pitch_steps + 1) % MAX_PITCH_STEPS) : ((current_pitch_steps - 1) % MAX_PITCH_STEPS);
 	}
 	HAL_GPIO_WritePin(gpiox_base, step_pin, pin_state);
 }

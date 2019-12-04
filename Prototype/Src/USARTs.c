@@ -106,13 +106,14 @@ void add_to_USART1_buffer(char c) {
 			if (length_to_receive == 1) {
 
 			} else if (length_to_receive == 6) { 
+				
 				int16_t x = ((USART1_rx[3] << 8) | USART1_rx[2]);
 				int16_t y = ((USART1_rx[5] << 8) | USART1_rx[4]);
 				int16_t z = ((USART1_rx[7] << 8) | USART1_rx[6]);
-				
+
 				orientation.heading_deg = (float)x/16; // Swapping with z to correcth
-				orientation.roll_deg = (float)y/16;
-				orientation.pitch_deg = (float)z/16;
+				orientation.roll_deg = (float)z/16;
+				orientation.pitch_deg = (float)y/16;
 				orientation_updated = true;
 			}
 			// Reset values

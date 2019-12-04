@@ -29,56 +29,7 @@ void BNO055_init(void) {
 		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response
 	} while(!USART1_read_successfully() && response_data() != (char)0x0F); // wait till we have calibrated gyro.
 	
-	bool is_normal_mode = false;
-	
-	do {
-		// check if in normal power mode
-		transmit_char(USART1, (char)0xAA); // Start
-		transmit_char(USART1, (char)0x01); // Read
-		transmit_char(USART1, (char)0x3E); // Reg: Power Mode
-		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
-		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response_data
-		if(USART1_read_successfully()) {
-			putty_print("Power mode already set to NORMAL.\r\n");
-			is_normal_mode = response_data() == 0x00;
-			break;
-		}
-	} while(true);
-	
-	bool is_NDOF_op_mode = false;
-	
-	do {
-		// check if in NDOF op mode
-		transmit_char(USART1, (char)0xAA); // Start
-		transmit_char(USART1, (char)0x01); // Read
-		transmit_char(USART1, (char)0x3D); // Reg: Operation Mode
-		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
-		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response_data
-		if(USART1_read_successfully()) {
-			putty_print("Operation mode already set to NDOF.\r\n");
-			is_NDOF_op_mode = response_data() == 0x0C;
-			break;
-		}
-	} while(true);
-	
-	bool is_degrees = false;
-	
-	do {
-		// check if in Euler degrees output mode
-		transmit_char(USART1, (char)0xAA); // Start
-		transmit_char(USART1, (char)0x01); // Read
-		transmit_char(USART1, (char)0x3B); // Reg: Unit_Sel
-		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
-		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response_data
-		if(USART1_read_successfully()) {
-			putty_print("Output units already set to DEGREES.\r\n");
-			is_degrees = (response_data() & 0x04) == 0x00;
-			break;
-		}
-	} while(true);
-	
 	bool is_default_mapped = false;
-	
 	do {
 		// Check if mapped to a default axis
 		transmit_char(USART1, (char)0xAA); // Start
@@ -105,6 +56,20 @@ void BNO055_init(void) {
 		retry_count --;
 	} while (retry_count && !USART1_wrote_successfully());
  	
+	bool is_normal_mode = false;
+	do {
+		// check if in normal power mode
+		transmit_char(USART1, (char)0xAA); // Start
+		transmit_char(USART1, (char)0x01); // Read
+		transmit_char(USART1, (char)0x3E); // Reg: Power Mode
+		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
+		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response_data
+		if(USART1_read_successfully()) {
+			putty_print("Power mode already set to NORMAL.\r\n");
+			is_normal_mode = response_data() == 0x00;
+			break;
+		}
+	} while(true);
 	if(!is_normal_mode) { // If we aren't in normal mode set it to normal mode.
 		putty_print("Setting to NORMAL power mode.\r\n");
 		retry_count = NUMBER_OF_RETRIES;
@@ -119,7 +84,55 @@ void BNO055_init(void) {
 			retry_count--;
 		} while (retry_count && !USART1_wrote_successfully());
 	}
+
+	// Set operation mode to conif mode 0x00
+	retry_count = NUMBER_OF_RETRIES;
+	do {
+		transmit_char(USART1, (char)0xAA); // Start
+		transmit_char(USART1, (char)0x00); // Write
+		transmit_char(USART1, (char)0x3D); // Reg: OPER_MODE
+		transmit_char(USART1, (char)0x01); // Write one byte
+		transmit_char(USART1, (char)0x00); // Write value
+		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response
+		retry_count --;
+	} while (retry_count && !USART1_wrote_successfully());
+	// Remap axis
+	retry_count = NUMBER_OF_RETRIES;
+	do {
+		// Remap Pitch (z) = Heading (x), & Roll (y) = Roll (y), Heading (x) = Pitch (z)
+		transmit_char(USART1, (char)0xAA); // Start
+		transmit_char(USART1, (char)0x00); // Write
+		transmit_char(USART1, (char)0x41); // Reg: AXIS_MAP_CONFIG
+		transmit_char(USART1, (char)0x01); // Write one byte
+		transmit_char(USART1, (char)0x24); // Write value
+		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response
+		retry_count --;
+	} while (retry_count && !USART1_wrote_successfully());
+	retry_count = NUMBER_OF_RETRIES;
+	do {
+		transmit_char(USART1, (char)0xAA); // Start
+		transmit_char(USART1, (char)0x00); // Write
+		transmit_char(USART1, (char)0x42); // Reg: AXIS_MAP_CONFIG
+		transmit_char(USART1, (char)0x01); // Write one byte
+		transmit_char(USART1, (char)0x04); // Write value
+		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response
+		retry_count --;
+	} while (retry_count && !USART1_wrote_successfully());
 	
+	bool is_NDOF_op_mode = false;
+	do {
+		// check if in NDOF op mode
+		transmit_char(USART1, (char)0xAA); // Start
+		transmit_char(USART1, (char)0x01); // Read
+		transmit_char(USART1, (char)0x3D); // Reg: Operation Mode
+		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
+		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response_data
+		if(USART1_read_successfully()) {
+			putty_print("Operation mode already set to NDOF.\r\n");
+			is_NDOF_op_mode = response_data() == 0x0C;
+			break;
+		}
+	} while(true);
 	if(!is_NDOF_op_mode) {
 		putty_print("Setting to NDOF operation mode.\r\n");
 		retry_count = NUMBER_OF_RETRIES;
@@ -135,6 +148,20 @@ void BNO055_init(void) {
 		} while (retry_count && !USART1_wrote_successfully());
 	}
 	
+	bool is_degrees = false;
+	do {
+		// check if in Euler degrees output mode
+		transmit_char(USART1, (char)0xAA); // Start
+		transmit_char(USART1, (char)0x01); // Read
+		transmit_char(USART1, (char)0x3B); // Reg: Unit_Sel
+		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
+		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response_data
+		if(USART1_read_successfully()) {
+			putty_print("Output units already set to DEGREES.\r\n");
+			is_degrees = (response_data() & 0x04) == 0x00;
+			break;
+		}
+	} while(true);
 	if(!is_degrees) {
 		putty_print("Setting to DEGREES output units.\r\n");
 		retry_count = NUMBER_OF_RETRIES;
@@ -204,23 +231,11 @@ void BNO055_init(void) {
 		transmit_char(USART1, (char)0x35); // Reg: CALIB_STAT
 		transmit_char(USART1, (char)0x01); // Bytes to Read: 1
 		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response_data
-		if(USART1_read_successfully() && ((0xC0 & response_data()) == 0xC0)) { // Check if bits 7 and 6 are both high.
+		if(USART1_read_successfully() && (((0xC0 & response_data()) == 0xC0) || ((0x3F & response_data()) == 0x3F))) { // Check if bits 7 and 6 are both high.
 			putty_print("System Calibration complete!\r\n");
 			break;
 		}
 	} while (true);
-	
-	retry_count = NUMBER_OF_RETRIES;
-	do {
-		// Remap Pitch (z) = Heading (x), & Roll (y) = Roll (y), Heading (x) = Pitch (z)
-		transmit_char(USART1, (char)0xAA); // Start
-		transmit_char(USART1, (char)0x00); // Write
-		transmit_char(USART1, (char)0x41); // Reg: AXIS_MAP_CONFIG
-		transmit_char(USART1, (char)0x01); // Write one byte
-		transmit_char(USART1, (char)0x21); // Write value
-		HAL_Delay(WAIT_FOR_SETUP_RESP_TIME); // Give time for response
-		retry_count --;
-	} while (retry_count && !USART1_wrote_successfully());
 	
 	putty_print("BNO055 Initialization and Calibration Complete!\n");
 }
