@@ -8,12 +8,18 @@ volatile static bool USART1_new_data = false;
 volatile static bool USART3_new_data = false;
 volatile static char USART3_received_char = 0;
 volatile static int USART1_rx_index = 0;
+volatile static int USART3_rx_index = 0;
 volatile static unsigned char USART1_rx[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-volatile static bool orientation_updated = false;
+volatile static unsigned char USART3_rx[5] = {0, 0, 0, 0, 0};
 volatile static euler_data orientation;
+volatile static game_data game_orientation;
 volatile static bool write_success = false;
 volatile static bool read_success = false;
+volatile static bool orientation_updated = false;
+volatile static bool game_data_ready = false;
+
 void add_to_USART1_buffer(char c);
+void add_to_USART3_buffer(char c);
 
 // Initializes PB6 and PB7 for USART1_TX (SCL/Rx) and USART1_RX (SDA/Tx).
 void USART1_init(void) {
@@ -64,6 +70,37 @@ void USART1_IRQHandler(void) {
 	USART1_new_data = true;
 	return;
 }
+
+
+// This is called every time a char is received on USART3_4
+void USART3_4_IRQHandler(void) {
+	add_to_USART3_buffer(receive_char(USART3));
+	USART3_new_data = true;
+	return;
+}
+
+void add_to_USART3_buffer(char c) {
+	// Set current index and increment for next time and save the current char in a buffer at the current index.
+	USART3_rx[USART3_rx_index] = c;
+	
+	if (USART3_rx[0] == (unsigned char) 0xFF && USART3_rx_index >= 5) {
+		int16_t roll = (USART3_rx[2] << 8) | USART3_rx[1];
+		int16_t pitch = (USART3_rx[4] << 8) | USART3_rx[3];
+		game_orientation.roll_deg = roll;
+		game_orientation.pitch_deg = pitch;
+		USART3_rx_index = 0; // Reset index
+		game_data_ready = true;
+	}
+	
+	// Increment counter only if we have got a proper start byte and we are in the array length of 5
+	if(USART3_rx[0] == (unsigned char) 0xFF & USART3_rx_index < 5) {
+		USART3_rx_index++; // Increment
+	} else {
+		USART3_rx_index = 0;
+	}
+
+}
+
 
 // Interupt handler helper adding received char to buffer
 bool reading = false;
@@ -122,7 +159,6 @@ void add_to_USART1_buffer(char c) {
 			reading = false;
 			length_to_receive = 0;
 		}
-
 }
 
 bool USART1_read_successfully(void) {
@@ -141,21 +177,23 @@ bool has_new_orientation(void) {
 	return orientation_updated;
 }
 
+bool has_new_game_data(void) {
+	return game_data_ready;
+}
+
 euler_data get_orientation_data(void) {
 	orientation_updated = false;
 	return orientation;
 }
 
+game_data get_game_orientation_data(void) {
+	game_data_ready = false;
+	return game_orientation;
+}
+
 // Return the response after a successful read
 char response_data(void) {
 	return USART1_rx[2];
-}
-
-// This is called every time a char is received on USART3_4
-void USART3_4_IRQHandler(void) {
-	USART3_received_char = receive_char(USART3);
-	USART3_new_data = true;
-	return;
 }
 
 // Used to check if USART3 has data

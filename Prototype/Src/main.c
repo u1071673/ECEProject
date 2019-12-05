@@ -64,7 +64,7 @@ int main(void) {
 
 	chair_init();
 
-	main_menu();
+	game_menu();
 }
 
 // Initialize all peripherals needed to have a functioning chair.
@@ -155,48 +155,34 @@ void game_menu() {
 	putty_game_prompt();
 	int target_roll_steps = 0;
 	int target_pitch_steps = 0;
-	BNO055_request_data();
-	while(get_putty_cmd() != QUIT) {
-		while(!recieved_putty_cmd()) {
-//			game_data g_data = wait_for_game_data(QUIT);
-//			int target_roll_steps = degrees_to_roll_steps(g_data.roll_deg);
-//			int target_pitch_steps = degrees_to_pitch_steps(g_data.pitch_deg);
-//			char string_to_transmit[40];
-//			sprintf(string_to_transmit, "GAME GOT: %d,%d\r\n", g_data.roll_deg, g_data.pitch_deg);
-//			putty_print(string_to_transmit);
-			
-			set_target_roll_steps(target_roll_steps);
-			set_target_pitch_steps(target_pitch_steps);
-			
-			if (BNO055_orientation_updated()) {
-				euler_data data = BNO055_get_orientation();
-				set_actual_roll_steps(data.roll_deg);
-				set_actual_pitch_steps(data.pitch_deg);
-				char string_to_transmit[40];			
-				sprintf(string_to_transmit, "target roll:%d, target pitch:%d, actual roll:%d, actual pitch:%d\r\n", target_roll_steps, target_pitch_steps, get_actual_roll_steps(), get_actual_pitch_steps());
-				putty_print(string_to_transmit);
-				BNO055_request_data();
-			}
-			
-			update_motors();
+	BNO055_request_data(); // Request gyro data from the get go.
+	while(true) {
+		
+		// Chick if there's new game data
+		if(has_new_game_data()) {
+			game_data g_data = get_game_orientation_data();
+			target_roll_steps = degrees_to_roll_steps(g_data.roll_deg);
+			target_pitch_steps = degrees_to_pitch_steps(g_data.pitch_deg);
 		}
-		char cmd = get_putty_cmd();
-		switch(cmd) {
-			case 'a':
-				target_roll_steps = mod((target_roll_steps - 25), 200);
-			break;
-			case 'd':
-				target_roll_steps = mod((target_roll_steps + 25), 200);
-			break;
-			case 's':
-				target_pitch_steps = mod((target_pitch_steps - 25), 200);
-			break;
-			case 'w':
-				target_pitch_steps = mod((target_pitch_steps + 25), 200);
-			break;
-			default:
-			break;
+				
+		// Set target roll steps so motors know how to update.
+		set_target_roll_steps(target_roll_steps);
+		set_target_pitch_steps(target_pitch_steps);
+		
+		// Check if the BNO055 has a new orientation to update it.
+		if (BNO055_orientation_updated()) {
+			euler_data data = BNO055_get_orientation();
+			set_actual_roll_steps(data.roll_deg);
+			set_actual_pitch_steps(data.pitch_deg);
+			BNO055_request_data(); // Request gyro data for next loop.
 		}
+		// Transmit data to user
+		char string_to_transmit[40];			
+		sprintf(string_to_transmit, "target(%d, %d)\tactual(%d, %d)\tcurrent(%d, %d)\r\n", target_roll_steps, target_pitch_steps, get_actual_roll_steps(), get_actual_pitch_steps(), get_current_roll_steps(), get_current_pitch_steps());
+		putty_print(string_to_transmit);
+		
+		// Update the motors
+		update_motors();
 	}
 	putty_print("Leaving Game Mode...");
 	putty_print("\n\r");

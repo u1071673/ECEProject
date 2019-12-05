@@ -10,6 +10,11 @@ typedef struct euler_data {
 	float heading_deg;
 } euler_data;
 
+typedef struct game_data {
+	int pitch_deg;
+	int roll_deg;
+} game_data;
+
 // Initializes PB6 and PB7 for USART1_TX (RXD) and USART1_RX (TXD).
 void USART1_init(void);
 // Initializes PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
@@ -25,11 +30,15 @@ char response_data(void);
 bool USART1_read_successfully(void);
 bool USART1_wrote_successfully(void);
 bool has_new_orientation(void);
+bool has_new_game_data(void);
 euler_data get_orientation_data(void);
+game_data get_game_orientation_data(void);
 bool USART3_has_data(void);
 char get_USART3_data(void);
 char receive_char(USART_TypeDef *USARTx);
 void transmit_char(USART_TypeDef *USARTx, char c);
 void transmit_string(USART_TypeDef *USARTx, char *string);
+
+
 
 #endif /* __USARTS_H */
