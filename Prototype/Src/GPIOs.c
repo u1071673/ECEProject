@@ -6,10 +6,8 @@
 void GPIOx_init(GPIO_TypeDef *gpiox_base, uint16_t gpio_pins, uint32_t mode, uint32_t pull, uint32_t speed);
 
 void GPIO_PINs_init(void) {
-	printf("Initialization GPIOs...\n");
 	GPIOx_init(ROLL_MOTORS_GPIO_BASE, ROLL_DIR_PIN|ROLL_STEP_PIN, GPIO_MODE_OUTPUT_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW);
 	GPIOx_init(PITCH_MOTORS_GPIO_BASE, PITCH_DIR_PIN|PITCH_STEP_PIN, GPIO_MODE_OUTPUT_PP, GPIO_NOPULL, GPIO_SPEED_FREQ_LOW);
-	printf("GPIO Initialization Complete!\n");
 }
 
 bool A_ENABLED = false;

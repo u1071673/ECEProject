@@ -2,7 +2,6 @@
 #include "stm32f0xx_hal.h"
 
 void LEDs_init() {
-	printf("Initializing LEDs...\n");
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 	// Initialize all LEDs to general purpose output mode 
 	GPIOC->MODER |= (1 << 12) | (1 << 14) | (1 << 16) | (1 << 18);
@@ -15,6 +14,5 @@ void LEDs_init() {
 	
 	// all LEDs to no pull up and no pull down
 	GPIOC->PUPDR &= ~((1 << 12) | (1 << 13) | (1 << 14) | (1 << 15) | (1 << 16) | (1 << 17) | (1 << 18) | (1 << 19));
-	printf("LED Initialization Complete!\n");
 }
 

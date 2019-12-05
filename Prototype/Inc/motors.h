@@ -15,6 +15,8 @@ int get_actual_roll_steps(void);
 int get_actual_pitch_steps(void);
 int get_current_roll_steps(void);
 int get_current_pitch_steps(void);
+int get_target_roll_steps(void);
+int get_target_pitch_steps(void);
 int degrees_to_roll_steps(int degrees);
 int degrees_to_pitch_steps(int degrees);
 int mod(int a, int b);

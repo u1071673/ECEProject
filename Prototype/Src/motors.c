@@ -43,12 +43,9 @@ void set_direction_pins(uint16_t dir_pins, bool is_roll, bool set_pin_high);
 void toggle_step_pin(uint16_t step_pin, bool is_roll);
 	
 void motors_init(void) {
-	printf("Initializing Motors...\n");
 	// Initialize PB5 and PB6 for the ROLL motor's direction and step Pins.
 	// Initialize PB7 and PB8 for the PITCH motor's direction and step Pins.
 	GPIO_PINs_init();
-	printf("Motor Initialization Complete!\n");
-
 }
 
 int stable_position_counter = 0;
@@ -225,8 +222,17 @@ int get_current_pitch_steps(void) {
 	return current_pitch_steps;
 }
 
+
+int get_target_roll_steps(void) {
+	return target_roll_steps;
+}
+
+int get_target_pitch_steps(void) {
+	return target_pitch_steps;
+}
+
 int degrees_to_steps(int degrees, int MAX_STEPS) {
-	return (int)((float)(mod(degrees - 90, 360)) * 0.56f);
+	return (int)((float)mod(degrees - 90, 360) * 0.56f);
 }
 
 int degrees_to_roll_steps(int degrees) {
@@ -244,7 +250,7 @@ void set_roll_dir_pin(bool clockwise) {
 }
 
 void set_pitch_dir_pin(bool clockwise) {
-	pitch_clockwise = clockwise;
+	pitch_clockwise = clockwise; // Pitch motor is flipped
 	set_direction_pins(PITCH_DIR_PIN, false, clockwise);
 }
 

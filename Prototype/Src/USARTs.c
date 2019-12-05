@@ -23,7 +23,6 @@ void add_to_USART3_buffer(char c);
 
 // Initializes PB6 and PB7 for USART1_TX (SCL/Rx) and USART1_RX (SDA/Tx).
 void USART1_init(void) {
-	// printf("Initializing USART1...\n");
 	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 	RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
 	// Configuring PB6 and PB7 to alternate function mode
@@ -39,12 +38,10 @@ void USART1_init(void) {
 	// Enabling the receive register non empty interupt
 	NVIC_EnableIRQ(USART1_IRQn);
 	NVIC_SetPriority(USART1_IRQn, 1);
-	// printf("USART1 Initialization Complete!\n");
 }
 
 // Initializes PC4 and PC5 for USART3_TX (RXD) and USART3_RX (TXD).
 void USART3_init(void) {
-	// printf("Initializing USART3...\n");
 	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
 	// Configuring PC4 and PC5 to alternate function mode
@@ -61,7 +58,6 @@ void USART3_init(void) {
 	// Enabling the receive register non empty interupt
 	NVIC_EnableIRQ(USART3_4_IRQn);
 	NVIC_SetPriority(USART3_4_IRQn, 1);
-	// printf("USART3 Initialization Complete!\n");
 }
 
 // This is called every time a char is received on USART1
@@ -81,21 +77,18 @@ void USART3_4_IRQHandler(void) {
 
 void add_to_USART3_buffer(char c) {
 	// Set current index and increment for next time and save the current char in a buffer at the current index.
-	USART3_rx[USART3_rx_index] = c;
+	USART3_rx[USART3_rx_index++] = c;
 	
-	if (USART3_rx[0] == (unsigned char) 0xFF && USART3_rx_index >= 5) {
+	if (USART3_rx[0] == (unsigned char) 0xFF && USART3_rx_index == 5) { // We know we're done reading
 		int16_t roll = (USART3_rx[2] << 8) | USART3_rx[1];
 		int16_t pitch = (USART3_rx[4] << 8) | USART3_rx[3];
 		game_orientation.roll_deg = roll;
 		game_orientation.pitch_deg = pitch;
-		USART3_rx_index = 0; // Reset index
 		game_data_ready = true;
+		USART3_rx_index = 0;
 	}
 	
-	// Increment counter only if we have got a proper start byte and we are in the array length of 5
-	if(USART3_rx[0] == (unsigned char) 0xFF & USART3_rx_index < 5) {
-		USART3_rx_index++; // Increment
-	} else {
+	if(USART3_rx[0] != (unsigned char) 0xFF || USART3_rx_index == 5) {
 		USART3_rx_index = 0;
 	}
 
@@ -231,11 +224,6 @@ char receive_char(USART_TypeDef *USARTx) {
 	// Wait for RXNE=0 inside ISR
 	while(!(USARTx->ISR & USART_ISR_RXNE));
 	char c = USARTx->RDR;
-	if(USARTx == USART1) {
-		// printf("USART1 Received: 0x%X\n", c);
-	} else if(USARTx == USART3) {
-		//// printf("USART3 Received: %c\n", c);
-	}
 	return c;
 }
 
@@ -243,11 +231,6 @@ char receive_char(USART_TypeDef *USARTx) {
 void transmit_char(USART_TypeDef *USARTx, char c) {
 	// Waiting on the USART status flag to indicate the transmit register is empty.
 	while(!(USARTx->ISR & USART_ISR_TXE));
-	if(USARTx == USART1) {
-		// printf("USART1 Transmitting: 0x%X\n", c);
-	} else if(USARTx == USART3) {
-		//// printf("USART3 Transmitting: %c\n", c);
-	}
 	USARTx->TDR = c;
 
 }
