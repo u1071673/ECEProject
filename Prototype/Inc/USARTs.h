@@ -25,11 +25,17 @@ char response_data(void);
 bool USART1_read_successfully(void);
 bool USART1_wrote_successfully(void);
 bool has_new_orientation(void);
+bool has_new_game_roll_data(void);
+bool has_new_game_pitch_data(void);
 euler_data get_orientation_data(void);
+int get_game_roll_data(void);
+int get_game_pitch_data(void);
 bool USART3_has_data(void);
 char get_USART3_data(void);
 char receive_char(USART_TypeDef *USARTx);
 void transmit_char(USART_TypeDef *USARTx, char c);
 void transmit_string(USART_TypeDef *USARTx, char *string);
+
+
 
 #endif /* __USARTS_H */

@@ -1,4 +1,4 @@
-prototype\eventrecorder.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.3.1\Source\EventRecorder.c
+prototype\eventrecorder.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Source\EventRecorder.c
 prototype\eventrecorder.o: .\RTE\_Prototype\RTE_Components.h
 prototype\eventrecorder.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h
 prototype\eventrecorder.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h
@@ -27,5 +27,5 @@ prototype\eventrecorder.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c
 prototype\eventrecorder.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h
 prototype\eventrecorder.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h
 prototype\eventrecorder.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-prototype\eventrecorder.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.3.1\Include\EventRecorder.h
+prototype\eventrecorder.o: C:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.6.0\Include\EventRecorder.h
 prototype\eventrecorder.o: .\RTE\Compiler\EventRecorderConf.h

@@ -8,12 +8,19 @@ volatile static bool USART1_new_data = false;
 volatile static bool USART3_new_data = false;
 volatile static char USART3_received_char = 0;
 volatile static int USART1_rx_index = 0;
+volatile static int USART3_rx_index = 0;
 volatile static unsigned char USART1_rx[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+volatile static unsigned char game_roll_data = 0;
+volatile static unsigned char game_pitch_data = 0;
 volatile static bool orientation_updated = false;
 volatile static euler_data orientation;
 volatile static bool write_success = false;
 volatile static bool read_success = false;
+volatile static bool game_roll_data_ready = false;
+volatile static bool game_pitch_data_ready = false;
+
 void add_to_USART1_buffer(char c);
+void add_to_USART3_buffer(char c);
 
 // Initializes PB6 and PB7 for USART1_TX (SCL/Rx) and USART1_RX (SDA/Tx).
 void USART1_init(void) {
@@ -64,6 +71,32 @@ void USART1_IRQHandler(void) {
 	USART1_new_data = true;
 	return;
 }
+
+
+// This is called every time a char is received on USART3_4
+void USART3_4_IRQHandler(void) {
+	add_to_USART3_buffer(receive_char(USART3));
+	USART3_new_data = true;
+	return;
+}
+
+void add_to_USART3_buffer(char c) {
+	unsigned char byte = c;
+	if(byte == (unsigned char) 0xFF) {
+		USART3_rx_index = 0;
+	} else if (USART3_rx_index == 1) {
+		game_roll_data = byte;
+		game_roll_data_ready = true;
+	} else if (USART3_rx_index == 2) {
+		game_pitch_data = byte;
+		game_pitch_data_ready = true;
+		USART3_rx_index = 0;
+	} else {
+		return;
+	}
+	USART3_rx_index++;
+}
+
 
 // Interupt handler helper adding received char to buffer
 bool reading = false;
@@ -141,21 +174,32 @@ bool has_new_orientation(void) {
 	return orientation_updated;
 }
 
+bool has_new_game_roll_data(void) {
+	return game_roll_data_ready;
+}
+
+bool has_new_game_pitch_data(void) {
+	return game_pitch_data_ready;
+}
+
 euler_data get_orientation_data(void) {
 	orientation_updated = false;
 	return orientation;
 }
 
+int get_game_roll_data(void) {
+	game_roll_data_ready = false;
+	return game_roll_data;
+}
+
+int get_game_pitch_data(void) {
+	game_pitch_data_ready = false;
+	return game_pitch_data;
+}
+
 // Return the response after a successful read
 char response_data(void) {
 	return USART1_rx[2];
-}
-
-// This is called every time a char is received on USART3_4
-void USART3_4_IRQHandler(void) {
-	USART3_received_char = receive_char(USART3);
-	USART3_new_data = true;
-	return;
 }
 
 // Used to check if USART3 has data

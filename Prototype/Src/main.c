@@ -64,7 +64,7 @@ int main(void) {
 
 	chair_init();
 
-	main_menu();
+	game_menu();
 }
 
 // Initialize all peripherals needed to have a functioning chair.
@@ -173,7 +173,7 @@ void game_menu() {
 				set_actual_roll_steps(data.roll_deg);
 				set_actual_pitch_steps(data.pitch_deg);
 				char string_to_transmit[40];			
-				sprintf(string_to_transmit, "target roll:%d, target pitch:%d, actual roll:%d, actual pitch:%d\r\n", target_roll_steps, target_pitch_steps, get_actual_roll_steps(), get_actual_pitch_steps());
+				sprintf(string_to_transmit, "t_roll:%d, t_pitch:%d, a_roll:%d, a_pitch:%d, c_roll:%d, c_pitch:%d\r\n", target_roll_steps, target_pitch_steps, get_actual_roll_steps(), get_actual_pitch_steps(), get_current_roll_steps(), get_current_pitch_steps());
 				putty_print(string_to_transmit);
 				BNO055_request_data();
 			}
