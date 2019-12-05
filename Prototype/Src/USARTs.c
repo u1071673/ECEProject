@@ -10,14 +10,13 @@ volatile static char USART3_received_char = 0;
 volatile static int USART1_rx_index = 0;
 volatile static int USART3_rx_index = 0;
 volatile static unsigned char USART1_rx[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-volatile static int game_roll_data = 0;
-volatile static int game_pitch_data = 0;
-volatile static bool orientation_updated = false;
+volatile static unsigned char USART3_rx[5] = {0, 0, 0, 0, 0};
 volatile static euler_data orientation;
+volatile static game_data game_orientation;
 volatile static bool write_success = false;
 volatile static bool read_success = false;
-volatile static bool game_roll_data_ready = false;
-volatile static bool game_pitch_data_ready = false;
+volatile static bool orientation_updated = false;
+volatile static bool game_data_ready = false;
 
 void add_to_USART1_buffer(char c);
 void add_to_USART3_buffer(char c);
@@ -81,20 +80,25 @@ void USART3_4_IRQHandler(void) {
 }
 
 void add_to_USART3_buffer(char c) {
-	unsigned char byte = c;
-	if(byte == (unsigned char) 0xFF) {
-		USART3_rx_index = 0;
-	} else if (USART3_rx_index == 1) {
-		game_roll_data = (int)byte;
-		game_roll_data_ready = true;
-	} else if (USART3_rx_index == 2) {
-		game_pitch_data = (int)byte;
-		game_pitch_data_ready = true;
-		USART3_rx_index = 0;
-	} else {
-		return;
+	// Set current index and increment for next time and save the current char in a buffer at the current index.
+	USART3_rx[USART3_rx_index] = c;
+	
+	if (USART3_rx[0] == (unsigned char) 0xFF && USART3_rx_index >= 5) {
+		int16_t roll = (USART3_rx[2] << 8) | USART3_rx[1];
+		int16_t pitch = (USART3_rx[4] << 8) | USART3_rx[3];
+		game_orientation.roll_deg = roll;
+		game_orientation.pitch_deg = pitch;
+		USART3_rx_index = 0; // Reset index
+		game_data_ready = true;
 	}
-	USART3_rx_index++;
+	
+	// Increment counter only if we have got a proper start byte and we are in the array length of 5
+	if(USART3_rx[0] == (unsigned char) 0xFF & USART3_rx_index < 5) {
+		USART3_rx_index++; // Increment
+	} else {
+		USART3_rx_index = 0;
+	}
+
 }
 
 
@@ -173,12 +177,8 @@ bool has_new_orientation(void) {
 	return orientation_updated;
 }
 
-bool has_new_game_roll_data(void) {
-	return game_roll_data_ready;
-}
-
-bool has_new_game_pitch_data(void) {
-	return game_pitch_data_ready;
+bool has_new_game_data(void) {
+	return game_data_ready;
 }
 
 euler_data get_orientation_data(void) {
@@ -186,14 +186,9 @@ euler_data get_orientation_data(void) {
 	return orientation;
 }
 
-int get_game_roll_data(void) {
-	game_roll_data_ready = false;
-	return game_roll_data;
-}
-
-int get_game_pitch_data(void) {
-	game_pitch_data_ready = false;
-	return game_pitch_data;
+game_data get_game_orientation_data(void) {
+	game_data_ready = false;
+	return game_orientation;
 }
 
 // Return the response after a successful read

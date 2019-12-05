@@ -155,22 +155,16 @@ void game_menu() {
 	putty_game_prompt();
 	int target_roll_steps = 0;
 	int target_pitch_steps = 0;
-	int g_roll = 0;
-	int g_pitch = 0;
 	BNO055_request_data(); // Request gyro data from the get go.
 	while(true) {
-		// Has roll data
-		if(has_new_game_roll_data()) {
-			g_roll = get_game_roll_data();
-			target_roll_steps = degrees_to_roll_steps(g_roll);
-		}
 		
-		// Has pitch data
-		if(has_new_game_pitch_data()) {
-			g_pitch = get_game_pitch_data();
-			target_pitch_steps = degrees_to_pitch_steps(g_pitch);
+		// Chick if there's new game data
+		if(has_new_game_data()) {
+			game_data g_data = get_game_orientation_data();
+			target_roll_steps = degrees_to_roll_steps(g_data.roll_deg);
+			target_pitch_steps = degrees_to_pitch_steps(g_data.pitch_deg);
 		}
-		
+				
 		// Set target roll steps so motors know how to update.
 		set_target_roll_steps(target_roll_steps);
 		set_target_pitch_steps(target_pitch_steps);
@@ -184,7 +178,7 @@ void game_menu() {
 		}
 		// Transmit data to user
 		char string_to_transmit[40];			
-		sprintf(string_to_transmit, "game(%d, %d)\ttarget(%d, %d)\tactual(%d, %d)\tcurrent(%d, %d)\r\n", g_roll, g_pitch, target_roll_steps, target_pitch_steps, get_actual_roll_steps(), get_actual_pitch_steps(), get_current_roll_steps(), get_current_pitch_steps());
+		sprintf(string_to_transmit, "target(%d, %d)\tactual(%d, %d)\tcurrent(%d, %d)\r\n", target_roll_steps, target_pitch_steps, get_actual_roll_steps(), get_actual_pitch_steps(), get_current_roll_steps(), get_current_pitch_steps());
 		putty_print(string_to_transmit);
 		
 		// Update the motors

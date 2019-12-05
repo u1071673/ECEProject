@@ -226,7 +226,7 @@ int get_current_pitch_steps(void) {
 }
 
 int degrees_to_steps(int degrees, int MAX_STEPS) {
-	return mod(degrees - 90, 360) * (MAX_STEPS/360);
+	return (int)((float)(mod(degrees - 90, 360)) * 0.56f);
 }
 
 int degrees_to_roll_steps(int degrees) {
