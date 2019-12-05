@@ -10,8 +10,8 @@ volatile static char USART3_received_char = 0;
 volatile static int USART1_rx_index = 0;
 volatile static int USART3_rx_index = 0;
 volatile static unsigned char USART1_rx[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-volatile static unsigned char game_roll_data = 0;
-volatile static unsigned char game_pitch_data = 0;
+volatile static int game_roll_data = 0;
+volatile static int game_pitch_data = 0;
 volatile static bool orientation_updated = false;
 volatile static euler_data orientation;
 volatile static bool write_success = false;
@@ -85,10 +85,10 @@ void add_to_USART3_buffer(char c) {
 	if(byte == (unsigned char) 0xFF) {
 		USART3_rx_index = 0;
 	} else if (USART3_rx_index == 1) {
-		game_roll_data = byte;
+		game_roll_data = (int)byte;
 		game_roll_data_ready = true;
 	} else if (USART3_rx_index == 2) {
-		game_pitch_data = byte;
+		game_pitch_data = (int)byte;
 		game_pitch_data_ready = true;
 		USART3_rx_index = 0;
 	} else {
@@ -155,7 +155,6 @@ void add_to_USART1_buffer(char c) {
 			reading = false;
 			length_to_receive = 0;
 		}
-
 }
 
 bool USART1_read_successfully(void) {

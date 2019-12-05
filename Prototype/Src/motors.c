@@ -38,7 +38,6 @@ void set_roll_dir_pin(bool clockwise);
 void set_pitch_dir_pin(bool clockwise);
 void set_roll_step_pin(bool state);
 void set_pitch_step_pin(bool state);
-int steps_to_degrees(int steps, int MAX_STEPS);
 void set_step_pin_manually(uint16_t step_pin, bool is_roll, bool set_pin_high);
 void set_direction_pins(uint16_t dir_pins, bool is_roll, bool set_pin_high);
 void toggle_step_pin(uint16_t step_pin, bool is_roll);
@@ -227,20 +226,15 @@ int get_current_pitch_steps(void) {
 }
 
 int degrees_to_steps(int degrees, int MAX_STEPS) {
-	return MAX_STEPS * (degrees/360);
+	return mod(degrees - 90, 360) * (MAX_STEPS/360);
 }
 
-
 int degrees_to_roll_steps(int degrees) {
-	return steps_to_degrees(degrees, MAX_ROLL_STEPS);
+	return degrees_to_steps(degrees, MAX_ROLL_STEPS);
 }
 
 int degrees_to_pitch_steps(int degrees) {
-	return steps_to_degrees(degrees, MAX_PITCH_STEPS);
-}
-
-int steps_to_degrees(int steps, int MAX_STEPS) {
-	return 360 * (steps/MAX_STEPS);
+	return degrees_to_steps(degrees, MAX_PITCH_STEPS);
 }
 
 void set_roll_dir_pin(bool clockwise) {
