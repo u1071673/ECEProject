@@ -7,6 +7,8 @@ void motors_init(void);
 void update_motors(void);
 void step_roll_motor(bool clockwise); // true is clockwise, false is counter clockwise
 void step_pitch_motor(bool clockwise); // true is clockwise, false is counter clockwise
+void set_current_roll_steps(int current_steps);
+void set_current_pitch_steps(int current_steps);
 void set_target_roll_steps(int target_steps);
 void set_target_pitch_steps(int target_steps);
 void set_actual_roll_steps(float roll);

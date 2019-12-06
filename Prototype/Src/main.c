@@ -50,7 +50,7 @@ void reset_values(void);
 
 volatile static float roll;
 volatile static float pitch;
-
+void run_all();
 uint16_t	adc_dma_buffer[1];
 /* STATIC GLOBAL VARIABLES */
 
@@ -155,10 +155,27 @@ void game_menu() {
 	reset_values();
 	// putty_game_prompt();
 	BNO055_request_data(); // Request gyro data from the get go.
-	putty_putc((char)0xFF); // Send start byte.
-	while(true) {
+	
+	// Wait for gyro data so we can syncronize motors
+	while(!BNO055_orientation_updated());
+	euler_data d = BNO055_get_orientation();
+	set_actual_roll_steps(d.roll_deg);
+	set_actual_pitch_steps(d.pitch_deg);
+	set_current_roll_steps(get_actual_roll_steps());
+	set_current_pitch_steps(get_actual_pitch_steps());
 		
-		// Chick if there's new game data
+	putty_putc((char)0xFF); // Send start byte.
+
+	// Set current motor to gyro value.
+	while(true) {
+		run_all();
+	}
+	//putty_print("Leaving Game Mode...");
+	//putty_print("\n\r");
+}
+
+void run_all() {
+	// Check if there's new game data
 		if(has_new_game_data()) {
 			game_data g_data = get_game_orientation_data();
 			uint16_t fsr1_data = adc_dma_buffer[0];
@@ -170,7 +187,6 @@ void game_menu() {
 			sprintf(string_to_transmit, "game(%d, %d)\tgyro(%d, %d)\tmotor(%d, %d)\tforce(%d)\r\n", get_target_roll_steps(), get_target_pitch_steps(), get_actual_roll_steps(), get_actual_pitch_steps(), get_current_roll_steps(), get_current_pitch_steps(), fsr1_data);
 			putty_print(string_to_transmit);
 		}
-						
 		// Check if the BNO055 has a new orientation to update it.
 		if (BNO055_orientation_updated()) {
 			euler_data data = BNO055_get_orientation();
@@ -181,9 +197,6 @@ void game_menu() {
 		
 		// Update the motors
 		update_motors();
-	}
-	//putty_print("Leaving Game Mode...");
-	//putty_print("\n\r");
 }
 
 void debug_menu() {

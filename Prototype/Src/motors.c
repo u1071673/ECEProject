@@ -11,7 +11,7 @@
 #define MOTOR_TH 5
 #define CW 1
 #define CCW 0
-#define CONFIDENCE_N_LEVEL 1000
+#define CONFIDENCE_N_LEVEL 4000
 #define GYRO_TOLERANCE 2
 
 int mod(int a, int b) { 
@@ -48,7 +48,11 @@ void motors_init(void) {
 	GPIO_PINs_init();
 }
 
-int stable_position_counter = 0;
+//int est_roll_steps = 0;
+//int est_pitch_steps = 0;
+bool roll_is_close_enough = false;
+bool pitch_is_close_enough = false;
+
 void update_motors(void) {
 	bool roll_update_needed = true;
 	bool pitch_update_needed = true;
@@ -61,7 +65,7 @@ void update_motors(void) {
 	int pitch_cw_dist = mod((target_pitch_steps - current_pitch_steps), MAX_PITCH_STEPS);
 	int pitch_ccw_dist = mod((current_pitch_steps - target_pitch_steps), MAX_PITCH_STEPS);
 	
-	
+	pitch_is_close_enough = false;
 	// FIND SHORTEST PATH FOR ROLL MOTOR
 	if(roll_cw_dist < roll_ccw_dist)
 		roll_dir = CW;
@@ -70,31 +74,48 @@ void update_motors(void) {
 	else if (roll_cw_dist) // If it ever gets here we know the distances are equal. T.F. keep going same direction to get to target.
 		roll_dir = prev_roll_dir;
 	else { // Distance is Zero we may have reached our target.
-		// Find out if we are close enough to Gyro value
-		// Make sure we get the same gyro value at least N times before we rely on it's integrity.
-		if(gyro_roll_confidence >= CONFIDENCE_N_LEVEL) {
-			
-			gyro_roll_confidence = 0; // Reset confidence because we are about to move the motor
-			
-			// Find out if we are close enough to Gyro value
-			int roll_cw_gryo_dist = mod((actual_roll_steps - current_roll_steps), MAX_ROLL_STEPS);
-			int roll_ccw_gyro_dist = mod((current_roll_steps - actual_roll_steps), MAX_ROLL_STEPS);
-			
-			if(roll_cw_gryo_dist < GYRO_TOLERANCE || roll_ccw_gyro_dist < GYRO_TOLERANCE) // Close enough to gyro value.	 no more updates needed.
-				roll_update_needed = false;
-			else  // Not close enough to gyro value
-				current_roll_steps = actual_roll_steps;
-		} 
-		else if(actual_roll_steps == prev_actual_roll_steps) {// Got the same gyro value as previously, become more confident.
-			gyro_roll_confidence++; 
-			roll_update_needed = false;
-		}
-		else {// Didn't get the same value as last sample. Reset confidence
-			gyro_roll_confidence = 0;
-			roll_update_needed = false;
-		}
+		roll_update_needed = false;
 	}
+//		// Since gyro pitch access is limited, we can only rely on it from 0-50 and 150-200
+//		if(((current_pitch_steps < 10) || (190 < current_pitch_steps)) 
+//			&& (current_roll_steps >= 175 || current_roll_steps <= 25)) {
+//			// Find out if we are close enough to Gyro value
+//			// Make sure we get the same gyro value at least N times before we rely on it's integrity.
+//			if(roll_is_close_enough || gyro_roll_confidence >= CONFIDENCE_N_LEVEL) {
+//				pitch_is_close_enough = gyro_pitch_confidence > (0.9 * CONFIDENCE_N_LEVEL); // Check if pitch is close enought to adjust also otherwise when the roll moves it will mess up pitch.
+//				gyro_roll_confidence = 0; // Reset confidence because we are about to move the motor
+//				
+//				// Find out if we are close enough to Gyro value
+//				int roll_cw_gryo_dist = mod((prev_actual_roll_steps - current_roll_steps), MAX_ROLL_STEPS);
+//				int roll_ccw_gyro_dist = mod((current_roll_steps - prev_actual_roll_steps), MAX_ROLL_STEPS);
+//				
+//				if(roll_cw_gryo_dist < GYRO_TOLERANCE || roll_ccw_gyro_dist < GYRO_TOLERANCE) {// Close enough to gyro value.	 no more updates needed.
+//					roll_update_needed = false;
+//					//est_roll_steps = 0;
+//				}
+//				else  // Not close enough to gyro value
+//					current_roll_steps = prev_actual_roll_steps;
+//			} 
+//			else if(actual_roll_steps == prev_actual_roll_steps) {// Got the same gyro value as previously, become more confident.
+//				gyro_roll_confidence++; 
+//				roll_update_needed = false;
+//	//			if(est_roll_steps == 0) {
+//	//				est_roll_steps = actual_roll_steps;
+//	//			} else {
+//	//				est_roll_steps = 0.875 * est_roll_steps + 0.125 * actual_roll_steps;
+//	//			}
+//			}
+//			else {// Didn't get the same value as last sample. Reset confidence
+//				//est_roll_steps = 0;
+//				gyro_roll_confidence = 0;
+//				roll_update_needed = false;
+//			}
+//		}	else { // We can't rely on the gyro at this point. We are in unknown territory.
+//				pitch_update_needed = false;
+//		}
+//	}
 	
+	roll_is_close_enough = false;
 	// FIND SHORTEST PATH FOR PITCH MOTOR
 	if(pitch_cw_dist < pitch_ccw_dist)
 		pitch_dir = CW;
@@ -103,34 +124,43 @@ void update_motors(void) {
 	else if (pitch_cw_dist) // If it ever gets here we know the distances are equal. T.F. keep going same direction to get to target.
 		pitch_dir = prev_pitch_dir;
 	else { // Distance is Zero we may have reached our target.
-		// Since gyro pitch access is limited, we can only rely on it from 0-50 and 150-200
-		if((0 <= current_pitch_steps && current_pitch_steps < 50) || (150 < current_pitch_steps && current_pitch_steps < 200)) {
-			// Make sure we get the same gyro value at least N times before we rely on it's integrity.
-			if(gyro_pitch_confidence >= CONFIDENCE_N_LEVEL) {
-				
-				gyro_pitch_confidence = 0; // Reset confidence because we are about to move the motor
-				
-				// Find out if we are close enough to Gyro value
-				int pitch_cw_gryo_dist = mod((actual_pitch_steps - current_pitch_steps), MAX_PITCH_STEPS);
-				int pitch_ccw_gyro_dist = mod((current_pitch_steps - actual_pitch_steps), MAX_PITCH_STEPS);
-				
-				if(pitch_cw_gryo_dist < GYRO_TOLERANCE || pitch_ccw_gyro_dist < GYRO_TOLERANCE) { // Close enough to gyro value. no more updates needed.
-					pitch_update_needed = false;
-				} else { // Not close enough to gyro value
-					current_pitch_steps = actual_pitch_steps;
-				}
-			}
-			else if(actual_pitch_steps == prev_actual_pitch_steps) { // Got the same gyro value as previously, become more confident.
-				gyro_pitch_confidence++; 
-				pitch_update_needed = false;
-			}
-			else {// Didn't get the same value as last sample. Reset confidence
-				gyro_pitch_confidence = 0;
-				pitch_update_needed = false;
-			}
-		} else { // We can't rely on the gyro at this point. We are in unknown territory.
-			pitch_update_needed = false;
-		}
+		pitch_update_needed = false;
+//		// Since gyro pitch access is limited, we can only rely on it from 0-50 and 150-200
+//		if(((current_pitch_steps < 10) || (190 < current_pitch_steps)) 
+//			&& (current_roll_steps >= 175 || current_roll_steps <= 25)) {
+//			// Make sure we get the same gyro value at least N times before we rely on it's integrity.
+//			if(pitch_is_close_enough || gyro_pitch_confidence >= CONFIDENCE_N_LEVEL) {
+//				roll_is_close_enough = gyro_roll_confidence > (0.9 * CONFIDENCE_N_LEVEL); // Check if roll is close enough to adjust also otherwise when the pitch moves it will mess up roll.
+//				gyro_pitch_confidence = 0; // Reset confidence because we are about to move the motor
+//				
+//				// Find out if we are close enough to Gyro value
+//				int pitch_cw_gryo_dist = mod((prev_actual_pitch_steps - current_pitch_steps), MAX_PITCH_STEPS);
+//				int pitch_ccw_gyro_dist = mod((current_pitch_steps - prev_actual_pitch_steps), MAX_PITCH_STEPS);
+//				
+//				if(pitch_cw_gryo_dist < GYRO_TOLERANCE || pitch_ccw_gyro_dist < GYRO_TOLERANCE) { // Close enough to gyro value. no more updates needed.
+//					pitch_update_needed = false;
+//					// est_pitch_steps = 0;
+//				} else { // Not close enough to gyro value
+//					current_pitch_steps = prev_actual_pitch_steps;
+//				}
+//			}
+//			else if(actual_pitch_steps == prev_actual_pitch_steps) { // Got the same gyro value as previously, become more confident.
+//				gyro_pitch_confidence++; 
+//				pitch_update_needed = false;
+////				if(est_pitch_steps == 0) {
+////					est_pitch_steps = actual_pitch_steps;
+////				} else {
+////					est_pitch_steps = 0.875 * est_pitch_steps + 0.125 * actual_pitch_steps;
+////				}
+//			}
+//			else {// Didn't get the same value as last sample. Reset confidence
+//				gyro_pitch_confidence = 0;
+//				// est_pitch_steps = 0;
+//				pitch_update_needed = false;
+//			}
+//		} else { // We can't rely on the gyro at this point. We are in unknown territory.
+//			pitch_update_needed = false;
+//		}
 	}
 	// Set direction pins accordingly
 	set_roll_dir_pin(roll_dir);
@@ -177,6 +207,14 @@ void step_pitch_motor(bool clockwise) {
 	
 	set_pitch_step_pin(false); // Set low to finish a step
 	HAL_Delay(OFF_DELAY);		
+}
+
+void set_current_roll_steps(int current_steps) {
+	current_roll_steps = current_steps;
+}
+
+void set_current_pitch_steps(int current_steps) {
+	current_pitch_steps = current_steps;
 }
 
 void set_target_roll_steps(int target_steps) {

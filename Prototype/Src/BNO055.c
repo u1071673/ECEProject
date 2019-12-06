@@ -237,7 +237,7 @@ void BNO055_init(void) {
 		}
 	} while (true);
 	
-	putty_print("BNO055 Initialization and Calibration Complete!\n");
+	putty_print("BNO055 Initialization and Calibration Complete!\r\n");
 }
 
 void BNO055_request_data(void) {
