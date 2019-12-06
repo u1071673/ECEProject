@@ -34,3 +34,4 @@ prototype\main.o: ../Inc/putty.h
 prototype\main.o: ../Inc/LEDs.h
 prototype\main.o: ../Inc/USARTs.h
 prototype\main.o: ../Inc/BNO055.h
+prototype\main.o: ../Inc/FSRs.h

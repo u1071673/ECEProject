@@ -11,6 +11,7 @@
 "prototype\putty.o"
 "prototype\timers.o"
 "prototype\usarts.o"
+"prototype\fsrs.o"
 "prototype\stm32f0xx_hal_tim.o"
 "prototype\stm32f0xx_hal_tim_ex.o"
 "prototype\stm32f0xx_hal_rcc.o"

@@ -3,9 +3,9 @@
 <title>Static Call Graph - [Prototype\Prototype.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Prototype\Prototype.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Dec 05 12:57:47 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Dec 05 17:23:08 2019
 <BR><P>
-<H3>Maximum Stack Usage =        196 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        204 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; game_menu &rArr; update_motors &rArr; set_roll_step_pin &rArr; set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 <P>
@@ -70,7 +70,7 @@ Global Symbols
 <P><STRONG><a name="[28]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(.text)
 </UL>
-<P><STRONG><a name="[91]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[92]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[2a]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -80,15 +80,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[92]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[93]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[93]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[94]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[94]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[95]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[95]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[96]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[96]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[97]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f072xb.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
@@ -184,7 +184,7 @@ Global Symbols
 <P><STRONG><a name="[6]"></a>WWDG_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f072xb.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f072xb.o(RESET)
 </UL>
-<P><STRONG><a name="[97]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
+<P><STRONG><a name="[98]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 12 bytes, uidiv.o(.text), UNUSED)
 
 <P><STRONG><a name="[2d]"></a>__aeabi_uidivmod</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, uidiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = __aeabi_uidivmod
@@ -197,16 +197,16 @@ Global Symbols
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 </UL>
 
-<P><STRONG><a name="[98]"></a>__aeabi_idiv</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, idiv.o(.text), UNUSED)
+<P><STRONG><a name="[99]"></a>__aeabi_idiv</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, idiv.o(.text), UNUSED)
 
 <P><STRONG><a name="[2c]"></a>__aeabi_idivmod</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, idiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
 </UL>
 
 <P><STRONG><a name="[38]"></a>__aeabi_llsr</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, llushr.o(.text), UNUSED)
@@ -215,16 +215,16 @@ Global Symbols
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[99]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llushr.o(.text), UNUSED)
+<P><STRONG><a name="[9a]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llushr.o(.text), UNUSED)
 
 <P><STRONG><a name="[2f]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 
-<P><STRONG><a name="[9a]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[9b]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
-<P><STRONG><a name="[9b]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[9c]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[2e]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
@@ -234,7 +234,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
-<P><STRONG><a name="[9c]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+<P><STRONG><a name="[9d]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[30]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
@@ -247,7 +247,7 @@ Global Symbols
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 </UL>
 
@@ -260,39 +260,39 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
 </UL>
 
-<P><STRONG><a name="[76]"></a>__aeabi_fmul</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, fmul.o(.text))
+<P><STRONG><a name="[77]"></a>__aeabi_fmul</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, fmul.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
 </UL>
 
 <P><STRONG><a name="[6f]"></a>__ARM_scalbnf</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, fscalb.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;add_to_USART1_buffer
 </UL>
 
-<P><STRONG><a name="[9d]"></a>scalbnf</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fscalb.o(.text), UNUSED)
+<P><STRONG><a name="[9e]"></a>scalbnf</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fscalb.o(.text), UNUSED)
 
 <P><STRONG><a name="[36]"></a>__aeabi_i2f</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, fflti.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = __aeabi_i2f &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_epilogue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;add_to_USART1_buffer
 </UL>
 
-<P><STRONG><a name="[77]"></a>__aeabi_f2iz</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ffixi.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
+<P><STRONG><a name="[78]"></a>__aeabi_f2iz</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ffixi.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
 </UL>
 
 <P><STRONG><a name="[37]"></a>__aeabi_uldivmod</STRONG> (Thumb, 96 bytes, Stack size 48 bytes, uldiv.o(.text), UNUSED)
@@ -303,7 +303,7 @@ Global Symbols
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
-<P><STRONG><a name="[9e]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, iusefp.o(.text), UNUSED)
+<P><STRONG><a name="[9f]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, iusefp.o(.text), UNUSED)
 
 <P><STRONG><a name="[33]"></a>_float_round</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, fepilogue.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
@@ -364,7 +364,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[9f]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[a0]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[39]"></a>__aeabi_llsl</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
@@ -373,13 +373,13 @@ Global Symbols
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[a0]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
+<P><STRONG><a name="[a1]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
 
 <P><STRONG><a name="[3b]"></a>__aeabi_lasr</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
-<P><STRONG><a name="[a1]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
+<P><STRONG><a name="[a2]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
 
 <P><STRONG><a name="[3d]"></a>_double_round</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, depilogue.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
@@ -402,7 +402,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_orientation_data
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
 <P><STRONG><a name="[47]"></a>BNO055_init</STRONG> (Thumb, 1624 bytes, Stack size 16 bytes, bno055.o(i.BNO055_init))
@@ -424,7 +424,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;has_new_orientation
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
 <P><STRONG><a name="[51]"></a>BNO055_request_data</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, bno055.o(i.BNO055_request_data))
@@ -434,7 +434,13 @@ Global Symbols
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_read_successfully
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+</UL>
+
+<P><STRONG><a name="[74]"></a>FSRs_init</STRONG> (Thumb, 192 bytes, Stack size 16 bytes, fsrs.o(i.FSRs_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = FSRs_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
 </UL>
 
 <P><STRONG><a name="[52]"></a>GPIO_PINs_init</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, gpios.o(i.GPIO_PINs_init))
@@ -459,7 +465,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_request_data
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
 </UL>
@@ -471,8 +477,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[55]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin))
-<BR><BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_direction_pins
+<BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_direction_pins
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOx_init
 </UL>
 
@@ -654,27 +660,27 @@ Global Symbols
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[a2]"></a>__1sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
+<P><STRONG><a name="[a3]"></a>__1sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
 
-<P><STRONG><a name="[86]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf))
+<P><STRONG><a name="[87]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[a3]"></a>__c89sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
+<P><STRONG><a name="[a4]"></a>__c89sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
 
-<P><STRONG><a name="[a4]"></a>sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
+<P><STRONG><a name="[a5]"></a>sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
 
 <P><STRONG><a name="[44]"></a>__ARM_clz</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, depilogue.o(i.__ARM_clz), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 
-<P><STRONG><a name="[a5]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[a6]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[a6]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[a7]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[a7]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[a8]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
 <P><STRONG><a name="[65]"></a>add_to_USART1_buffer</STRONG> (Thumb, 202 bytes, Stack size 24 bytes, usarts.o(i.add_to_USART1_buffer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = add_to_USART1_buffer &rArr; __aeabi_i2f &rArr; _float_epilogue
@@ -691,64 +697,65 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_4_IRQHandler
 </UL>
 
-<P><STRONG><a name="[70]"></a>chair_init</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, main.o(i.chair_init))
+<P><STRONG><a name="[70]"></a>chair_init</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, main.o(i.chair_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = chair_init &rArr; motors_init &rArr; GPIO_PINs_init &rArr; GPIOx_init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motors_init
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_parser_init
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LEDs_init
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSRs_init
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[74]"></a>degrees_to_pitch_steps</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, motors.o(i.degrees_to_pitch_steps))
+<P><STRONG><a name="[75]"></a>degrees_to_pitch_steps</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, motors.o(i.degrees_to_pitch_steps))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = degrees_to_pitch_steps &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[78]"></a>degrees_to_roll_steps</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, motors.o(i.degrees_to_roll_steps))
+<P><STRONG><a name="[79]"></a>degrees_to_roll_steps</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, motors.o(i.degrees_to_roll_steps))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = degrees_to_roll_steps &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[79]"></a>game_menu</STRONG> (Thumb, 146 bytes, Stack size 64 bytes, main.o(i.game_menu))
-<BR><BR>[Stack]<UL><LI>Max Depth = 196<LI>Call Chain = game_menu &rArr; update_motors &rArr; set_roll_step_pin &rArr; set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
+<P><STRONG><a name="[7a]"></a>game_menu</STRONG> (Thumb, 156 bytes, Stack size 72 bytes, main.o(i.game_menu))
+<BR><BR>[Stack]<UL><LI>Max Depth = 204<LI>Call Chain = game_menu &rArr; update_motors &rArr; set_roll_step_pin &rArr; set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_roll_steps
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_pitch_steps
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_roll_steps
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_pitch_steps
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_roll_steps
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_actual_pitch_steps
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;has_new_game_data
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_target_roll_steps
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_target_pitch_steps
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_game_orientation_data
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_roll_steps
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_pitch_steps
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_actual_roll_steps
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_actual_pitch_steps
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;has_new_game_data
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_target_roll_steps
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_target_pitch_steps
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_game_orientation_data
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_roll_steps
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_current_pitch_steps
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_actual_roll_steps
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_actual_pitch_steps
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_request_data
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_orientation_updated
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_get_orientation
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -761,40 +768,40 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
 </UL>
 
-<P><STRONG><a name="[82]"></a>get_actual_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_actual_pitch_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[83]"></a>get_actual_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_actual_pitch_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[83]"></a>get_actual_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_actual_roll_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[84]"></a>get_actual_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_actual_roll_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[80]"></a>get_current_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_current_pitch_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[81]"></a>get_current_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_current_pitch_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[81]"></a>get_current_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_current_roll_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[82]"></a>get_current_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_current_roll_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[7d]"></a>get_game_orientation_data</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, usarts.o(i.get_game_orientation_data))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[7e]"></a>get_game_orientation_data</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, usarts.o(i.get_game_orientation_data))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
 <P><STRONG><a name="[46]"></a>get_orientation_data</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, usarts.o(i.get_orientation_data))
 <BR><BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_get_orientation
 </UL>
 
-<P><STRONG><a name="[84]"></a>get_target_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_target_pitch_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[85]"></a>get_target_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_target_pitch_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[85]"></a>get_target_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_target_roll_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[86]"></a>get_target_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.get_target_roll_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[7c]"></a>has_new_game_data</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usarts.o(i.has_new_game_data))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[7d]"></a>has_new_game_data</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usarts.o(i.has_new_game_data))
+<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
 <P><STRONG><a name="[50]"></a>has_new_orientation</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usarts.o(i.has_new_orientation))
@@ -802,24 +809,24 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[26]"></a>main</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 196<LI>Call Chain = main &rArr; game_menu &rArr; update_motors &rArr; set_roll_step_pin &rArr; set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
+<BR><BR>[Stack]<UL><LI>Max Depth = 204<LI>Call Chain = main &rArr; game_menu &rArr; update_motors &rArr; set_roll_step_pin &rArr; set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chair_init
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[75]"></a>mod</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, motors.o(i.mod))
+<P><STRONG><a name="[76]"></a>mod</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, motors.o(i.mod))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
+<BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_roll_steps
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;degrees_to_pitch_steps
 </UL>
 
 <P><STRONG><a name="[71]"></a>motors_init</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, motors.o(i.motors_init))
@@ -833,18 +840,18 @@ Global Symbols
 <P><STRONG><a name="[48]"></a>putty_print</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, putty.o(i.putty_print))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = putty_print &rArr; transmit_string
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
+<BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
 </UL>
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[7b]"></a>putty_putc</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, putty.o(i.putty_putc))
+<P><STRONG><a name="[7c]"></a>putty_putc</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, putty.o(i.putty_putc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = putty_putc
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
 <P><STRONG><a name="[64]"></a>receive_char</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, usarts.o(i.receive_char))
@@ -855,113 +862,113 @@ Global Symbols
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[7a]"></a>reset_values</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, main.o(i.reset_values))
+<P><STRONG><a name="[7b]"></a>reset_values</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, main.o(i.reset_values))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = reset_values
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_roll_steps
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_pitch_steps
+<BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_roll_steps
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_target_pitch_steps
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
 <P><STRONG><a name="[4d]"></a>response_data</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usarts.o(i.response_data))
 <BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
 </UL>
 
-<P><STRONG><a name="[88]"></a>set_actual_pitch_steps</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, motors.o(i.set_actual_pitch_steps))
+<P><STRONG><a name="[89]"></a>set_actual_pitch_steps</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, motors.o(i.set_actual_pitch_steps))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = set_actual_pitch_steps &rArr; __aeabi_frsub &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[87]"></a>set_actual_roll_steps</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, motors.o(i.set_actual_roll_steps))
+<P><STRONG><a name="[88]"></a>set_actual_roll_steps</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, motors.o(i.set_actual_roll_steps))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = set_actual_roll_steps &rArr; __aeabi_fadd &rArr; _float_epilogue
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[8b]"></a>set_direction_pins</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, motors.o(i.set_direction_pins))
+<P><STRONG><a name="[8c]"></a>set_direction_pins</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, motors.o(i.set_direction_pins))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = set_direction_pins
 </UL>
 <BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_dir_pin
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_dir_pin
+<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_dir_pin
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_dir_pin
 </UL>
 
-<P><STRONG><a name="[8c]"></a>set_pitch_dir_pin</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, motors.o(i.set_pitch_dir_pin))
+<P><STRONG><a name="[8d]"></a>set_pitch_dir_pin</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, motors.o(i.set_pitch_dir_pin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = set_pitch_dir_pin &rArr; set_direction_pins
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_direction_pins
+<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_direction_pins
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
 </UL>
 
-<P><STRONG><a name="[8d]"></a>set_pitch_step_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_pitch_step_pin))
+<P><STRONG><a name="[8e]"></a>set_pitch_step_pin</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, motors.o(i.set_pitch_step_pin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = set_pitch_step_pin &rArr; set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
 </UL>
 
-<P><STRONG><a name="[8f]"></a>set_roll_dir_pin</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, motors.o(i.set_roll_dir_pin))
+<P><STRONG><a name="[90]"></a>set_roll_dir_pin</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, motors.o(i.set_roll_dir_pin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = set_roll_dir_pin &rArr; set_direction_pins
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_direction_pins
+<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_direction_pins
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
 </UL>
 
-<P><STRONG><a name="[90]"></a>set_roll_step_pin</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, motors.o(i.set_roll_step_pin))
+<P><STRONG><a name="[91]"></a>set_roll_step_pin</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, motors.o(i.set_roll_step_pin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = set_roll_step_pin &rArr; set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
+<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_step_pin_manually
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_motors
 </UL>
 
-<P><STRONG><a name="[8e]"></a>set_step_pin_manually</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, motors.o(i.set_step_pin_manually))
+<P><STRONG><a name="[8f]"></a>set_step_pin_manually</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, motors.o(i.set_step_pin_manually))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_step_pin
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_step_pin
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_step_pin
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_step_pin
 </UL>
 
-<P><STRONG><a name="[7f]"></a>set_target_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.set_target_pitch_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[80]"></a>set_target_pitch_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.set_target_pitch_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
-<P><STRONG><a name="[7e]"></a>set_target_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.set_target_roll_steps))
-<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<P><STRONG><a name="[7f]"></a>set_target_roll_steps</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motors.o(i.set_target_roll_steps))
+<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_values
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 
 <P><STRONG><a name="[4a]"></a>transmit_char</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, usarts.o(i.transmit_char))
 <BR><BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
+<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_string
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
-<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_putc
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_request_data
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BNO055_init
 </UL>
 
-<P><STRONG><a name="[8a]"></a>transmit_string</STRONG> (Thumb, 26 bytes, Stack size 12 bytes, usarts.o(i.transmit_string))
+<P><STRONG><a name="[8b]"></a>transmit_string</STRONG> (Thumb, 26 bytes, Stack size 12 bytes, usarts.o(i.transmit_string))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = transmit_string
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit_char
@@ -969,17 +976,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putty_print
 </UL>
 
-<P><STRONG><a name="[89]"></a>update_motors</STRONG> (Thumb, 366 bytes, Stack size 56 bytes, motors.o(i.update_motors))
+<P><STRONG><a name="[8a]"></a>update_motors</STRONG> (Thumb, 374 bytes, Stack size 56 bytes, motors.o(i.update_motors))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = update_motors &rArr; set_roll_step_pin &rArr; set_step_pin_manually &rArr; mod &rArr; __aeabi_idivmod &rArr; __aeabi_uidivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_step_pin
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_dir_pin
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_step_pin
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_dir_pin
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
+<BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_step_pin
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_roll_dir_pin
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_step_pin
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pitch_dir_pin
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mod
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_menu
 </UL>
 <P>
 <H3>

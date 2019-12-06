@@ -8,10 +8,10 @@
 #define MAX_PITCH_STEPS 200
 #define ON_DELAY 10
 #define OFF_DELAY 10
-#define MOTOR_TH 10
+#define MOTOR_TH 5
 #define CW 1
 #define CCW 0
-#define CONFIDENCE_N_LEVEL 10
+#define CONFIDENCE_N_LEVEL 1000
 #define GYRO_TOLERANCE 2
 
 int mod(int a, int b) { 

@@ -18,6 +18,7 @@
 #include "LEDs.h"
 #include "USARTs.h"
 #include "BNO055.h"
+#include "FSRs.h"
 
 #define DEBUG_MODE 'a'
 #define GAME_MODE 'b'
@@ -50,6 +51,7 @@ void reset_values(void);
 volatile static float roll;
 volatile static float pitch;
 
+uint16_t	adc_dma_buffer[1];
 /* STATIC GLOBAL VARIABLES */
 
 int main(void) {
@@ -63,6 +65,7 @@ int main(void) {
 	//EventRecorderInitialize (EventRecordAll, 1);  // initialize and start Event Recorder (Needed For printf to work)
 
 	chair_init();
+		
 
 	game_menu();
 }
@@ -82,6 +85,9 @@ void chair_init(void) {
 	// PB6 (USART1_TX), PB7 (USART1_RX)
   BNO055_init();
 	
+	//FSRs
+	FSRs_init();
+	putty_print("INITIALIZATION COMPLETE!");
 }
 
 
@@ -155,12 +161,13 @@ void game_menu() {
 		// Chick if there's new game data
 		if(has_new_game_data()) {
 			game_data g_data = get_game_orientation_data();
+			uint16_t fsr1_data = adc_dma_buffer[0];
 			// Set target roll steps so motors know how to update.
 			set_target_roll_steps(degrees_to_roll_steps(g_data.roll_deg));
 			set_target_pitch_steps(degrees_to_pitch_steps(g_data.pitch_deg));
 			// Transmit data to user
 			char string_to_transmit[40];
-			sprintf(string_to_transmit, "target(%d, %d)\tactual(%d, %d)\tcurrent(%d, %d)\r\n", get_target_roll_steps(), get_target_pitch_steps(), get_actual_roll_steps(), get_actual_pitch_steps(), get_current_roll_steps(), get_current_pitch_steps());
+			sprintf(string_to_transmit, "game(%d, %d)\tgyro(%d, %d)\tmotor(%d, %d)\tforce(%d)\r\n", get_target_roll_steps(), get_target_pitch_steps(), get_actual_roll_steps(), get_actual_pitch_steps(), get_current_roll_steps(), get_current_pitch_steps(), fsr1_data);
 			putty_print(string_to_transmit);
 		}
 						
